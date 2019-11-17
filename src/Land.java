@@ -1,6 +1,4 @@
-// import java.util.Scanner;
-
-// Land class
+import java.util.*;
 
 public class Land{
 
@@ -16,6 +14,4 @@ public class Land{
     {
         return type;
     }
-
-    public
 }

@@ -8,8 +8,4 @@ public class ResourceCard extends Card {
     }
 
     //methods
-    public ResourceCard copy( ResourceCard rsCard){
-        ResourceCard newCard = rsCard;
-        return newCard;
-    }
 }
