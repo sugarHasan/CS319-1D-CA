@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class TradeManager {
+public class TradeManager extends Trade{
 
     private ArrayList<Trade> trades = new ArrayList<Trade>();
 
