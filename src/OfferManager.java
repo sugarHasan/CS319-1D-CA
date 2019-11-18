@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class OfferManager {
     ArrayList<Offer> offers = new ArrayList<Offer>();
+    public void makeOffer(){
 
     public void makeOffer( Player sender, Player receiver, ResourceCard offeredItem,
                            ResourceCard demandedItem, int offerNum, int demandNum){

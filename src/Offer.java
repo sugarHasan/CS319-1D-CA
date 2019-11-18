@@ -10,7 +10,7 @@ public class Offer {
     private int offerNum;
     private int demandNum;
 
-    public Offer( Player sender, Player receiver, ResourceCard offeredItem,
+    public Offer(Player sender, Player receiver, ResourceCard offeredItem,
                  ResourceCard demandedItem, int offerNum, int demandNum) {
         this.sender = sender;
         this.receiver = receiver;
@@ -24,7 +24,7 @@ public class Offer {
         return sender;
     }
 
-    public void setSender( Player sender) {
+    public void setSender(Player sender) {
         this.sender = sender;
     }
 
@@ -32,7 +32,7 @@ public class Offer {
         return receiver;
     }
 
-    public void setReceiver( Player receiver) {
+    public void setReceiver(Player receiver) {
         this.receiver = receiver;
     }
 
@@ -40,7 +40,7 @@ public class Offer {
         return offeredItem;
     }
 
-    public void setOfferedItem( ResourceCard offeredItem) {
+    public void setOfferedItem(ResourceCard offeredItem) {
         this.offeredItem = offeredItem;
     }
 
@@ -48,7 +48,7 @@ public class Offer {
         return demandedItem;
     }
 
-    public void setDemandedItem( ResourceCard demandedItem) {
+    public void setDemandedItem(ResourceCard demandedItem) {
         this.demandedItem = demandedItem;
     }
 
@@ -56,7 +56,7 @@ public class Offer {
         return offerNum;
     }
 
-    public void setOfferNum( int offerNum) {
+    public void setOfferNum(int offerNum) {
         this.offerNum = offerNum;
     }
 
@@ -64,7 +64,7 @@ public class Offer {
         return demandNum;
     }
 
-    public void setDemandNum( int demandNum) {
+    public void setDemandNum(int demandNum) {
         this.demandNum = demandNum;
     }
 }

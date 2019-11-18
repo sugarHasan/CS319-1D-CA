@@ -1,5 +1,3 @@
-package src;
-
 public class Menu {
     public void openSettings()
     {
