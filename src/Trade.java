@@ -1,3 +1,7 @@
+package src;
+import src.Player;
+import src.ResourceCard;
+
 public class Trade {
     private Player player;
     private ResourceCard tradeItem;

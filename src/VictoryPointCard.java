@@ -1,3 +1,5 @@
+package src;
+
 public class VictoryPointCard extends DevelopmentCard {
     //properties
 

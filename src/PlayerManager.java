@@ -1,3 +1,6 @@
+package src;
+import src.Player;
+import src.Card;
 public class PlayerManager {
     private Player[] players;
 
