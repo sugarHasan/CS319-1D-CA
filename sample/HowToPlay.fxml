@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerHowToPlay">
+    <children>
+        <ImageView id="background" fitHeight="340.0" fitWidth="600.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@WhatsApp%20Image%202019-11-18%20at%2014.41.57.jpeg" />
+            </image>
+        </ImageView>
+        <Button id="settings" layoutX="493.0" layoutY="342.0" mnemonicParsing="false" onAction="#backToMenu" text="Back to menu" />
+        <TextField layoutX="181.0" layoutY="50.0" prefHeight="62.0" prefWidth="238.0" text="How To Play?">
+            <font>
+                <Font size="33.0" />
+            </font></TextField>
+      <TextArea layoutX="109.0" layoutY="119.0" prefHeight="237.0" prefWidth="382.0" text="The Settlers of Catan, which is shortened to Catan, is a board game structured by Klaus Teuber and first distributed in 1995 in Germany by Franckh-Kosmos Verlag (Kosmos) as Die Siedler von Catan [1]. Each player has the role of settlers like as rulers and attempt to construct properties while doing exchange and getting resources. As each players properties grow, they gain points. The one who first to reach 10 points wins.Terrain hexes and Tokens are randomly placed to make each game fairly interesting from the following. There will be no token in Desert hex, rather grey robber must be set to it. Each player gathers their colored settlements, cities, roads pieces. There are five different resource cards each with their own desk of cars and development cards which give advantages to players. Every player starts the game with two settlements and two roads. Settlements can be put on hex corners if the three surrounding corners are unfilled. Roads can be put on hex edges. Roads and settlements should consistently be connected. Each kind of territory provides different resources. Hill terrain produces bricks, field terrain produces grain, pasture terrain produces wool, wood produces lumber and mountain terrain makes ore. Every player takes the suitable resources by looking at their surrounding hexes. Every player begins their turn by moving two dice. In the event that players need resources, they can trade their resources by another player. If no one wants to trait, players can exchange four of similar resources by new one. There is a building costs card that tells players what resources players need. Player can build roads, settlements or upgrade your settlements to cities which gather twice as many resources. Players can buy development cards for random advantages. Players can win the game by earning ten victory points. Each settlement is worth one victory points, each city is worth two. If players roll a seven, robber can move to another hex than player can choose anyone with a settlement bordering that hex and steal one resource card from there and also hex will not produce any resources until the robber is moved again." wrapText="true" />
+    </children>
+</AnchorPane>
