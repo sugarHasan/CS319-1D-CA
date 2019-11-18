@@ -1,5 +1,12 @@
 package src;
-
+import src.Player;
+import src.PlayerManager;
+import src.Card;
+import src.KnightCard;
+import src.VictoryPointCard;
+import src.RoadCard;
+import src.MonopolyCard;
+import src.YearOfPlentyCard;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -29,19 +36,19 @@ public class GameManager {
     private ArrayList<Card> createInitialCardStack() {
         ArrayList<Card> stack = new ArrayList<Card>();
         for(int i = 0 ; i < 14 ; i++){
-            stack.add(new KnightCard());
+            stack.add( new KnightCard());
         }
         for(int i = 0 ; i < 5 ; i++){
-            stack.add(new VictoryPointCard());
+            stack.add( new VictoryPointCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add(new RoadCard());
+            stack.add( new RoadCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add(new MonopolyCard());
+            stack.add( new MonopolyCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add(new YearOfPlentyCard());
+            stack.add( new YearOfPlentyCard());
         }
         Collections.shuffle(stack);
         return stack;

@@ -1,4 +1,5 @@
 package src;
+import src.DevelopmentCard;
 
 public class VictoryPointCard extends DevelopmentCard {
     //properties
@@ -6,7 +7,7 @@ public class VictoryPointCard extends DevelopmentCard {
     //constructor
     public VictoryPointCard() {
         super();
-        cardType = "VictoryPoint";
+        setCardType( "VictoryPoint");
     }
 
     //methods

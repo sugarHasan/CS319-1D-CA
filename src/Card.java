@@ -3,17 +3,17 @@ import java.util.*;
 
 public class Card
 {
-    // properties
-    protected String cardType;
+    private String cardType;
 
-    // constructors
     public Card(){
         cardType = "";
     }
 
-    // methods
     public String getCardType(){
         return cardType;
     }
 
+    public void setCardType( String cardType) {
+        this.cardType = cardType;
+    }
 }

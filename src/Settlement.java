@@ -1,9 +1,10 @@
 package src;
 import src.Player;
+import src.Building;
 
 public class Settlement extends Building {
-    public Settlement(Player player, int location) {
+    public Settlement( Player player, int location) {
         super( player, location);
-        victoryPoint = 1;
+        setVictoryPoint( 1);
     }
 }

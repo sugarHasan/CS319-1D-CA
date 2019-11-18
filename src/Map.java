@@ -1,7 +1,7 @@
 package src;
 import src.Land;
-import src.Building;
 import src.Robber;
+import src.Building;
 
 public class Map
 {

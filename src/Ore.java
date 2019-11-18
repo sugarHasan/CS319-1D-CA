@@ -1,10 +1,11 @@
 package src;
+import src.ResourceCard;
 
 public class Ore extends ResourceCard {
     //constructor
     public Ore(){
         super();
-        cardType = "Ore";
+        setCardType( "Ore");
     }
 
     //methods

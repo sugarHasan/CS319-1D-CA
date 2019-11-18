@@ -71,6 +71,6 @@ public class PlayerManager {
     }
 
     public void addProgressCard(int playerNo , Card card) {
-        players[playerNo].addProgressCard(card);
+        players[playerNo].addProgressCard( card);
     }
 }

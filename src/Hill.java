@@ -1,4 +1,5 @@
 package src;
+import Brick;
 
 public class Hill extends Land {
 

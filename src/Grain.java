@@ -1,10 +1,11 @@
 package src;
+import src.ResourceCard;
 
 public class Grain extends ResourceCard {
     //constructor
     public Grain(){
         super();
-        cardType = "Grain";
+        setCardType( "Grain");
     }
 
     //methods

@@ -1,8 +1,12 @@
 package src;
 import src.Building;
+import src.Road;
+import src.Settlement;
+import src.City;
+import src.Card;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class Player {
     private final int NO_OF_EDGE_FOR_ROAD = 72;
@@ -74,7 +78,7 @@ public class Player {
             if(buildings.get(i) instanceof Road){
                 Road road = (Road)buildings.get(i);
                 int[] adjacentRoads = road.getAdjacentRoads();
-                for(int j = 0 ; j < adjacentRoads.length ; i++){
+                for(int j = 0 ; j < adjacentRoads.length ; j++){
                     adjList[road.getLocation()][adjacentRoads[j]] = 1;
                     adjList[adjacentRoads[j]][road.getLocation()] = 1;
                 }

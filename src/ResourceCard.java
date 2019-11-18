@@ -1,13 +1,10 @@
 package src;
+import src.Card;
 
 public class ResourceCard extends Card {
-    //properties
 
-
-    //constructor
     public ResourceCard(){
         super();
     }
 
-    //methods
 }

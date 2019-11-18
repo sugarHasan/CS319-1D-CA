@@ -1,4 +1,5 @@
 package src;
+import src.DevelopmentCard;
 
 public class ProgressCard extends DevelopmentCard {
     //properties

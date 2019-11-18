@@ -1,10 +1,11 @@
 package src;
+import src.Player;
 import java.util.ArrayList;
 import java.util.Vector;
 
 public class Building {
 
-    protected int victoryPoint;
+    private int victoryPoint;
     private int location;
     private Player player;
 
@@ -28,7 +29,7 @@ public class Building {
     }
 
     public void setLocation(int locationX) {
-        this.location = location;
+        this.location = locationX;
     }
 
     public Player getPlayer() {

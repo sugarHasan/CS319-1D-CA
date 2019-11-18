@@ -1,8 +1,11 @@
+package src;
+import src.ResourceCard;
+
 public class Lumber extends ResourceCard {
     //constructor
     public Lumber(){
         super();
-        cardType = "Lumber";
+        setCardType( "Lumber");
     }
 
     //methods

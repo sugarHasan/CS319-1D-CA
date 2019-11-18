@@ -1,11 +1,13 @@
 package src;
+import src.DevelopmentCard;
 
 public class KnightCard extends DevelopmentCard {
     //properties
 
     //constructor
-    public KnightCard(){
-        cardType = "Knight";
+    public KnightCard()
+    {
+        setCardType( "KnightCard");
     }
 
     //methods
