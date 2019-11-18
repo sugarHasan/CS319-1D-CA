@@ -12,20 +12,37 @@ public class OfferManager {
     {
         offers.add( new Offer( sender, receiver, offeredItem, demandedItem, offerNum, demandNum));
     }
-    public void listOffers( ArrayList<Offer>offers)
+    public ArrayList<Offer> listOffers( Player player)
     {
-        for(int i = 0 ; i < offers.size() ; i++){
+        /*
+        for( int i = 0 ; i < offers.size() ; i++){
             System.out.println( (i + 1) + "st Offer: " + offers.get(i) );
         }
+        */
+        ArrayList<Offer> playersOffers = new ArrayList<Offer>();
+        for ( int i = 0; i < offers.size(); i++)
+        {
+            if ( offers.get(i).getReceiver().getName().equals( player.getName()) )
+                playersOffers.add( offers.get(i));
+        }
+        return playersOffers;
     }
-    public Offer findOffer( int offerIndex)
+
+    public int findOffer( Offer offer)
     {
-        return offers.get( offerIndex);
+        for ( int i = 0; i < offers.size(); i++)
+        {
+            if ( offers.get(i) == offer )
+                return i;
+        }
+        return -1;
     }
+
     public void closeOffer( int offerIndex)
     {
         offers.remove( offerIndex);
     }
+
     public Offer acceptOffer( int offerIndex)
     {
         Offer acceptedOffer;
@@ -33,6 +50,7 @@ public class OfferManager {
         closeOffer( offerIndex);
         return acceptedOffer;
     }
+
     public void declineOffer( int offerIndex)
     {
         closeOffer( offerIndex);
