@@ -1,3 +1,9 @@
+package Control;
+import Control.PlayerManager;
+import Model.Player;
+import Model.Card;
+import Model.DevelopmentCardTypes.*;
+import Model.DevelopmentCardTypes.ProgressCardTypes.*;
 import java.util.ArrayList;
 import java.util.Collections;
 

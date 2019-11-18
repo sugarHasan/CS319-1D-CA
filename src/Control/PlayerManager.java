@@ -1,3 +1,7 @@
+package Control;
+import Model.Player;
+import Model.Card;
+
 public class PlayerManager {
     private Player[] players;
 

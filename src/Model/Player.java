@@ -1,3 +1,5 @@
+package Model;
+import Model.BuildingTypes.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -135,7 +137,7 @@ public class Player {
         return cards.get("Knight");
     }
 
-    boolean tradeResource(String given , String wanted){
+    public boolean tradeResource(String given , String wanted){
         if(cards.get(given)>=4){
             cards.put(given , cards.get(given) - 4);
             cards.put(wanted , cards.get(wanted)+1);
