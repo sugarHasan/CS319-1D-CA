@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class GameManager {
+    private PlayerManager playerManager;
     private int turnNo;
     private boolean firstTurn;
     private boolean secondTurn;
