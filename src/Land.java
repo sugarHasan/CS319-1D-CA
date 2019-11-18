@@ -9,7 +9,7 @@ public class Land{
 
     public Land()
     {
-
+        corners = new Building[NO_OF_CORNERS];
     }
 
     public ResourceCard getResource()
