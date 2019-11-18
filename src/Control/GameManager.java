@@ -1,8 +1,3 @@
-package Control;
-import Model.*;
-import Model.DevelopmentCardTypes.*;
-import Model.DevelopmentCardTypes.ProgressCardTypes.*;
-import Control.PlayerManager;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,7 +7,7 @@ public class GameManager {
     private final int[][] DICE_TO_ADJACENT_TOWNS_GRAIN = {{} , {} , {} , {28,33,34,38,39,43} , {9,13,14,18,19,24} , {} , {} , {} , {} , {41,45,46,49,50,53} , {} , {} , {} };
     private final int[][] DICE_TO_ADJACENT_TOWNS_BRICK = {{} , {} , {} , {} , {} , {} , {} , {} , {30,35,36,40,41,45} , {} , {} , {0,3,4,7,8,12} , {10,14,15,19,20,25} };
     private final int[][] DICE_TO_ADJACENT_TOWNS_ORE = {{} , {} , {2,5,6,9,10,14} , {} , {} , {} , {39,43,44,47,48,51} , {} , {} , {18,23,24,29,30,35} , {1,4,5,8,9,13} , {} , {} };
-    private final String[] PLAYER_COLORS = {"#"};
+    private final String[] PLAYER_COLORS = {"#FFA500" , "FF6347" , "98FB98" , "87CEFA"};
     private PlayerManager playerManager;
     int playerNo;
     private int turnNo;
@@ -20,8 +15,8 @@ public class GameManager {
     private boolean secondTurn;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
-    public GameManager(PlayerManager playerManager) {
-        this.playerManager = playerManager;
+    public GameManager(String player1, String player2, String player3 , String player4) {
+        this.playerManager = new PlayerManager( player1, player2, player3 , player4);
         playerNo = 0;
         turnNo = 1;
         firstTurn = false;
@@ -32,19 +27,19 @@ public class GameManager {
     private ArrayList<Card> createInitialCardStack() {
         ArrayList<Card> stack = new ArrayList<Card>();
         for(int i = 0 ; i < 14 ; i++){
-            stack.add( new KnightCard());
+            stack.add(new KnightCard());
         }
         for(int i = 0 ; i < 5 ; i++){
-            stack.add( new VictoryPointCard());
+            stack.add(new VictoryPointCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add( new RoadCard());
+            stack.add(new RoadCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add( new MonopolyCard());
+            stack.add(new MonopolyCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add( new YearOfPlentyCard());
+            stack.add(new YearOfPlentyCard());
         }
         Collections.shuffle(stack);
         return stack;
@@ -98,6 +93,15 @@ public class GameManager {
             }
         }
         return false;
+    }
+    public void playMonopoly(String resourceType){
+        this.playerManager.playMonopoly(resourceType , playerNo);
+    }
+    public void playYearOfPlenty(String resourceType){
+        this.playerManager.playYearOfPlenty(resourceType , playerNo);
+    }
+    public void playRoadBuilding(){
+        this.playerManager.playRoadBuilding(playerNo);
     }
 
 }

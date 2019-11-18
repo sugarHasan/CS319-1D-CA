@@ -1,9 +1,5 @@
-package Control;
-import Model.Building;
-import Model.BuildingTypes.*;
-import Model.Player;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BuildingManager {
 
@@ -32,13 +28,13 @@ public class BuildingManager {
         if(buildingsCityAndSettlement[location] == null) {
             ArrayList<Building> buildings = player.getBuildings();
             for (int i = 0; i < buildings.size(); i++) {
-                if ( buildings.get(i) instanceof Road) {
-                    Road road = (Road) buildings.get(i);
+                if (buildings.get(i) instanceof Road) {
+                    Road road = (Road)buildings.get(i);
                     int[] adjCity = road.getAdjacentCity();
                     for(int j = 0 ; j < adjCity.length ; j++){
                         if(adjCity[j] == location){
-                            player.addBuilding( new Settlement( player, location));
-                            buildingsCityAndSettlement[location] =  new Settlement (player, location);
+                            player.addBuilding(new Settlement(player , location));
+                            buildingsCityAndSettlement[location] =  new Settlement(player , location);
                             return true;
                         }
                     }

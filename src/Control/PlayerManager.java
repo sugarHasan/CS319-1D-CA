@@ -1,6 +1,3 @@
-package Control;
-import Model.Player;
-import Model.Card;
 public class PlayerManager {
     private Player[] players;
 
@@ -71,6 +68,24 @@ public class PlayerManager {
     }
 
     public void addProgressCard(int playerNo , Card card) {
-        players[playerNo].addProgressCard( card);
+        players[playerNo].addProgressCard(card);
+    }
+
+    public void playMonopoly(String resourceType , int playerNo) {
+        int totalResource = 0;
+        for(int i = 0 ; i < players.length ; i++){
+            if(i!=playerNo){
+                totalResource += players[playerNo].affectMonopoly(resourceType);
+            }
+        }
+        players[playerNo].playMonopoly(resourceType , totalResource);
+    }
+
+    public void playYearOfPlenty(String resourceType, int playerNo) {
+        this.players[playerNo].playYearOfPlenty(resourceType);
+    }
+
+    public void playRoadBuilding(int playerNo) {
+        this.players[playerNo].playRoadBuilding();
     }
 }
