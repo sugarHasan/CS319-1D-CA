@@ -8,7 +8,7 @@ public class GameManager {
 
     public int rollDice()
     {
-        return (int)(Math.random() * 6 + 1);
+        return (int)(Math.random() * 12 + 1);
     }
     public boolean distributeResources()
     {
