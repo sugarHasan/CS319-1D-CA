@@ -1,5 +1,6 @@
-package com.company;
+package src;
 import java.util.ArrayList;
+
 public class OfferManager {
     ArrayList<Offer> offers = new ArrayList<Offer>();
     public void makeOffer(){

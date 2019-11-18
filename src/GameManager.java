@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package src;
 
 public class GameManager {
     private PlayerManager playerManager;

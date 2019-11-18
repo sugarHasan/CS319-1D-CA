@@ -1,3 +1,5 @@
+package src;
+
 public class Lumber extends ResourceCard {
     //constructor
     public Lumber(){

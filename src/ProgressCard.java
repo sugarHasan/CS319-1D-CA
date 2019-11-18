@@ -1,3 +1,5 @@
+package src;
+
 public class ProgressCard extends DevelopmentCard {
     //properties
 

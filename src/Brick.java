@@ -1,3 +1,5 @@
+package src;
+
 public class Brick extends ResourceCard {
     //constructor
     public Brick(){

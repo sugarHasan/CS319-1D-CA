@@ -1,3 +1,5 @@
+package src;
+
 public class ResourceCard extends Card {
     //properties
 

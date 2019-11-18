@@ -1,7 +1,8 @@
-import java.util.*;
+package src;
 
 public class Land{
 
+    private final int NO_OF_CORNERS = 6;
     private ResourceCard type;
     private Building[] corners;
 
@@ -13,5 +14,10 @@ public class Land{
     public ResourceCard getResource()
     {
         return type;
+    }
+
+    public void setResource( ResourceCard resource)
+    {
+        type = resource;
     }
 }
