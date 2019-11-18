@@ -1,7 +1,3 @@
-package Model;
-import Model.Player;
-import Model.ResourceCard;
-
 public class Trade {
     private Player player;
     private ResourceCard tradeItem;

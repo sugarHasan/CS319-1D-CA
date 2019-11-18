@@ -1,10 +1,6 @@
-package Model;
-import Model.Building;
-import Model.BuildingTypes.*;
-import Model.Card;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Player {
     private final int NO_OF_EDGE_FOR_ROAD = 72;
@@ -76,7 +72,7 @@ public class Player {
             if(buildings.get(i) instanceof Road){
                 Road road = (Road)buildings.get(i);
                 int[] adjacentRoads = road.getAdjacentRoads();
-                for(int j = 0 ; j < adjacentRoads.length ; j++){
+                for(int j = 0 ; j < adjacentRoads.length ; i++){
                     adjList[road.getLocation()][adjacentRoads[j]] = 1;
                     adjList[adjacentRoads[j]][road.getLocation()] = 1;
                 }
@@ -122,12 +118,12 @@ public class Player {
 
     public void addResource(int town , String resource){
         for(int i = 0 ; i < buildings.size() ; i++){
-            if(buildings.get(i) instanceof City){
+            if(buildings.get(i) instanceof Settlement){
                 if(buildings.get(i).getLocation() == town){
                     cards.put(resource , cards.get(resource)+1);
                 }
             }
-            if(buildings.get(i) instanceof Settlement){
+            if(buildings.get(i) instanceof City){
                 if(buildings.get(i).getLocation() == town){
                     cards.put(resource , cards.get(resource)+2);
                 }
@@ -139,7 +135,7 @@ public class Player {
         return cards.get("Knight");
     }
 
-    public boolean tradeResource(String given , String wanted){
+    boolean tradeResource(String given , String wanted){
         if(cards.get(given)>=4){
             cards.put(given , cards.get(given) - 4);
             cards.put(wanted , cards.get(wanted)+1);
@@ -149,7 +145,7 @@ public class Player {
     }
 
     public boolean buyDevelopmentCard() {
-        if(cards.get("Wool")>= 1 && cards.get("Grain")>= 1 &&cards.get("Ore")>= 1 ){
+        if(cards.get("Wool")>= 1 && cards.get("Grain")>= 1 && cards.get("Ore")>= 1 ){
             cards.put("Wool" , cards.get("Wool") - 1);
             cards.put("Grain" , cards.get("Grain") - 1);
             cards.put("Ore" , cards.get("Ore") - 1);
@@ -160,5 +156,25 @@ public class Player {
 
     public void addProgressCard(Card card) {
         cards.put(card.getCardType() , cards.get(card.getCardType()) + 1);
+    }
+
+    public int affectMonopoly(String resourceType) {
+        int resourceNumber = cards.get(resourceType);
+        cards.put(resourceType , 0);
+        return resourceNumber;
+    }
+
+    public void playMonopoly(String resourceType, int totalResource) {
+        cards.put("Monopoly" , cards.get("Monopoly") - 1);
+        cards.put(resourceType , totalResource+cards.get(resourceType));
+    }
+
+    public void playYearOfPlenty(String resourceType) {
+        cards.put("YearOfPlenty" , cards.get("YearOfPlenty") - 1);
+        cards.put(resourceType , cards.get(resourceType)+2);
+    }
+
+    public void playRoadBuilding() {
+        cards.put("RoadBuilding" , cards.get("RoadBuilding") - 1);
     }
 }
