@@ -1,5 +1,3 @@
-package src;
-
 public class Offer {
     private Player sender;
     private Player receiver;

@@ -1,5 +1,3 @@
-package src;
-
 public class Trade {
     private Player player;
     private ResourceCard tradeItem;

@@ -1,6 +1,4 @@
-package src;
 import java.util.ArrayList;
-
 public class OfferManager {
     ArrayList<Offer> offers = new ArrayList<Offer>();
     public void makeOffer(){
@@ -12,15 +10,15 @@ public class OfferManager {
         }
     }
     public boolean findOffer(){
-
+        return false;
     }
     public void closeOffer(){
 
     }
     public boolean acceptOffer(){
-
+        return false;
     }
     public boolean declineOffer(){
-
+        return false;
     }
 }
