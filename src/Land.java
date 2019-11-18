@@ -1,4 +1,5 @@
 package src;
+import src.*;
 
 public class Land{
 
@@ -19,5 +20,10 @@ public class Land{
     public void setResource( ResourceCard resource)
     {
         type = resource;
+    }
+
+    public Building[] getBuildings()
+    {
+        return corners;
     }
 }
