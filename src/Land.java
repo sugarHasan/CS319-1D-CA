@@ -1,5 +1,6 @@
 package src;
-import src.*;
+import src.ResourceCard;
+import src.Building;
 
 public class Land{
 
