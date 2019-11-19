@@ -31,4 +31,4 @@ Terrain hexes and Tokens are arbitrarily placed in order to make each game somew
 - Iteration 2 Analysis Report: https://docs.google.com/document/d/1Uui5zpI7-myW99QimQvRW9piWCSij8CFV891H7nP6sM/edit?usp=sharing
 - Iteration 2 Design Report: https://docs.google.com/document/d/1mPQhJSXCjrXsBS7n636eRiyRMhPuItCbjvXcraT6deY/edit?usp=sharing
 - Iteration 2 Final Report: https://docs.google.com/document/d/1QE_KJsGB9WJOf3WtEgieZh7cBdFTyAF69bF5zaAq_K8/edit?usp=sharing
-- Final Project Presentation: https://docs.google.com/presentation/d/1DXzkaTxr0tW4orzHwGwxgWUNDYuvjk5Cih2I-g-TpJ8/edit?usp=sharing
+- Iteration 1 Presentation: https://docs.google.com/presentation/d/1DXzkaTxr0tW4orzHwGwxgWUNDYuvjk5Cih2I-g-TpJ8/edit?usp=sharing
