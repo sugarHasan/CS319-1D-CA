@@ -14,11 +14,13 @@ public class PlayerManager {
     }
 
 
+
     public void distributeResources(int town, String resource){
         for(int i = 0 ; i < players.length ; i++){
             players[i].addResource(town , resource);
         }
     }
+
     public int[] scoreBoard(int turnedPlayer){
         int[] scores = new int[4];
         for(int i = 0 ; i < players.length ; i++){
@@ -27,7 +29,7 @@ public class PlayerManager {
         scores[turnedPlayer] = players[turnedPlayer].getVictoryPointsOnTurn();
         return scores;
     }
-    public Player whoHasLongestRoad(){
+    public int whoHasLongestRoad(){
         int longestRoad = 0;
         int playerIndex = -1;
         for(int i = 0 ; i < players.length ; i++){
@@ -37,23 +39,11 @@ public class PlayerManager {
                 playerIndex = i;
             }
         }
-        if(playerIndex!=-1) return players[playerIndex];
-        return null;
+        if(playerIndex!=-1) return playerIndex;
+        return -1;
     }
 
-    public Player whoHasMostSoldier(){
-        int largestArmy = 0;
-        int playerIndex = -1;
-        for(int i = 0 ; i < players.length ; i++){
-            int playersLargestArmy = players[i].armySize();
-            if( playersLargestArmy > largestArmy ){
-                largestArmy = playersLargestArmy;
-                playerIndex = i;
-            }
-        }
-        if(playerIndex!=-1) return players[playerIndex];
-        return null;
-    }
+
 
     public Player[] getPlayers() {
         return players;
@@ -91,5 +81,21 @@ public class PlayerManager {
 
     public void playRoadBuilding(int playerNo) {
         this.players[playerNo].playRoadBuilding();
+    }
+
+    public int largestArmy() {
+        int largestArmyOwner = -1;
+        int largestArmy = 0;
+        for(int i = 0 ; i < players.length ; i++){
+            if(largestArmy < players[i].armySize()){
+                largestArmy = players[i].armySize();
+                largestArmyOwner = i;
+            }
+        }
+        return largestArmyOwner;
+    }
+
+    public String getName(int playerNo) {
+        return players[playerNo].getName();
     }
 }
