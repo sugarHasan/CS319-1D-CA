@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+
 public class Player {
     private final int NO_OF_EDGE_FOR_ROAD = 72;
 
@@ -15,11 +16,11 @@ public class Player {
     public Player(String name){
         this.name = name;
         cards = new HashMap<String , Integer>();
-        cards.put("Wool" , 0);
-        cards.put("Ore" , 0);
-        cards.put("Lumber" , 0);
-        cards.put("Grain" , 0);
-        cards.put("Brick" , 0);
+        cards.put("Wool" , 12);
+        cards.put("Ore" , 10);
+        cards.put("Lumber" , 14);
+        cards.put("Grain" , 12);
+        cards.put("Brick" , 14);
         cards.put("Knight" , 0);
         cards.put("RoadBuilding" , 0);
         cards.put("YearOfPlenty" , 0);
@@ -56,11 +57,35 @@ public class Player {
     }
 
     public int getVictoryPointsOffTurn() {
-        return victoryPoints;
+        int pointOfBuilding = 0;
+        for(int i = 0 ; i < buildings.size() ; i++){
+            if(buildings.get(i) instanceof Settlement){
+                pointOfBuilding++;
+            }
+        }
+        for(int i = 0 ; i < buildings.size() ; i++){
+            if(buildings.get(i) instanceof City){
+                pointOfBuilding++;
+                pointOfBuilding++;
+            }
+        }
+        return victoryPoints+pointOfBuilding;
     }
 
     public int getVictoryPointsOnTurn() {
-        return victoryPoints+cards.get("VictoryPoint");
+        int pointOfBuilding = 0;
+        for(int i = 0 ; i < buildings.size() ; i++){
+            if(buildings.get(i) instanceof Settlement){
+                pointOfBuilding++;
+            }
+        }
+        for(int i = 0 ; i < buildings.size() ; i++){
+            if(buildings.get(i) instanceof City){
+                pointOfBuilding++;
+                pointOfBuilding++;
+            }
+        }
+        return victoryPoints+cards.get("VictoryPoint")+pointOfBuilding;
     }
 
     public void setVictoryPoints(int victoryPoints) {
@@ -74,15 +99,21 @@ public class Player {
             if(buildings.get(i) instanceof Road){
                 Road road = (Road)buildings.get(i);
                 int[] adjacentRoads = road.getAdjacentRoads();
-                for(int j = 0 ; j < adjacentRoads.length ; i++){
-                    adjList[road.getLocation()][adjacentRoads[j]] = 1;
-                    adjList[adjacentRoads[j]][road.getLocation()] = 1;
+                for(int j = 0 ; j < adjacentRoads.length ; j++){
+                    for(int k = 0 ; k < buildings.size() ; k++) {
+                        if(buildings.get(k) instanceof Road) {
+                            if(buildings.get(k).getLocation() == adjacentRoads[j]) {
+                                adjList[road.getLocation()][adjacentRoads[j]] = 1;
+                                adjList[adjacentRoads[j]][road.getLocation()] = 1;
+                            }
+                        }
+                    }
                 }
             }
         }
         int longestRoad = 0;
-        boolean[] visited = new boolean[NO_OF_EDGE_FOR_ROAD];
         for(int i = 0 ; i < NO_OF_EDGE_FOR_ROAD ; i++){
+            boolean[] visited = new boolean[NO_OF_EDGE_FOR_ROAD];
             longestRoad = Math.max(dfs(adjList , visited , i) , longestRoad);
         }
         return longestRoad;
@@ -178,5 +209,47 @@ public class Player {
 
     public void playRoadBuilding() {
         cards.put("RoadBuilding" , cards.get("RoadBuilding") - 1);
+    }
+
+    public int deneme() {
+        return buildings.size();
+    }
+
+    public int[] getResources() {
+        int [] resources = new int[5];
+        resources[0] = cards.get("Grain");
+        resources[1] = cards.get("Brick");
+        resources[2] = cards.get("Ore");
+        resources[3] = cards.get("Lumber");
+        resources[4] = cards.get("Wool");
+        return resources;
+    }
+    public int[] getDevelopmentCards() {
+        int [] developments = new int[5];
+        developments[0] = cards.get("Knight");
+        developments[1] = cards.get("VictoryPoint");
+        developments[2] = cards.get("RoadBuilding");
+        developments[3] = cards.get("YearOfPlenty");
+        developments[4] = cards.get("Monopoly");
+        return developments;
+    }
+
+    public boolean buyRoad(){
+        if(cards.get("Brick")>= 1 &&  cards.get("Lumber")>= 1){
+            cards.put("Lumber" , cards.get("Lumber")-1);
+            cards.put("Brick" , cards.get("Brick")-1);
+            return true;
+        }
+        return false;
+    }
+    public boolean buySettlement(){
+        if(cards.get("Brick")>= 1 &&  cards.get("Lumber")>= 1 && cards.get("Grain")>= 1 &&  cards.get("Wool")>= 1){
+            cards.put("Lumber" , cards.get("Lumber")-1);
+            cards.put("Brick" , cards.get("Brick")-1);
+            cards.put("Grain" , cards.get("Grain")-1);
+            cards.put("Wool" , cards.get("Wool")-1);
+            return true;
+        }
+        return false;
     }
 }
