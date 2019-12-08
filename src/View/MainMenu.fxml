@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ControllerMainMenu">
+   <children>
+      <ImageView id="background" fitHeight="340.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/CatanImage.jpeg" />
+         </image>
+      </ImageView>
+      <Button id="playGame" layoutX="262.0" layoutY="107.0" mnemonicParsing="false" onAction="#PlayGame" text="Play Game">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+      <Button id="howToPlay" layoutX="259.0" layoutY="157.0" mnemonicParsing="false" onAction="#howToPlay" text="How to Play">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+      <Button id="settings" layoutX="269.0" layoutY="206.0" mnemonicParsing="false" onAction="#settings" text="Settings">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+      <Button layoutX="34.0" layoutY="299.0" mnemonicParsing="false" onAction="#exit" text="Exit">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+      <Label layoutX="111.0" layoutY="35.0" text="The Settlers of Catan" textAlignment="CENTER">
+         <font>
+            <Font name="Hoefler Text" size="43.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

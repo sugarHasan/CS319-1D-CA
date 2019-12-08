@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="335.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ControllerSettings">
+    <children>
+        <ImageView id="background" fitHeight="340.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/CatanImage.jpeg" />
+            </image>
+        </ImageView>
+        <Button id="settings" layoutX="493.0" layoutY="287.0" mnemonicParsing="false" onAction="#backToMenu" text="Back to menu">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+      <Label layoutX="226.0" layoutY="35.0" text="Settings" textAlignment="CENTER">
+         <font>
+            <Font name="Hoefler Text" size="43.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="music" layoutX="236.0" layoutY="143.0" mnemonicParsing="false" onAction="#PlayMusic" text="Music">
+         <font>
+            <Font name="Hoefler Text" size="30.0" />
+         </font>
+      </CheckBox>
+    </children>
+</AnchorPane>

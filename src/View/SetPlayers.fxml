@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="335.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
+    <children>
+        <ImageView id="background" fitHeight="340.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/CatanImage.jpeg" />
+            </image>
+        </ImageView>
+        <Button id="startGame" layoutX="490.0" layoutY="294.0" mnemonicParsing="false" onAction="#PlayGame" text="Start Game">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+      <TextField editable="false" layoutX="21.0" layoutY="108.0" prefHeight="27.0" prefWidth="63.0" text="Player 1:">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></TextField>
+      <TextField id="player1" fx:id="player1" layoutX="115.0" layoutY="108.0" />
+      <TextField id="player2" fx:id="player2" layoutX="115.0" layoutY="147.0" />
+      <TextField id="player3" fx:id="player3" layoutX="115.0" layoutY="185.0" />
+      <TextField id="player4" fx:id="player4" layoutX="115.0" layoutY="223.0" />
+      <Label layoutX="195.0" layoutY="35.0" text="Set Players">
+         <font>
+            <Font name="Hoefler Text" size="43.0" />
+         </font>
+      </Label>
+      <TextField editable="false" layoutX="21.0" layoutY="147.0" prefHeight="27.0" prefWidth="63.0" text="Player 2:">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></TextField>
+      <TextField editable="false" layoutX="21.0" layoutY="185.0" prefHeight="27.0" prefWidth="63.0" text="Player 3:">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></TextField>
+      <TextField editable="false" layoutX="22.0" layoutY="223.0" prefHeight="27.0" prefWidth="63.0" text="Player 4:">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></TextField>
+      <Button layoutX="22.0" layoutY="294.0" mnemonicParsing="false" onAction="#backToMenu" text="Go Back">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+    </children>
+</AnchorPane>
