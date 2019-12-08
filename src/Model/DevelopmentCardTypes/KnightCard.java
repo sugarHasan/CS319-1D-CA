@@ -7,7 +7,7 @@ public class KnightCard extends DevelopmentCard {
     //constructor
     public KnightCard()
     {
-        setCardType( "KnightCard");
+        setCardType( "Knight");
     }
 
     //methods
