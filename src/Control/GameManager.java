@@ -13,12 +13,14 @@ public class GameManager {
     private final int[][] DICE_TO_ADJACENT_TOWNS_GRAIN = {{} , {} , {} , {28,33,34,38,39,43} , {9,13,14,18,19,24} , {} , {} , {} , {} , {41,45,46,49,50,53} , {} , {} , {} };
     private final int[][] DICE_TO_ADJACENT_TOWNS_BRICK = {{} , {} , {} , {} , {} , {} , {} , {} , {30,35,36,40,41,45} , {} , {} , {0,3,4,7,8,12} , {10,14,15,19,20,25} };
     private final int[][] DICE_TO_ADJACENT_TOWNS_ORE = {{} , {} , {2,5,6,9,10,14} , {} , {} , {} , {39,43,44,47,48,51} , {} , {} , {18,23,24,29,30,35} , {1,4,5,8,9,13} , {} , {} };
-    private final String[] PLAYER_COLORS = {"#FFA500" , "FF6347" , "98FB98" , "87CEFA"};
+    private final String[] PLAYER_COLORS = {"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
     private PlayerManager playerManager;
+    private BuildingManager buildingManager;
     int playerNo;
     private int turnNo;
     private boolean firstTurn;
     private boolean secondTurn;
+    private int turnDice;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
     public GameManager(String player1, String player2, String player3 , String player4) {
@@ -28,6 +30,11 @@ public class GameManager {
         firstTurn = false;
         secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
+        buildingManager = new BuildingManager();
+    }
+
+    public String returnPlayerColor(){
+        return PLAYER_COLORS[playerNo];
     }
 
     private ArrayList<Card> createInitialCardStack() {
@@ -59,19 +66,19 @@ public class GameManager {
     {
         if(dice!=7){
             for(int i = 0 ; i < DICE_TO_ADJACENT_TOWNS_WOOL[dice].length ; i++){
-                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_WOOL[dice][i] , "WOOL");
+                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_WOOL[dice][i] , "Wool");
             }
             for(int i = 0 ; i < DICE_TO_ADJACENT_TOWNS_BRICK[dice].length ; i++){
-                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_BRICK[dice][i] , "BRICK");
+                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_BRICK[dice][i] , "Brick");
             }
             for(int i = 0 ; i < DICE_TO_ADJACENT_TOWNS_LUMBER[dice].length ; i++){
-                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_LUMBER[dice][i] , "LUMBER");
+                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_LUMBER[dice][i] , "Lumber");
             }
             for(int i = 0 ; i < DICE_TO_ADJACENT_TOWNS_GRAIN[dice].length ; i++){
-                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_GRAIN[dice][i] , "GRAIN");
+                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_GRAIN[dice][i] , "Grain");
             }
             for(int i = 0 ; i < DICE_TO_ADJACENT_TOWNS_ORE[dice].length ; i++){
-                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_ORE[dice][i] , "ORE");
+                playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_ORE[dice][i] , "Ore");
             }
             return true;
         }
@@ -109,5 +116,44 @@ public class GameManager {
     public void playRoadBuilding(){
         this.playerManager.playRoadBuilding(playerNo);
     }
+    public boolean addRoad(int location){
+        return buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location);
+    }
+    public boolean addSettlement(int location){
+        return buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location);
+    }
+    public String nextTurn(){
+        playerNo++;
+        if(playerNo == 4) {
+            playerNo = 0;
+            turnNo++;
+        }
+        turnDice = this.rollDice();
+        this.distributeResources(turnDice);
+        return playerManager.getPlayers()[playerNo].getName();
+    }
+    public int getTurnDice() {
+        return turnDice;
+    }
 
+    public int[] getResources(){
+        return playerManager.getPlayers()[playerNo].getResources();
+    }
+    public int[] getDevelopmentCards(){
+        return playerManager.getPlayers()[playerNo].getDevelopmentCards();
+    }
+
+    public int[] getScoreBoard(){
+        return playerManager.scoreBoard(playerNo);
+    }
+    public int largestArmy(){
+        return playerManager.largestArmy();
+    }
+    public int longestRoad(){
+        return playerManager.whoHasLongestRoad();
+    }
+
+    public String getPlayerName() {
+        return playerManager.getName(playerNo);
+    }
 }
