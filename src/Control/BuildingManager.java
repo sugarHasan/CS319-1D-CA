@@ -1,3 +1,11 @@
+package Control;
+
+import Model.Building;
+import Model.BuildingTypes.City;
+import Model.BuildingTypes.Road;
+import Model.BuildingTypes.Settlement;
+import Model.Player;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,9 +25,11 @@ public class BuildingManager {
 
     public boolean buildRoad(Player player, int location){
         if(buildingsRoad[location] == null){
-            player.addBuilding(new Road(player , location));
-            buildingsRoad[location] =  new Road(player , location);
-            return true;
+            if(player.buyRoad()) {
+                player.addBuilding(new Road(player, location));
+                buildingsRoad[location] = new Road(player, location);
+                return true;
+            }
         }
         return false;
     }
@@ -33,9 +43,11 @@ public class BuildingManager {
                     int[] adjCity = road.getAdjacentCity();
                     for(int j = 0 ; j < adjCity.length ; j++){
                         if(adjCity[j] == location){
-                            player.addBuilding(new Settlement(player , location));
-                            buildingsCityAndSettlement[location] =  new Settlement(player , location);
-                            return true;
+                            if(player.buySettlement()) {
+                                player.addBuilding(new Settlement(player, location));
+                                buildingsCityAndSettlement[location] = new Settlement(player, location);
+                                return true;
+                            }
                         }
                     }
                 }
@@ -66,7 +78,4 @@ public class BuildingManager {
         }
         return false;
     }
-
-
-
 }
