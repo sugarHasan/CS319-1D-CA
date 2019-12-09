@@ -1,3 +1,5 @@
+package Model;
+
 public class Trade {
     private Player player;
     private ResourceCard tradeItem;

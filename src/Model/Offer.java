@@ -1,6 +1,4 @@
 package Model;
-import src.Player;
-import src.ResourceCard;
 
 public class Offer {
     private Player sender;
