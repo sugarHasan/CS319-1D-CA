@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,7 +19,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
@@ -181,7 +179,7 @@ public class Main extends Application implements Initializable {
         lumberNo.setText("" +  resources[3]);
         woolNo.setText("" +  resources[4]);
     }
-    public void refrestDevelopmentCards(){
+    public void refreshDevelopmentCards(){
         int[] developments =  gameManager.getDevelopmentCards();
         KnightNo.setText("" +  developments[0]);
         VictoryNo.setText("" +  developments[1]);
@@ -196,7 +194,7 @@ public class Main extends Application implements Initializable {
         refreshResources();
         refreshPlayerScores();
         refreshHighestArmy();
-        refrestDevelopmentCards();
+        refreshDevelopmentCards();
     }
 
     public void cornerPressed(ActionEvent event) throws IOException{
@@ -217,7 +215,7 @@ public class Main extends Application implements Initializable {
         refreshPlayerScores();
         refreshHighestArmy();
         refreshLongestRoad();
-        refrestDevelopmentCards();
+        refreshDevelopmentCards();
         playerName.setText("" + gameManager.getPlayerName());
         RollNo.setText("" + gameManager.getTurnDice());
     }

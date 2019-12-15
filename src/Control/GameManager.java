@@ -1,5 +1,6 @@
 package Control;
 import Control.PlayerManager;
+import Model.Map;
 import Model.Player;
 import Model.Card;
 import Model.DevelopmentCardTypes.*;
@@ -8,14 +9,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameManager {
-    private final int[][] DICE_TO_ADJACENT_TOWNS_WOOL = {{} , {} , {} , {40,44,45,48,49,52} , {31,36,37,41,42,46} , {17,22,23,28,29,34} , {20,25,26,31,32,37} , {} , {} , {} , {} , {} , {} };
-    private final int[][] DICE_TO_ADJACENT_TOWNS_LUMBER = {{} , {} , {} , {} , {} , {19,24,25,30,31,36} , {} , {} , {16,21,22,27,28,33} , {} , {7,11,12,16,17,22} , {29,34,35,39,40,44} , {} };
-    private final int[][] DICE_TO_ADJACENT_TOWNS_GRAIN = {{} , {} , {} , {28,33,34,38,39,43} , {9,13,14,18,19,24} , {} , {} , {} , {} , {41,45,46,49,50,53} , {} , {} , {} };
-    private final int[][] DICE_TO_ADJACENT_TOWNS_BRICK = {{} , {} , {} , {} , {} , {} , {} , {} , {30,35,36,40,41,45} , {} , {} , {0,3,4,7,8,12} , {10,14,15,19,20,25} };
-    private final int[][] DICE_TO_ADJACENT_TOWNS_ORE = {{} , {} , {2,5,6,9,10,14} , {} , {} , {} , {39,43,44,47,48,51} , {} , {} , {18,23,24,29,30,35} , {1,4,5,8,9,13} , {} , {} };
     private final String[] PLAYER_COLORS = {"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
+    private int[][] DICE_TO_ADJACENT_TOWNS_WOOL = {{} , {} , {} , {40,44,45,48,49,52} , {31,36,37,41,42,46} , {17,22,23,28,29,34} , {20,25,26,31,32,37} , {} , {} , {} , {} , {} , {} };
+    private int[][] DICE_TO_ADJACENT_TOWNS_LUMBER = {{} , {} , {} , {} , {} , {19,24,25,30,31,36} , {} , {} , {16,21,22,27,28,33} , {} , {7,11,12,16,17,22} , {29,34,35,39,40,44} , {} };
+    private int[][] DICE_TO_ADJACENT_TOWNS_GRAIN = {{} , {} , {} , {28,33,34,38,39,43} , {9,13,14,18,19,24} , {} , {} , {} , {} , {41,45,46,49,50,53} , {} , {} , {} };
+    private int[][] DICE_TO_ADJACENT_TOWNS_BRICK = {{} , {} , {} , {} , {} , {} , {} , {} , {30,35,36,40,41,45} , {} , {} , {0,3,4,7,8,12} , {10,14,15,19,20,25} };
+    private int[][] DICE_TO_ADJACENT_TOWNS_ORE = {{} , {} , {2,5,6,9,10,14} , {} , {} , {} , {39,43,44,47,48,51} , {} , {} , {18,23,24,29,30,35} , {1,4,5,8,9,13} , {} , {} };
     private PlayerManager playerManager;
     private BuildingManager buildingManager;
+    private Map map;
     int playerNo;
     private int turnNo;
     private boolean firstTurn;
@@ -31,10 +33,20 @@ public class GameManager {
         secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
+        map = new Map();
+        synchronizeMap();
     }
 
     public String returnPlayerColor(){
         return PLAYER_COLORS[playerNo];
+    }
+
+    private void synchronizeMap() {
+        DICE_TO_ADJACENT_TOWNS_BRICK = map.getDiceAdjacency( "Brick");
+        DICE_TO_ADJACENT_TOWNS_GRAIN = map.getDiceAdjacency( "Grain");
+        DICE_TO_ADJACENT_TOWNS_LUMBER = map.getDiceAdjacency( "Lumber");
+        DICE_TO_ADJACENT_TOWNS_ORE = map.getDiceAdjacency( "Ore");
+        DICE_TO_ADJACENT_TOWNS_WOOL = map.getDiceAdjacency( "Wool");
     }
 
     private ArrayList<Card> createInitialCardStack() {
@@ -60,8 +72,9 @@ public class GameManager {
 
     public int rollDice()
     {
-        return (int)(Math.random() * 10) + 2;
+        return (int) Math.ceil( Math.random() * 11) + 1;
     }
+
     public boolean distributeResources(int dice)
     {
         if(dice!=7){

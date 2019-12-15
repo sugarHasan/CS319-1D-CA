@@ -4,9 +4,9 @@ import Model.ResourceCardTypes.Grain;
 
 public class Field extends Land {
 
-    public Field()
+    public Field( int number)
     {
-        super();
+        super( number);
         setResource( new Grain());
     }
 }

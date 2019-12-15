@@ -4,9 +4,9 @@ import Model.ResourceCardTypes.Ore;
 
 public class Mountain extends Land {
 
-    public Mountain()
+    public Mountain( int number)
     {
-        super();
+        super( number);
         setResource( new Ore());
     }
 }

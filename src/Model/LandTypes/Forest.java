@@ -4,9 +4,9 @@ import Model.ResourceCardTypes.Lumber;
 
 public class Forest extends Land {
 
-    public Forest()
+    public Forest( int number)
     {
-        super();
+        super( number);
         setResource( new Lumber());
     }
 }

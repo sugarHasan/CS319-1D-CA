@@ -4,9 +4,9 @@ import Model.ResourceCardTypes.Wool;
 
 public class Pasture extends Land {
 
-    public Pasture()
+    public Pasture( int number)
     {
-        super();
+        super( number);
         setResource( new Wool());
     }
 }

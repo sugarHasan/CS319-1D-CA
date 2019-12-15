@@ -3,9 +3,9 @@ package Model;
 public class Robber {
     private int location;
 
-    public Robber()
+    public Robber( int loc)
     {
-
+        location = loc;
     }
 
     public boolean changeLocation( int newLoc)

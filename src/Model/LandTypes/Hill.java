@@ -4,9 +4,9 @@ import Model.ResourceCardTypes.Brick;
 
 public class Hill extends Land {
 
-    public Hill()
+    public Hill( int number)
     {
-        super();
+        super( number);
         setResource( new Brick());
     }
 }

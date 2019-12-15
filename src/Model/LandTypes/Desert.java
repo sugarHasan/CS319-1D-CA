@@ -3,8 +3,9 @@ import Model.Land;
 
 public class Desert extends Land {
 
-    public Desert()
+    public Desert( int number)
     {
-        super();
+        super( number);
+        setResource( null);
     }
 }
