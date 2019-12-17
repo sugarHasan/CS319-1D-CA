@@ -138,9 +138,7 @@ public class Main extends Application implements Initializable {
         this.refreshLongestRoad();
         playerName.setText("" + gameManager.getPlayerName());
 
-        mapManager = new MapManager();
-        mapManager.getMap().create(hexTiles);
-
+        gameManager.visualizeMap( hexTiles);
     }
     public void playerBoxPressed(ActionEvent event) throws IOException{
         System.out.println( "player box was used");

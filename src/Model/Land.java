@@ -45,7 +45,7 @@ public class Land {
     {
         if ( type != null)
             return type.getCardType();
-        return "";
+        return "Desert";
     }
 
     public void setResource( ResourceCard resource)

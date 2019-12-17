@@ -111,9 +111,9 @@ public class GameManager {
         return false;
     }
 
-    public Player gameOver()
+    public String gameOver()
     {
-        return new Player("ads");
+        return playerManager.getPlayers()[playerNo].getName();
     }
 
     public boolean tradeResource( String given , String wanted){
@@ -142,12 +142,37 @@ public class GameManager {
     public void playRoadBuilding(){
         this.playerManager.playRoadBuilding(playerNo);
     }
-    public boolean addRoad(int location){
-        return buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location);
+
+    public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
+        if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
+        {
+            buildingManager.setRoadImage(returnPlayerColor(),location,mapRoads);
+            return true;
+        }
+        else
+            return false;
     }
-    public boolean addSettlement(int location){
-        return buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location);
+
+    public boolean addSettlement(int location, AnchorPane mapBuildings) throws URISyntaxException {
+        if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))
+        {
+            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            return true;
+        }
+        else
+            return false;
     }
+
+    public boolean addCity(int location, AnchorPane mapBuildings) throws URISyntaxException {
+        if(buildingManager.buildCity(playerManager.getPlayers()[playerNo] , location))
+        {
+            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            return true;
+        }
+        else
+            return false;
+    }
+
     public String nextTurn(){
         playerNo++;
         if(playerNo == 4) {
@@ -181,5 +206,10 @@ public class GameManager {
 
     public String getPlayerName() {
         return playerManager.getName(playerNo);
+    }
+
+    public int getTurnNo()
+    {
+        return turnNo;
     }
 }
