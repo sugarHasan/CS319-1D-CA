@@ -152,8 +152,6 @@ public class Main extends Application implements Initializable {
         System.out.println( "wanted box was used");
     }
 
-
-
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         System.out.println( "player radio was used");

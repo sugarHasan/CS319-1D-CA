@@ -56,22 +56,32 @@ public class GameManager {
         map.visualizeMap( anchorPane);
     }
 
+    public boolean changeRobberLocation( int newLoc)
+    {
+        return map.moveRobber( newLoc);
+    }
+
+    public int getRobbersLocation()
+    {
+        return map.getRobbersLocation();
+    }
+
     private ArrayList<Card> createInitialCardStack() {
         ArrayList<Card> stack = new ArrayList<Card>();
         for(int i = 0 ; i < 14 ; i++){
-            stack.add(new KnightCard());
+            stack.add( new KnightCard());
         }
         for(int i = 0 ; i < 5 ; i++){
-            stack.add(new VictoryPointCard());
+            stack.add( new VictoryPointCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add(new RoadCard());
+            stack.add( new RoadCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add(new MonopolyCard());
+            stack.add( new MonopolyCard());
         }
         for(int i = 0 ; i < 2 ; i++){
-            stack.add(new YearOfPlentyCard());
+            stack.add( new YearOfPlentyCard());
         }
         Collections.shuffle(stack);
         return stack;
