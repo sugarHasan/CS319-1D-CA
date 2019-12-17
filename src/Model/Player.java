@@ -51,6 +51,21 @@ public class Player {
         return buildings;
     }
 
+    public void robberSteals()
+    {
+        int wool = cards.get( "Wool");
+        int ore = cards.get( "Ore");
+        int lumber = cards.get( "Lumber");
+        int grain = cards.get( "Grain");
+        int brick = cards.get( "Brick");
+
+        int steal = (wool + ore + lumber + grain + brick) / 2;
+        for ( int i = 0; i < steal; i++)
+        {
+            // remove random cards from player
+        }
+
+    }
 
     public void addBuilding(Building newBuilding){
         buildings.add(newBuilding);
@@ -91,7 +106,6 @@ public class Player {
     public void setVictoryPoints(int victoryPoints) {
         this.victoryPoints = victoryPoints;
     }
-
 
     public int longestRoad(){
         int[][] adjList = new int[NO_OF_EDGE_FOR_ROAD][NO_OF_EDGE_FOR_ROAD];

@@ -4,6 +4,8 @@ import Model.Robber;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import javafx.scene.layout.AnchorPane;
+import java.net.URISyntaxException;
 
 public class Map
 {
@@ -24,6 +26,13 @@ public class Map
         createMap();
     }
 
+    public void create(AnchorPane anchorPane) throws URISyntaxException {
+        for(int i = 0; i < NO_OF_LANDS; i++)
+        {
+            lands[i].setHex(i, anchorPane);
+        }
+    }
+
     private void createMap()
     {
         int hill = 3;
@@ -33,7 +42,7 @@ public class Map
         int pasture = 4;
         int desert = 1;
         int random;
-        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12));
+            ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12));
         Collections.shuffle( numbers);
 
         int i = 0;
@@ -83,6 +92,11 @@ public class Map
 
     public boolean moveRobber( int location) {
         return robber.changeLocation( location);
+    }
+
+    public int getRobbersLocation()
+    {
+        return robber.getLocation();
     }
 
     public int[][] getDiceAdjacency( String resource)

@@ -43,7 +43,13 @@ public class PlayerManager {
         return -1;
     }
 
-
+    public void robberSteals()
+    {
+        for ( int i = 0; i < players.length; i++)
+        {
+            players[i].robberSteals();
+        }
+    }
 
     public Player[] getPlayers() {
         return players;

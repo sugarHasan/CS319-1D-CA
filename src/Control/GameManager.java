@@ -77,7 +77,13 @@ public class GameManager {
 
     public boolean distributeResources(int dice)
     {
-        if(dice!=7){
+        if ( dice == 7 )
+        {
+            playerManager.robberSteals();
+            // will change robbers location to selected pos
+        }
+        else if( dice <= 12 && dice > 1)
+        {
             for(int i = 0 ; i < DICE_TO_ADJACENT_TOWNS_WOOL[dice].length ; i++){
                 playerManager.distributeResources(DICE_TO_ADJACENT_TOWNS_WOOL[dice][i] , "Wool");
             }
