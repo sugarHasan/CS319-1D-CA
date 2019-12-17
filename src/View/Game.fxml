@@ -19,646 +19,546 @@
     <RowConstraints />
     <RowConstraints />
 </rowConstraints>
-<children>
-    <Pane prefHeight="768.0" prefWidth="1366.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <children>
-            <AnchorPane layoutX="280.0" layoutY="-9.0" prefHeight="502.0" prefWidth="655.0">
-                <children>
-                    <ImageView fitHeight="552.0" fitWidth="778.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/catanMap.png" />
-                        </image>
-                    </ImageView>
-                    <Button fx:id="E5" layoutX="531.0" layoutY="37.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E17" layoutX="589.0" layoutY="140.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E32" layoutX="647.0" layoutY="239.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E15" layoutX="477.0" layoutY="129.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E30" layoutX="531.0" layoutY="239.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E13" layoutX="366.0" layoutY="140.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E11" layoutX="253.0" layoutY="129.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E24" layoutX="200.0" layoutY="239.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E26" layoutX="316.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E1" layoutX="311.0" layoutY="37.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E3" layoutX="418.0" layoutY="37.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E28" layoutX="419.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E68" layoutX="366.0" layoutY="523.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E41" layoutX="253.0" layoutY="337.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E43" layoutX="366.0" layoutY="337.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E45" layoutX="477.0" layoutY="326.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E47" layoutX="584.0" layoutY="337.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E56" layoutX="311.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E58" layoutX="418.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E60" layoutX="531.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E39" layoutX="148.0" layoutY="338.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E54" layoutX="200.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E66" layoutX="253.0" layoutY="523.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E70" layoutX="477.0" layoutY="523.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
-                    <Button fx:id="E6" layoutX="231.0" layoutY="86.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E7" layoutX="336.0" layoutY="86.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E8" layoutX="449.0" layoutY="86.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E9" layoutX="558.0" layoutY="86.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E18" layoutX="168.0" layoutY="188.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E19" layoutX="284.0" layoutY="181.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E20" layoutX="398.0" layoutY="181.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E21" layoutX="497.0" layoutY="181.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E22" layoutX="615.0" layoutY="188.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E33" layoutX="117.0" layoutY="282.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E34" layoutX="231.0" layoutY="278.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E35" layoutX="336.0" layoutY="278.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E36" layoutX="449.0" layoutY="278.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E37" layoutX="558.0" layoutY="282.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E38" layoutX="666.0" layoutY="278.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E53" layoutX="615.0" layoutY="382.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E52" layoutX="497.0" layoutY="382.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E51" layoutX="386.0" layoutY="374.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E50" layoutX="284.0" layoutY="374.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E49" layoutX="168.0" layoutY="382.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E62" layoutX="231.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E63" layoutX="336.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E64" layoutX="449.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E65" layoutX="558.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
-                    <Button fx:id="E0" layoutX="253.0" layoutY="37.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E2" layoutX="363.0" layoutY="44.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E4" layoutX="477.0" layoutY="37.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E12" layoutX="311.0" layoutY="140.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E14" layoutX="419.0" layoutY="129.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E16" layoutX="538.0" layoutY="129.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E10" layoutX="200.0" layoutY="140.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E25" layoutX="253.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E27" layoutX="366.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E29" layoutX="477.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E31" layoutX="589.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E23" layoutX="148.0" layoutY="230.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E40" layoutX="200.0" layoutY="337.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E42" layoutX="311.0" layoutY="337.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E44" layoutX="418.0" layoutY="326.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E46" layoutX="531.0" layoutY="337.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E55" layoutX="253.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E57" layoutX="366.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E59" layoutX="477.0" layoutY="432.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E67" layoutX="316.0" layoutY="523.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E69" layoutX="419.0" layoutY="523.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E71" layoutX="531.0" layoutY="530.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E61" layoutX="589.0" layoutY="422.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="E48" layoutX="647.0" layoutY="326.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.25" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
-                    <Button fx:id="C0" layoutX="288.0" layoutY="34.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C1" layoutX="390.0" layoutY="34.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C2" layoutX="513.0" layoutY="34.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C3" layoutX="237.0" layoutY="58.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C4" layoutX="340.0" layoutY="58.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C5" layoutX="453.0" layoutY="58.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C6" layoutX="562.0" layoutY="58.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C7" layoutX="229.0" layoutY="124.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C12" layoutX="288.0" layoutY="149.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C8" layoutX="340.0" layoutY="124.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C13" layoutX="398.0" layoutY="150.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C9" layoutX="453.0" layoutY="124.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C14" layoutX="513.0" layoutY="150.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C10" layoutX="569.0" layoutY="125.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C11" layoutX="184.0" layoutY="162.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C16" layoutX="176.0" layoutY="224.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C17" layoutX="288.0" layoutY="215.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C22" layoutX="235.0" layoutY="250.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C23" layoutX="340.0" layoutY="250.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C18" layoutX="398.0" layoutY="224.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C24" layoutX="453.0" layoutY="250.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C19" layoutX="505.0" layoutY="224.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C25" layoutX="562.0" layoutY="251.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C20" layoutX="617.0" layoutY="220.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C15" layoutX="612.0" layoutY="163.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C26" layoutX="671.0" layoutY="259.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C32" layoutX="671.0" layoutY="311.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C31" layoutX="562.0" layoutY="321.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C36" layoutX="505.0" layoutY="347.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C30" layoutX="453.0" layoutY="321.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C35" layoutX="398.0" layoutY="347.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C29" layoutX="340.0" layoutY="321.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C34" layoutX="288.0" layoutY="347.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C28" layoutX="235.0" layoutY="321.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C21" layoutX="129.0" layoutY="259.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C27" layoutX="121.0" layoutY="321.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C33" layoutX="176.0" layoutY="347.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C38" layoutX="176.0" layoutY="416.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C43" layoutX="229.0" layoutY="452.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C39" layoutX="288.0" layoutY="417.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C44" layoutX="339.0" layoutY="452.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C40" layoutX="398.0" layoutY="417.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C45" layoutX="453.0" layoutY="452.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C41" layoutX="505.0" layoutY="416.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C46" layoutX="562.0" layoutY="453.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C37" layoutX="617.0" layoutY="357.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C42" layoutX="617.0" layoutY="417.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C47" layoutX="229.0" layoutY="520.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C51" layoutX="288.0" layoutY="543.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C48" layoutX="347.0" layoutY="520.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C52" layoutX="398.0" layoutY="543.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C49" layoutX="453.0" layoutY="520.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C53" layoutX="505.0" layoutY="543.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <Button fx:id="C50" layoutX="562.0" layoutY="520.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.25" prefHeight="0.0" prefWidth="0.0" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="228.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -30;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="229.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -30;" text="3:1" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="141.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -90;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="121.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -90;" text="Ore 2:1" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="141.0" layoutY="385.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -90;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="117.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -90;" text="Grain 2:1" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="236.0" layoutY="548.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -150;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="426.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -210;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="593.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: -210;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="598.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -30;" text="Brick 2:1" />
-                    <Text layoutX="423.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: -30;" text="Lumber 2:1" />
-                    <Text layoutX="235.0" layoutY="580.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: 30;" text="3:1" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="683.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 90;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="715.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: 90;" text="3:1" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="593.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 30;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="612.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: 30;" text="3:1" />
-                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="426.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 30;">
-                        <image>
-                            <Image url="@../images/boat.jpeg" />
-                        </image>
-                    </ImageView>
-                    <Text layoutX="429.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-rotate: 30;" text="Wool 2:1" />
-                </children>
-            </AnchorPane>
-            <VBox layoutX="-11.0" layoutY="-11.0" prefHeight="399.0" prefWidth="331.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #87CEFA;">
-                <children>
-                    <Label text="Offers &amp; Trade">
-                        <font>
-                            <Font name="System Bold" size="25.0" />
-                        </font>
-                    </Label>
-                    <RadioButton fx:id="playerRadio" mnemonicParsing="false" onAction="#playerRadioPressed" text="Trade with another Player">
-                        <toggleGroup>
-                            <ToggleGroup fx:id="tradeSelect" />
-                        </toggleGroup>
-                    </RadioButton>
-                    <ComboBox fx:id="playerBox" onAction="#playerBoxPressed" prefWidth="150.0" promptText="Select Player">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:id="Player1Trade" fx:value="Player1" />
-                                <String fx:id="Player2Trade" fx:value="Player2" />
-                                <String fx:id="Player3Trade" fx:value="Player3" />
-                                <String fx:id="Player4Trade" fx:value="Player4" />
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-                    <RadioButton fx:id="bankRadio" mnemonicParsing="false" onAction="#bankRadioPressed" text="Trade with the Bank" toggleGroup="$tradeSelect" />
-                    <ComboBox fx:id="givenBox" onAction="#givenBoxPressed" prefHeight="26.0" prefWidth="178.0" promptText="Select Given Resource">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:id="grainTrade" fx:value="Grain" />
-                                <String fx:id="brickTrade" fx:value="Brick" />
-                                <String fx:id="oreTrade" fx:value="Ore" />
-                                <String fx:id="lumberTrade" fx:value="Lumber" />
-                                <String fx:id="woolTrade" fx:value="Wood" />
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-                    <ComboBox fx:id="wantedBox" onAction="#wantedBoxPressed" prefHeight="26.0" prefWidth="178.0" promptText="Select Wanted Resource">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:id="grainWanted" fx:value="Grain" />
-                                <String fx:id="brickWanted" fx:value="Brick" />
-                                <String fx:id="oreWanted" fx:value="Ore" />
-                                <String fx:id="lumberWanted" fx:value="Lumber" />
-                                <String fx:id="woolWanted" fx:value="Wood" />
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-                </children>
-                <padding>
-                    <Insets bottom="30.0" left="20.0" right="30.0" top="10.0" />
-                </padding>
-            </VBox>
-            <Button fx:id="offerButton" layoutX="67.0" layoutY="293.0" mnemonicParsing="false" onAction="#offerButtonPressed" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #FFEBCD;" text="Send Offer/Trade" textAlignment="RIGHT">
-                <font>
-                    <Font name="System Bold" size="17.0" />
-                </font>
-            </Button>
-            <VBox layoutX="-11.0" layoutY="381.0" prefHeight="265.0" prefWidth="331.0" spacing="5.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #F4A460;">
-                <children>
-                    <Label text="Resources">
-                        <font>
-                            <Font name="System Bold" size="25.0" />
-                        </font>
-                    </Label>
-                    <Label text="Grain    :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label text="Brick     :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label text="Ore       :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label prefHeight="30.0" prefWidth="86.0" text="Lumber :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label text="Wool     :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                </children>
-                <padding>
-                    <Insets bottom="30.0" left="20.0" right="30.0" top="10.0" />
-                </padding>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="155.0" layoutY="403.0" prefHeight="162.0" prefWidth="158.0" spacing="5.0" style="-fx-border-width: 1; -fx-background-color: #F4A460;">
-                <children>
-                    <Label fx:id="grainNo" text="GrainNo">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="brickNo" text="BrickNo">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="oreNo" text="OreNo">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="lumberNo" prefHeight="30.0" prefWidth="27.0" text="LumberNo">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                        <opaqueInsets>
-                            <Insets />
-                        </opaqueInsets>
-                        <VBox.margin>
-                            <Insets left="3.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="woolNo" text="WoolNo">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                </children>
-                <padding>
-                    <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                </padding>
-            </VBox>
-            <Pane layoutX="-11.0" layoutY="617.0" prefHeight="152.0" prefWidth="331.0" style="-fx-background-color: #F5DEB3; -fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;">
-                <children>
-                    <ImageView fitHeight="102.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/buildingCosts1.jpeg" />
-                        </image>
-                    </ImageView>
-                    <ImageView fitHeight="89.0" fitWidth="167.0" layoutX="161.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@../images/buildingCosts2.jpeg" />
-                        </image>
-                    </ImageView>
-                </children>
-            </Pane>
-            <HBox layoutX="319.0" layoutY="580.0" prefHeight="189.0" prefWidth="729.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #FFEFD5;">
-                <padding>
-                    <Insets bottom="30.0" left="20.0" right="30.0" top="10.0" />
-                </padding>
-                <children>
-                    <VBox alignment="TOP_CENTER" prefHeight="148.0" prefWidth="66.0">
-                        <opaqueInsets>
-                            <Insets />
-                        </opaqueInsets>
-                        <HBox.margin>
-                            <Insets bottom="-20.0" left="30.0" top="15.0" />
-                        </HBox.margin>
-                        <children>
-                            <Label fx:id="p1" prefHeight="43.0" prefWidth="116.0" text="Player1" textFill="ORANGE">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label fx:id="p2" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="116.0" text="Player2" textFill="TOMATO">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label fx:id="p3" layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="116.0" text="Player3" textFill="PALEGREEN">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label fx:id="p4" layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="116.0" text="Player4" textFill="LIGHTSKYBLUE">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                        </children>
-                    </VBox>
-                    <VBox alignment="TOP_CENTER" layoutX="61.0" layoutY="52.0" prefHeight="148.0" prefWidth="66.0">
-                        <opaqueInsets>
-                            <Insets />
-                        </opaqueInsets>
-                        <children>
-                            <Label fx:id="p1Score" prefHeight="43.0" prefWidth="116.0" text="p1Score">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label fx:id="p2Score" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="116.0" text="p2Score">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label fx:id="p3Score" layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="116.0" text="p3Score">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                            <Label fx:id="p4Score" layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="116.0" text="p4Score">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                            </Label>
-                        </children>
-                        <HBox.margin>
-                            <Insets bottom="-20.0" left="55.0" top="15.0" />
-                        </HBox.margin>
-                    </VBox>
-                    <VBox alignment="TOP_CENTER" layoutX="203.0" layoutY="36.0" prefHeight="147.0" prefWidth="254.0">
-                        <opaqueInsets>
-                            <Insets />
-                        </opaqueInsets>
-                        <children>
-                            <Label fx:id="p1Army" prefHeight="43.0" prefWidth="116.0" text="p1Army">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="20.0" />
-                                </padding>
-                            </Label>
-                            <Label fx:id="p2Army" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="116.0" text="p2Army">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="20.0" />
-                                </padding>
-                            </Label>
-                            <Label fx:id="p3Army" layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="116.0" text="p3Army">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="20.0" />
-                                </padding>
-                            </Label>
-                            <Label fx:id="p4Army" layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="116.0" text="p4Army">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="20.0" />
-                                </padding>
-                            </Label>
-                        </children>
-                        <padding>
-                            <Insets bottom="-20.0" left="50.0" right="2.0" top="15.0" />
-                        </padding>
-                    </VBox>
-                    <VBox alignment="TOP_CENTER" layoutX="289.0" layoutY="21.0" prefHeight="152.0" prefWidth="98.0">
-                        <opaqueInsets>
-                            <Insets />
-                        </opaqueInsets>
-                        <children>
-                            <Label fx:id="p1Road" prefHeight="34.0" prefWidth="100.0" text="p1Road">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="30.0" />
-                                </padding>
-                            </Label>
-                            <Label fx:id="p2Road" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="116.0" text="p2Road">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="30.0" />
-                                </padding>
-                            </Label>
-                            <Label fx:id="p3Road" layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="116.0" text="p3Road">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="30.0" />
-                                </padding>
-                            </Label>
-                            <Label fx:id="p4Road" layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="116.0" text="p4Road">
-                                <font>
-                                    <Font size="18.0" />
-                                </font>
-                                <padding>
-                                    <Insets left="30.0" />
-                                </padding>
-                            </Label>
-                        </children>
-                        <HBox.margin>
-                            <Insets bottom="-20.0" top="15.0" />
-                        </HBox.margin>
-                    </VBox>
-                </children>
-            </HBox>
-            <VBox layoutX="1047.0" layoutY="-14.0" prefHeight="427.0" prefWidth="322.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #90EE90;">
-                <children>
-                    <Label text="Development Cards">
-                        <font>
-                            <Font name="System Bold" size="25.0" />
-                        </font>
-                    </Label>
-                    <Label text="Knight Cards           :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label text="Victory Point Cards :">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label text="Progress Cards">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                </children>
-                <padding>
-                    <Insets bottom="10.0" left="20.0" right="30.0" top="10.0" />
-                </padding>
-            </VBox>
-            <VBox layoutX="1047.0" layoutY="412.0" prefHeight="359.0" prefWidth="322.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #A9A9A9;">
-                <children>
-                    <Label text="Game Screen">
-                        <font>
-                            <Font name="System Bold" size="25.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="playerName" text="Player1">
-                        <font>
-                            <Font name="System Bold" size="50.0" />
-                        </font>
-                    </Label>
-                    <Button fx:id="butDevelopmentCard" mnemonicParsing="false" onAction="#buyDevelopmentCard" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #FFD700;" text="Buy Development Card">
-                        <font>
-                            <Font size="18.0" />
-                        </font>
-                    </Button>
-                  <Label prefHeight="58.0" prefWidth="106.0" text="Roll Dice:">
+    <children>
+        <Pane prefHeight="768.0" prefWidth="1366.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+            <AnchorPane layoutX="280.0" layoutY="-9.0" prefHeight="865.0" prefWidth="1122.0">
+               <children>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Background.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Panels/Panel.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="119.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Grain.png" />
+                       </image>
+                   </ImageView>
+                   <Label fx:id="grainNo" layoutX="162.0" layoutY="16.0" text="GrainNo">
+                       <font>
+                           <Font name="Carter One" size="20.0" />
+                       </font>
+                   </Label>
+                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="245.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Brick.png" />
+                       </image>
+                   </ImageView>
+                   <Label fx:id="brickNo" layoutX="283.0" layoutY="16.0" text="BrickNo">
+                       <font>
+                           <Font name="Carter One" size="20.0" />
+                       </font>
+                   </Label>
+                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="366.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Rock.png" />
+                       </image>
+                   </ImageView>
+                   <Label fx:id="oreNo" layoutX="410.0" layoutY="16.0" text="OreNo">
+                       <font>
+                           <Font name="Carter One" size="20.0" />
+                       </font>
+                   </Label>
+                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="488.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Wood.png" />
+                       </image>
+                   </ImageView>
+                   <Label fx:id="lumberNo" layoutX="535.0" layoutY="14.0" prefHeight="30.0" prefWidth="27.0" text="LumberNo">
+                       <font>
+                           <Font name="Carter One" size="20.0" />
+                       </font>
+                       <opaqueInsets>
+                           <Insets />
+                       </opaqueInsets>
+                   </Label>
+                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="601.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Sheep.png" />
+                       </image>
+                   </ImageView>
+                   <Label fx:id="woolNo" layoutX="644.0" layoutY="16.0" text="WoolNo">
+                       <font>
+                           <Font name="Carter One" size="20.0" />
+                       </font>
+                   </Label>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Building Costs.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Panels/Panel2.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Panels/Panel3.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Panels/Panel1.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-260.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Grain.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-210.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Brick.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-160.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Wood.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-110.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Rock.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-60.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Sheep.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-260.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Grain.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-210.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Brick.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-160.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Wood.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-110.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Rock.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="-60.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Resources/Sheep.png" />
+                       </image>
+                   </ImageView>
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="@../images/Panels/Panel2.png" />
+                       </image>
+                   </ImageView>
+               </children></AnchorPane>
+            <AnchorPane layoutX="550.0" layoutY="600.0" prefHeight="200.0" prefWidth="300.0">
+               <children>
+                      <Label layoutX="-9.0" layoutY="32.0" prefHeight="18.0" prefWidth="295.0" text="  Names                Score">
+                          <font>
+                                    <Font name="Carter One" size="25.0" />
+                          </font>
+                          <padding>
+                              <Insets top="-10.0" />
+                          </padding>
+                      </Label>
+                        <VBox alignment="TOP_CENTER" layoutY="50.0" prefHeight="112.0" prefWidth="129.0">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <children>
+                                <Label fx:id="p1" prefHeight="43.0" prefWidth="116.0" text="Player1" textFill="ORANGE">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="p2" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="116.0" text="Player2" textFill="TOMATO">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="p3" layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="116.0" text="Player3" textFill="PALEGREEN">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="p4" layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="116.0" text="Player4" textFill="LIGHTSKYBLUE">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="170.0" layoutY="50.0" prefHeight="99.0" prefWidth="80.0">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <children>
+                                <Label fx:id="p1Score" prefHeight="43.0" prefWidth="116.0" text="p1Score">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="p2Score" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="116.0" text="p2Score">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="p3Score" layoutX="10.0" layoutY="53.0" prefHeight="43.0" prefWidth="116.0" text="p3Score">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="p4Score" layoutX="10.0" layoutY="96.0" prefHeight="43.0" prefWidth="116.0" text="p4Score">
+                                    <font>
+                                        <Font name="Carter One" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="512.0" prefWidth="313.0">
+               <children>
+                      <Button fx:id="offerButton" layoutX="51.0" layoutY="285.0" mnemonicParsing="false" onAction="#offerButtonPressed" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #FFEBCD;" text="Send Offer/Trade" textAlignment="RIGHT">
+                          <font>
+                              <Font name="Carter One" size="17.0" />
+                          </font>
+                      </Button>
+                  <Label layoutX="36.0" layoutY="395.0" text="Longest Road:">
                      <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="RollNo" prefHeight="54.0" prefWidth="108.0" text="-" translateX="150.0" translateY="-75.0">
-                     <font>
-                        <Font size="26.0" />
+                        <Font name="Carter One" size="21.0" />
                      </font></Label>
-                </children>
-                <padding>
-                    <Insets bottom="30.0" left="20.0" right="30.0" top="10.0" />
-                </padding>
-            </VBox>
-            <Label layoutX="1100.0" layoutY="234.0" prefHeight="30.0" prefWidth="150.0" text="-Year of Plenty  :">
-                <font>
-                    <Font size="20.0" />
-                </font>
-            </Label>
-            <Label layoutX="1100.0" layoutY="196.0" text="-Road Building  :">
-                <font>
-                    <Font size="20.0" />
-                </font>
-            </Label>
-            <Label layoutX="1100.0" layoutY="271.0" prefHeight="30.0" prefWidth="150.0" text="-Monopoly        :">
-                <font>
-                    <Font size="20.0" />
-                </font>
-            </Label>
-            <VBox alignment="CENTER_LEFT" layoutX="1257.0" layoutY="25.0" prefHeight="304.0" prefWidth="110.0" spacing="23.0" style="-fx-border-width: 1; -fx-background-color: #90EE90;">
-                <children>
-                    <Label fx:id="KnightNo" text="-">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="VictoryNo" text="-">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="oreNo1">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="RoadNo" text="-">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                        <VBox.margin>
-                            <Insets bottom="-10.0" top="5.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="PlentyNo" text="-">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                        <VBox.margin>
-                            <Insets bottom="-10.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="MonoNo" prefHeight="30.0" prefWidth="120.0" text="-">
-                        <font>
-                            <Font size="20.0" />
-                        </font>
-                    </Label>
-                </children>
-            </VBox>
-            <Button fx:id="endTurn" layoutX="1141.0" layoutY="658.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #48D1CC;" text="END TURN">
-                <font>
-                    <Font size="23.0" />
-                </font>
-            </Button>
-            <Button layoutX="1233.0" layoutY="340.0" mnemonicParsing="false" onAction="#playerCard" prefHeight="39.0" prefWidth="103.0" style="-fx-background-color: #BA55D3;" text="Play Card">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Button>
-            <ComboBox fx:id="playCardType" layoutX="1078.0" layoutY="365.0" prefHeight="39.0" prefWidth="103.0" promptText="Select Card">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:id="playCardGrain" fx:value="Grain" />
-                    <String fx:id="playCardBrick" fx:value="Brick" />
-                    <String fx:id="playCardOre" fx:value="Ore" />
-                    <String fx:id="playCardLumber" fx:value="Lumber" />
-                    <String fx:id="playCardWool" fx:value="Wood" />
-                </FXCollections>
-            </items>
-        </ComboBox>
-            <ComboBox fx:id="playCardNo" layoutX="1078.0" layoutY="318.0" onAction="#playerCardPressed" prefHeight="39.0" prefWidth="103.0" promptText="Select Card">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:id="Knight" fx:value="Knight" />
-                        <String fx:id="RoadBuilding" fx:value="Road Building" />
-                        <String fx:id="YearOfPlenty" fx:value="Year of Plenty" />
-                        <String fx:id="Monopoly" fx:value="Monopoly" />
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <Label layoutX="361.0" layoutY="590.0" prefHeight="26.0" prefWidth="670.0" text="Names          Score          Largest Army    Longest Road">
-                <font>
-                    <Font name="System Bold" size="25.0" />
-                </font>
-                <padding>
-                    <Insets top="-10.0" />
-                </padding>
-            </Label>
-        </children>
-    </Pane>
-</children>
+                  <Label layoutX="36.0" layoutY="464.0" prefHeight="34.0" prefWidth="150.0" text="Highest Army:">
+                      <font>
+                          <Font name="Carter One" size="21.0" />
+                      </font></Label>
+                  <Label fx:id="playerLongestRoad" layoutX="189.0" layoutY="395.0" text="Label">
+                      <font>
+                          <Font name="Carter One" size="21.0" />
+                      </font></Label>
+                  <Label fx:id="playerHighestArmy" layoutX="189.0" layoutY="464.0" text="Label">
+                      <font>
+                          <Font name="Carter One" size="21.0" />
+                      </font></Label>
+                  <Button fx:id="givenResourceGrain" layoutX="20.0" layoutY="163.0" mnemonicParsing="false" onAction="#givenResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="givenResourceBrick" layoutX="70.0" layoutY="163.0" mnemonicParsing="false" onAction="#givenResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="givenResourceLumber" layoutX="120.0" layoutY="163.0" mnemonicParsing="false" onAction="#givenResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="givenResourceOre" layoutX="170.0" layoutY="163.0" mnemonicParsing="false" onAction="#givenResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="givenResourceWool" layoutX="220.0" layoutY="163.0" mnemonicParsing="false" onAction="#givenResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                        <Label layoutX="61.0" layoutY="14.0" text="Offers &amp; Trade">
+                            <font>
+                                <Font name="Carter One" size="25.0" />
+                            </font>
+                        </Label>
+                        <RadioButton fx:id="playerRadio" layoutX="36.0" layoutY="53.0" mnemonicParsing="false" onAction="#playerRadioPressed" text="Trade with another Player">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="tradeSelect" />
+                            </toggleGroup>
+                     <font>
+                        <Font name="Carter One" size="13.0" />
+                     </font>
+                        </RadioButton>
+                        <ComboBox fx:id="playerBox" layoutX="32.0" layoutY="78.0" onAction="#playerBoxPressed" prefWidth="150.0" promptText="Select Player">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:id="Player1Trade" fx:value="Player1" />
+                                    <String fx:id="Player2Trade" fx:value="Player2" />
+                                    <String fx:id="Player3Trade" fx:value="Player3" />
+                                    <String fx:id="Player4Trade" fx:value="Player4" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <RadioButton fx:id="bankRadio" layoutX="37.0" layoutY="118.0" mnemonicParsing="false" onAction="#bankRadioPressed" text="Trade with the Bank" toggleGroup="$tradeSelect">
+                     <font>
+                        <Font name="Carter One" size="13.0" />
+                     </font></RadioButton>
+                  <Label layoutX="34.0" layoutY="144.0" prefHeight="17.0" prefWidth="67.0" text="Given">
+                      <font>
+                          <Font name="Carter One" size="13.0" />
+                      </font>
+                  </Label>
+                  <Label layoutX="38.0" layoutY="215.0" text="Wanted">
+                      <font>
+                          <Font name="Carter One" size="13.0" />
+                      </font>
+                  </Label>
+                  <Button fx:id="wantedResourceGrain" layoutX="20.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="wantedResourceBrick" layoutX="70.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="wantedResourceLumber" layoutX="120.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="wantedResourceOre" layoutX="170.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Button fx:id="wantedResourceWool" layoutX="220.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="hexTiles" layoutX="400.0" layoutY="100.0" prefHeight="464.0" prefWidth="585.0" />
+            <AnchorPane fx:id="mapRoads" layoutX="410.0" layoutY="110.0" prefHeight="464.0" prefWidth="585.0" />
+            <AnchorPane fx:id="mapBuildings" layoutX="420.0" layoutY="120.0" prefHeight="464.0" prefWidth="585.0" />
+                <AnchorPane layoutX="280.0" layoutY="-9.0" prefHeight="502.0" prefWidth="655.0">
+                    <children>
+                        <Button fx:id="E5" layoutX="531.0" layoutY="133.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E17" layoutX="584.0" layoutY="210.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E32" layoutX="642.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E15" layoutX="477.0" layoutY="213.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E30" layoutX="531.0" layoutY="286.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E13" layoutX="374.0" layoutY="213.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E11" layoutX="262.0" layoutY="213.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E24" layoutX="210.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E26" layoutX="319.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E1" layoutX="319.0" layoutY="133.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E3" layoutX="428.0" layoutY="137.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E28" layoutX="428.0" layoutY="286.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E68" layoutX="374.0" layoutY="518.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E41" layoutX="270.0" layoutY="362.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E43" layoutX="374.0" layoutY="362.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E45" layoutX="477.0" layoutY="362.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E47" layoutX="589.0" layoutY="368.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E56" layoutX="324.0" layoutY="440.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E58" layoutX="419.0" layoutY="437.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E60" layoutX="531.0" layoutY="438.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E39" layoutX="156.0" layoutY="361.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E54" layoutX="210.0" layoutY="438.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E66" layoutX="262.0" layoutY="512.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E70" layoutX="477.0" layoutY="518.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
+                        <Button fx:id="E6" layoutX="237.0" layoutY="171.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E7" layoutX="344.0" layoutY="171.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E8" layoutX="450.0" layoutY="171.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E9" layoutX="557.0" layoutY="171.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E18" layoutX="185.0" layoutY="249.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E19" layoutX="292.0" layoutY="249.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E20" layoutX="398.0" layoutY="249.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E21" layoutX="502.0" layoutY="249.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E22" layoutX="609.0" layoutY="249.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E33" layoutX="129.0" layoutY="327.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E34" layoutX="241.0" layoutY="327.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E35" layoutX="343.0" layoutY="327.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E36" layoutX="450.0" layoutY="327.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E37" layoutX="558.0" layoutY="327.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E38" layoutX="666.0" layoutY="320.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E53" layoutX="614.0" layoutY="401.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E52" layoutX="502.0" layoutY="404.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E51" layoutX="398.0" layoutY="407.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E50" layoutX="292.0" layoutY="404.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E49" layoutX="181.0" layoutY="404.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E62" layoutX="237.0" layoutY="484.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E63" layoutX="344.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E64" layoutX="449.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E65" layoutX="558.0" layoutY="480.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 0;" />
+                        <Button fx:id="E0" layoutX="262.0" layoutY="137.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E2" layoutX="374.0" layoutY="133.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E4" layoutX="477.0" layoutY="133.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E12" layoutX="319.0" layoutY="213.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E14" layoutX="426.0" layoutY="213.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E16" layoutX="531.0" layoutY="211.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E10" layoutX="210.0" layoutY="213.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E25" layoutX="268.0" layoutY="286.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E27" layoutX="366.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E29" layoutX="477.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E31" layoutX="589.0" layoutY="286.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E23" layoutX="156.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E40" layoutX="210.0" layoutY="362.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E42" layoutX="316.0" layoutY="362.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E44" layoutX="426.0" layoutY="361.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E46" layoutX="531.0" layoutY="365.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E55" layoutX="262.0" layoutY="438.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E57" layoutX="366.0" layoutY="438.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E59" layoutX="477.0" layoutY="437.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E67" layoutX="324.0" layoutY="518.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E69" layoutX="426.0" layoutY="512.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E71" layoutX="531.0" layoutY="519.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E61" layoutX="584.0" layoutY="437.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="E48" layoutX="634.0" layoutY="361.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: 60;" />
+                        <Button fx:id="C0" layoutX="295.0" layoutY="121.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C1" layoutX="403.0" layoutY="122.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C2" layoutX="505.0" layoutY="122.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C3" layoutX="240.0" layoutY="144.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C4" layoutX="347.0" layoutY="144.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C5" layoutX="453.0" layoutY="144.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C6" layoutX="562.0" layoutY="144.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C7" layoutX="240.0" layoutY="199.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C12" layoutX="295.0" layoutY="226.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C8" layoutX="347.0" layoutY="199.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C13" layoutX="402.0" layoutY="226.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C9" layoutX="453.0" layoutY="199.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C14" layoutX="505.0" layoutY="226.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C10" layoutX="560.0" layoutY="198.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C11" layoutX="188.0" layoutY="226.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C16" layoutX="185.0" layoutY="280.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C17" layoutX="295.0" layoutY="280.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C22" layoutX="244.0" layoutY="300.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C23" layoutX="347.0" layoutY="300.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C18" layoutX="401.0" layoutY="280.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C24" layoutX="453.0" layoutY="300.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C19" layoutX="505.0" layoutY="284.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C25" layoutX="560.0" layoutY="300.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C20" layoutX="618.0" layoutY="280.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C15" layoutX="612.0" layoutY="226.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C26" layoutX="669.0" layoutY="300.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C32" layoutX="662.0" layoutY="350.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C31" layoutX="562.0" layoutY="356.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C36" layoutX="505.0" layoutY="381.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C30" layoutX="453.0" layoutY="356.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C35" layoutX="403.0" layoutY="380.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C29" layoutX="347.0" layoutY="356.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C34" layoutX="297.0" layoutY="376.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C28" layoutX="244.0" layoutY="356.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C21" layoutX="132.0" layoutY="300.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C27" layoutX="138.0" layoutY="356.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C33" layoutX="186.0" layoutY="376.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C38" layoutX="185.0" layoutY="430.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C43" layoutX="240.0" layoutY="454.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C39" layoutX="295.0" layoutY="430.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C44" layoutX="347.0" layoutY="451.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C40" layoutX="401.0" layoutY="430.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C45" layoutX="453.0" layoutY="452.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C41" layoutX="505.0" layoutY="430.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C46" layoutX="562.0" layoutY="453.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C37" layoutX="617.0" layoutY="380.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C42" layoutX="617.0" layoutY="430.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C47" layoutX="238.0" layoutY="507.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C51" layoutX="295.0" layoutY="525.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C48" layoutX="347.0" layoutY="507.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C52" layoutX="401.0" layoutY="525.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C49" layoutX="453.0" layoutY="507.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C53" layoutX="505.0" layoutY="531.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="C50" layoutX="560.0" layoutY="512.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
+                    </children>
+                </AnchorPane>
+            <AnchorPane layoutX="1050.0" prefHeight="400.0" prefWidth="313.0">
+               <children>
+                        <Label text="Development Cards">
+                            <font>
+                                <Font name="Carter One" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="124.0" text="Knight Cards           :">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="9.0" layoutY="85.0" text="Victory Point Cards :">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="37.0" layoutY="167.0" text="Progress Cards">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="KnightNo" layoutX="229.0" layoutY="131.0" prefHeight="33.0" prefWidth="33.0" text="-">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="VictoryNo" layoutX="229.0" layoutY="85.0" prefHeight="33.0" prefWidth="33.0" text="-">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="RoadNo" layoutX="229.0" layoutY="200.0" prefHeight="33.0" prefWidth="33.0" text="-">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="PlentyNo" layoutX="230.0" layoutY="237.0" prefHeight="33.0" prefWidth="33.0" text="-">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="MonoNo" layoutX="230.0" layoutY="277.0" prefHeight="33.0" prefWidth="33.0" text="-">
+                            <font>
+                                <Font name="Carter One" size="20.0" />
+                            </font>
+                        </Label>
+               </children></AnchorPane>
+                <VBox layoutX="1047.0" layoutY="412.0" prefHeight="359.0" prefWidth="322.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #A9A9A9;">
+                    <children>
+                        <Label text="Game Screen">
+                            <font>
+                                <Font name="Carter One" size="25.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="playerName" text="Player1">
+                            <font>
+                                <Font name="Carter One" size="50.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="butDevelopmentCard" mnemonicParsing="false" onAction="#buyDevelopmentCard" prefHeight="42.0" prefWidth="250.0" style="-fx-background-color: #FFD700;" text="Buy Development Card">
+                            <font>
+                                <Font name="Carter One" size="18.0" />
+                            </font>
+                        </Button>
+                        <Label prefHeight="44.0" prefWidth="130.0" text="Roll Dice:">
+                            <font>
+                                <Font name="Carter One" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="RollNo" prefHeight="54.0" prefWidth="108.0" text="-" translateX="150.0" translateY="-60.0">
+                            <font>
+                                <Font name="Carter One" size="26.0" />
+                            </font></Label>
+                    </children>
+                    <padding>
+                        <Insets bottom="30.0" left="20.0" right="30.0" top="10.0" />
+                    </padding>
+                </VBox>
+                <Label layoutX="1100.0" layoutY="234.0" prefHeight="33.0" prefWidth="178.0" text="-Year of Plenty  :">
+                    <font>
+                        <Font name="Carter One" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="1100.0" layoutY="196.0" text="-Road Building  :">
+                    <font>
+                        <Font name="Carter One" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="1100.0" layoutY="271.0" prefHeight="30.0" prefWidth="150.0" text="-Monopoly        :">
+                    <font>
+                        <Font name="Carter One" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="endTurn" layoutX="1141.0" layoutY="700.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #48D1CC;" text="END TURN">
+                    <font>
+                        <Font name="Carter One" size="23.0" />
+                    </font>
+                </Button>
+                <Button layoutX="1207.0" layoutY="340.0" mnemonicParsing="false" onAction="#playCard" prefHeight="42.0" prefWidth="129.0" style="-fx-background-color: #BA55D3;" text="Play Card">
+                    <font>
+                        <Font name="Carter One" size="18.0" />
+                    </font>
+                </Button>
+                <ComboBox fx:id="playCardType" layoutX="1078.0" layoutY="365.0" prefHeight="39.0" prefWidth="103.0" promptText="Select Card">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:id="playCardGrain" fx:value="Grain" />
+                            <String fx:id="playCardBrick" fx:value="Brick" />
+                            <String fx:id="playCardOre" fx:value="Ore" />
+                            <String fx:id="playCardLumber" fx:value="Lumber" />
+                            <String fx:id="playCardWool" fx:value="Wood" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+                <ComboBox fx:id="playCardNo" layoutX="1078.0" layoutY="318.0" onAction="#playerCardPressed" prefHeight="39.0" prefWidth="103.0" promptText="Select Card">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:id="Knight" fx:value="Knight" />
+                            <String fx:id="RoadBuilding" fx:value="Road Building" />
+                            <String fx:id="YearOfPlenty" fx:value="Year of Plenty" />
+                            <String fx:id="Monopoly" fx:value="Monopoly" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </children>
+        </Pane>
+    </children>
 </GridPane>
