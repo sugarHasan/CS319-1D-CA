@@ -26,7 +26,7 @@ public class Map
         createMap();
     }
 
-    public void create(AnchorPane anchorPane) throws URISyntaxException {
+    public void visualizeMap(AnchorPane anchorPane) throws URISyntaxException {
         for(int i = 0; i < NO_OF_LANDS; i++)
         {
             lands[i].setHex(i, anchorPane);

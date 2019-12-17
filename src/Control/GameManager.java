@@ -5,6 +5,9 @@ import Model.Player;
 import Model.Card;
 import Model.DevelopmentCardTypes.*;
 import Model.DevelopmentCardTypes.ProgressCardTypes.*;
+import javafx.scene.layout.AnchorPane;
+
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -47,6 +50,10 @@ public class GameManager {
         DICE_TO_ADJACENT_TOWNS_LUMBER = map.getDiceAdjacency( "Lumber");
         DICE_TO_ADJACENT_TOWNS_ORE = map.getDiceAdjacency( "Ore");
         DICE_TO_ADJACENT_TOWNS_WOOL = map.getDiceAdjacency( "Wool");
+    }
+
+    public void visualizeMap( AnchorPane anchorPane) throws URISyntaxException {
+        map.visualizeMap( anchorPane);
     }
 
     private ArrayList<Card> createInitialCardStack() {

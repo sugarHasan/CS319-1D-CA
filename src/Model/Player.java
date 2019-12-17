@@ -225,10 +225,6 @@ public class Player {
         cards.put("RoadBuilding" , cards.get("RoadBuilding") - 1);
     }
 
-    public int deneme() {
-        return buildings.size();
-    }
-
     public int[] getResources() {
         int [] resources = new int[5];
         resources[0] = cards.get("Grain");
@@ -262,6 +258,15 @@ public class Player {
             cards.put("Brick" , cards.get("Brick")-1);
             cards.put("Grain" , cards.get("Grain")-1);
             cards.put("Wool" , cards.get("Wool")-1);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean buyCity() {
+        if(cards.get("Grain")>= 2 &&  cards.get("Ore")>= 3){
+            cards.put("Grain" , cards.get("Grain")-2);
+            cards.put("Ore" , cards.get("Ore")-3);
             return true;
         }
         return false;

@@ -24,6 +24,8 @@ public class BuildingManager {
     private ImageView[] buildingsImages;
 
     private int[] road1Image = {6,7,8,9,18,19,20,21,22,33,34,35,36,37,38,49,50,51,52,53,62,63,64,65};
+    private int [] road2Image = {1,3,5,11,13,15,17,24,26,28,30,32,39,41,43,45,47,54,56,58,60,66,68,70};
+    private int[] road3Image = {0,2,4,10,12,14,16,23,25,27,29,31,40,42,44,46,48,55,57,59,61,67,69,71};
 
     public BuildingManager() {
         buildingsCityAndSettlement = new Building[NO_OF_CORNERS_FOR_CITY_AND_BUILDINGS];
@@ -252,11 +254,108 @@ public class BuildingManager {
             ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitHeight(50);
             ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitWidth(14.95);
 
-            ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setLayoutX(x);
-            ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setLayoutY(y);
+
         }
+        else if(contains(road3Image,location))
+        {
+            // {{0,2,4,10,12,14,16,23,25,27,29,31,40,42,44,46,48,55,57,59,61,67,69,71}
+            if(0 <= location && location <= 4 )
+            {
+                x = 126 + (106 * (location / 2 ));
+                y = 5;
+            }
+            else if(10 <= location && location <=16)
+            {
+                x = 70 + (106 * ((location - 10) / 2 ));
+                y = 80;
+            }
+            else if(23 <= location && location <= 31)
+            {
+                x = 14 + (106 * ((location - 23) / 2));
+                y = 155;
+            }
+            else if(40 <= location && location <= 48)
+            {
+                x = 70 + (106 * ((location - 40) / 2 ));
+                y = 230;
+            }
+            else if(55 <= location && location <=61)
+            {
+                x = 126 + (106 * ((location - 55) / 2 ));
+                y = 305;
+            }
+            else if(67 <= location && location <=71)
+            {
+                x = 180 + (106 * ((location - 67) / 2 ));
+                y = 380;
+            }
+
+            Image img = new Image(getClass().getResource("/images/Roads/" + playerColor + "Road3.png").toURI().toString());
+
+            ImageView road = new ImageView(img);
+
+            mapRoads.getChildren().add(road);
+
+            //road = ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 ));
+
+            //((ImageView) MapBuildings.getChildren().get(MapBuildings.getChildren().size() -1 )).setId("" + location);
+
+            ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitHeight(50);
+            ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitWidth(50);
+        }
+        else if(contains(road2Image,location))
+        {
+            // {1,3,5,11,13,15,17,24,26,28,30,32,39,41,43,45,47,54,56,58,60,66,68,70}
+            if(1 <= location && location <= 3 )
+            {
+                x = 175 + (106 * ((location - 1) / 2 ));
+                y = 5;
+            }
+            else if(11 <= location && location <=15)
+            {
+                x = 119 + (106 * ((location - 11) / 2 ));
+                y = 80;
+            }
+            else if(24 <= location && location <= 32)
+            {
+                x = 63 + (106 * ((location - 24) / 2));
+                y = 155;
+            }
+            else if(39 <= location && location <= 47)
+            {
+                x = 119 + (106 * ((location - 41) / 2 ));
+                y = 230;
+            }
+            else if(54 <= location && location <=60)
+            {
+                x = 63 + (106 * ((location - 54) / 2 ));
+                y = 305;
+            }
+            else if(66 <= location && location <=70)
+            {
+                x = 119 + (106 * ((location - 66) / 2 ));
+                y = 380;
+            }
+
+            Image img = new Image(getClass().getResource("/images/Roads/" + playerColor + "Road2.png").toURI().toString());
+
+            ImageView road = new ImageView(img);
+
+            mapRoads.getChildren().add(road);
+
+            //road = ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 ));
+
+            //((ImageView) MapBuildings.getChildren().get(MapBuildings.getChildren().size() -1 )).setId("" + location);
+
+            ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitHeight(50);
+            ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitWidth(50);
+        }
+
+        ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setLayoutX(x);
+        ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setLayoutY(y);
         //"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
     }
+
     public static boolean contains(final int[] array, final int v) {
 
         boolean result = false;
@@ -270,5 +369,4 @@ public class BuildingManager {
 
         return result;
     }
-
 }
