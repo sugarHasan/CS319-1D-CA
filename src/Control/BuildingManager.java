@@ -369,6 +369,7 @@ public class BuildingManager {
 
             //((ImageView) MapBuildings.getChildren().get(MapBuildings.getChildren().size() -1 )).setId("" + location);
 
+
             ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitHeight(50);
             ((ImageView) mapRoads.getChildren().get(mapRoads.getChildren().size() -1 )).setFitWidth(50);
         }
