@@ -104,7 +104,7 @@ public class PlayerManager {
 
             for ( int j = 0; j < players.length; j++)
             {
-                if ( players[j].getName().equals( playerName) )
+                if ( players[j].getName().equals( playerName) && j != currentPlayerNo )
                 {
                     resource = players[j].stealRandomResource();
                     break;

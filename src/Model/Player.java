@@ -77,7 +77,7 @@ public class Player {
             else if ( random == 3 && lumber > 0 )
             {
                 cards.put( "Lumber", cards.get( "Lumber")-1);
-                wool--;
+                lumber--;
             }
             else if ( random == 4 && grain > 0 )
             {

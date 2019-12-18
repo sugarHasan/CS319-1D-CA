@@ -92,7 +92,7 @@ public class GameManager {
         return (int) Math.ceil( Math.random() * 11) + 1;
     }
 
-    public boolean distributeResources(int dice)
+    public boolean distributeResources( int dice)
     {
         if ( dice == 7 )
         {
