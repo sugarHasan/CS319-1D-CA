@@ -158,6 +158,11 @@ public class GameManager {
         this.playerManager.playRoadBuilding(playerNo);
     }
 
+    public void playKnightCard( int newLoc)
+    {
+        playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
+    }
+
     public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
         if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
         {

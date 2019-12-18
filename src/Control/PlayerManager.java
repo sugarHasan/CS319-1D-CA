@@ -2,6 +2,8 @@ package Control;
 import Model.Player;
 import Model.Card;
 
+import java.util.ArrayList;
+
 public class PlayerManager {
     private Player[] players;
 
@@ -87,6 +89,35 @@ public class PlayerManager {
 
     public void playRoadBuilding(int playerNo) {
         this.players[playerNo].playRoadBuilding();
+    }
+
+    public void playKnightCard( int currentPlayerNo, ArrayList<Player> toDraw)
+    {
+        String resource, playerName;
+        int random;
+
+        resource = "";
+        while ( toDraw.size() > 0 )
+        {
+            random = (int) Math.ceil( Math.random() * toDraw.size());
+            playerName = toDraw.get(random).getName();
+
+            for ( int j = 0; j < players.length; j++)
+            {
+                if ( players[j].getName().equals( playerName) )
+                {
+                    resource = players[j].stealRandomResource();
+                    break;
+                }
+            }
+            if ( resource.equals("") )
+            {
+                toDraw.remove( random);
+            }
+            else
+                break;
+        }
+        players[currentPlayerNo].addResource( resource);
     }
 
     public int largestArmy() {

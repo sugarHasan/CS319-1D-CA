@@ -93,7 +93,47 @@ public class Player {
                 continue;
             steal--;
         }
+    }
 
+    public String stealRandomResource()
+    {
+        if ( cards.get( "Wool") < 0
+            && cards.get( "Ore") < 0
+            && cards.get( "Lumber") < 0
+            && cards.get( "Grain") < 0
+            && cards.get( "Brick") < 0)
+            return "";
+
+        int random;
+        while ( true)
+        {
+            random = (int) Math.ceil( Math.random() * 5);
+            if ( random == 1 && cards.get( "Wool") > 0 )
+            {
+                cards.put( "Wool", cards.get( "Wool")-1);
+                return "Wool";
+            }
+            else if ( random == 2 && cards.get( "Ore") > 0 )
+            {
+                cards.put( "Ore", cards.get( "Ore")-1);
+                return "Ore";
+            }
+            else if ( random == 3 && cards.get( "Lumber") > 0 )
+            {
+                cards.put( "Lumber", cards.get( "Lumber")-1);
+                return "Lumber";
+            }
+            else if ( random == 4 && cards.get( "Grain") > 0 )
+            {
+                cards.put( "Grain", cards.get( "Grain")-1);
+                return "Grain";
+            }
+            else if ( random == 5 && cards.get( "Brick") > 0)
+            {
+                cards.put( "Brick", cards.get( "Brick")-1);
+                return "Brick";
+            }
+        }
     }
 
     public void addBuilding(Building newBuilding){
@@ -190,6 +230,11 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void addResource( String resource)
+    {
+        cards.put( resource, cards.get( resource) + 1);
     }
 
     public void addResource(int town , String resource){

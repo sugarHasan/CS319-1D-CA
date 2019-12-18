@@ -99,6 +99,11 @@ public class Map
         return robber.getLocation();
     }
 
+    public int[] getLandCornerLocation( int location)
+    {
+        return lands[location].getCornerLocations();
+    }
+
     public int[][] getDiceAdjacency( String resource)
     {
         int landCount;

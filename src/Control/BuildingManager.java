@@ -90,6 +90,18 @@ public class BuildingManager {
         }
         return false;
     }
+
+    public ArrayList<Player> getBuildingOwnersAt( int[] locations)
+    {
+        ArrayList<Player> result = new ArrayList<Player>();
+        for ( int i = 0; i < locations.length; i++)
+        {
+            if ( buildingsCityAndSettlement[i] != null)
+                result.add( buildingsCityAndSettlement[i].getPlayer());
+        }
+        return result;
+    }
+
     public void setBuildingImage(String color, int location, AnchorPane MapBuildings) throws URISyntaxException {
         int x = 0;
         int y = 0;
@@ -357,16 +369,11 @@ public class BuildingManager {
     }
 
     public static boolean contains(final int[] array, final int v) {
-
-        boolean result = false;
-
         for(int i : array){
             if(i == v){
-                result = true;
-                break;
+                return true;
             }
         }
-
-        return result;
+        return false;
     }
 }
