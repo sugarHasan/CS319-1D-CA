@@ -362,7 +362,7 @@ public class Main extends Application implements Initializable {
         else if(gameManager.addCity(location, mapBuildings)){
             //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
             //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
-            ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+            //((javafx.scene.control.Button) event.getSource()).setDisable(true);
         }
         refreshResources();
         refreshPlayerScores();

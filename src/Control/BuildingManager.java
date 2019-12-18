@@ -153,7 +153,7 @@ public class BuildingManager {
             x = -15 + (106 * (location - 27));
             y = 207;
         }
-        else if(33 <= location && location <=38)
+        else if(33 <= location && location <=37)
         {
             x = 38 + (106 * (location - 33));
             y = 231;
@@ -185,6 +185,7 @@ public class BuildingManager {
             img = new Image(getClass().getResource("/images/Settlements/" + playerColor + "Settlement.png").toURI().toString());
 
             ImageView building = new ImageView(img);
+            building.setId("Settlement");
 
             MapBuildings.getChildren().add(building);
 
@@ -198,7 +199,7 @@ public class BuildingManager {
             buildingsImages[location].setLayoutX(x);
             buildingsImages[location].setLayoutY(y);
         }
-        else
+        else if(buildingsImages[location].getId().equals("Settlement"))
         {
             //MapBuildings.getChildren().remove(""+ location);
             img = new Image(getClass().getResource("/images/Cities/" + playerColor + "City.png").toURI().toString());
@@ -206,6 +207,15 @@ public class BuildingManager {
             buildingsImages[location].setImage(img);
             buildingsImages[location].setFitHeight(50);
             buildingsImages[location].setFitWidth(50);
+        }
+        else
+        {
+            //MapBuildings.getChildren().remove(""+ location);
+            img = new Image(getClass().getResource("/images/Capitals/" + playerColor + "Capital.png").toURI().toString());
+
+            buildingsImages[location].setImage(img);
+            buildingsImages[location].setFitHeight(40);
+            buildingsImages[location].setFitWidth(40);
         }
 
     }
