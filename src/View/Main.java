@@ -394,6 +394,7 @@ public class Main extends Application implements Initializable {
                 gameOverPopUp(gameOver());
             }
         }
+
         p1Score.setText("" + playerScores[0]);
         p2Score.setText("" + playerScores[1]);
         p3Score.setText("" + playerScores[2]);
