@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -73,6 +74,7 @@ public class Main extends Application implements Initializable {
     @FXML private AnchorPane hexTiles;
     @FXML private AnchorPane mapBuildings;
     @FXML private AnchorPane mapRoads;
+    @FXML private AnchorPane robberAnchorPane;
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -106,6 +108,7 @@ public class Main extends Application implements Initializable {
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
+        robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
 
         offer = true;
         playerNames = new String[4];
@@ -129,7 +132,7 @@ public class Main extends Application implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-        gameManager = new GameManager(playerNames[0] , playerNames[1] , playerNames[2] , playerNames[3]);
+        gameManager = new GameManager(playerNames[0] , playerNames[1] , playerNames[2] , playerNames[3], robberAnchorPane);
         gameManager.nextTurn();
         RollNo.setText("Turn : " + gameManager.getTurnNo());
         this.refreshResources();

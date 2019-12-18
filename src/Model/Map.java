@@ -4,6 +4,8 @@ import Model.Robber;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import java.net.URISyntaxException;
 
@@ -20,10 +22,9 @@ public class Map
     private Land[] lands;
     private Robber robber;
 
-    public Map()
-    {
+    public Map(AnchorPane robberImage) throws URISyntaxException {
         lands = new Land[NO_OF_LANDS];
-        createMap();
+        createMap(robberImage);
     }
 
     public void visualizeMap(AnchorPane anchorPane) throws URISyntaxException {
@@ -33,8 +34,7 @@ public class Map
         }
     }
 
-    private void createMap()
-    {
+    private void createMap(AnchorPane robberImage) throws URISyntaxException {
         int hill = 3;
         int mountain = 4;
         int forest = 4;
@@ -78,7 +78,7 @@ public class Map
             {
                 desert--;
                 lands[i] = new Desert( 7);
-                robber = new Robber( i);
+                robber = new Robber(i,robberImage);
                 i++;
                 continue;
             }

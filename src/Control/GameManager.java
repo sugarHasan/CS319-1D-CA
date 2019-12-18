@@ -5,6 +5,7 @@ import Model.Player;
 import Model.Card;
 import Model.DevelopmentCardTypes.*;
 import Model.DevelopmentCardTypes.ProgressCardTypes.*;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URISyntaxException;
@@ -28,7 +29,7 @@ public class GameManager {
     private int turnDice;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
-    public GameManager(String player1, String player2, String player3 , String player4) {
+    public GameManager(String player1, String player2, String player3 , String player4,AnchorPane robberImage) throws URISyntaxException {
         this.playerManager = new PlayerManager( player1, player2, player3 , player4);
         playerNo = -1;
         turnNo = 1;
@@ -36,7 +37,7 @@ public class GameManager {
         secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
-        map = new Map();
+        map = new Map(robberImage);
         synchronizeMap();
     }
 

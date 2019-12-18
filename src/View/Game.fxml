@@ -163,7 +163,7 @@
                        </image>
                    </ImageView>
                </children></AnchorPane>
-            <AnchorPane layoutX="550.0" layoutY="600.0" prefHeight="200.0" prefWidth="300.0">
+            <AnchorPane fx:id="robberPane" layoutX="550.0" layoutY="600.0" prefHeight="200.0" prefWidth="300.0">
                <children>
                       <Label layoutX="-9.0" layoutY="32.0" prefHeight="18.0" prefWidth="295.0" text="  Names                Score">
                           <font>
@@ -228,6 +228,18 @@
                             </children>
                         </VBox>
                </children></AnchorPane>
+            <AnchorPane fx:id="hexTiles" layoutX="400.0" layoutY="100.0" prefHeight="464.0" prefWidth="585.0" />
+            <AnchorPane fx:id="mapRoads" layoutX="410.0" layoutY="110.0" prefHeight="464.0" prefWidth="585.0" />
+            <AnchorPane fx:id="mapBuildings" layoutX="420.0" layoutY="120.0" prefHeight="464.0" prefWidth="585.0" />
+            <AnchorPane fx:id="robberAnchorPane" prefHeight="768.0" prefWidth="1366.0">
+               <children>
+                  <ImageView fx:id="robber" fitHeight="60.0" fitWidth="60.0" layoutX="513.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Robber.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
             <AnchorPane prefHeight="512.0" prefWidth="313.0">
                <children>
                       <Button fx:id="offerButton" layoutX="51.0" layoutY="285.0" mnemonicParsing="false" onAction="#offerButtonPressed" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #FFEBCD;" text="Send Offer/Trade" textAlignment="RIGHT">
@@ -243,11 +255,11 @@
                       <font>
                           <Font name="Carter One" size="21.0" />
                       </font></Label>
-                  <Label fx:id="playerLongestRoad" layoutX="189.0" layoutY="395.0" text="Label">
+                  <Label fx:id="playerLongestRoad" layoutX="189.0" layoutY="395.0" text="-">
                       <font>
                           <Font name="Carter One" size="21.0" />
                       </font></Label>
-                  <Label fx:id="playerHighestArmy" layoutX="189.0" layoutY="464.0" text="Label">
+                  <Label fx:id="playerHighestArmy" layoutX="189.0" layoutY="464.0" text="-">
                       <font>
                           <Font name="Carter One" size="21.0" />
                       </font></Label>
@@ -300,9 +312,6 @@
                   <Button fx:id="wantedResourceWool" layoutX="220.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="hexTiles" layoutX="400.0" layoutY="100.0" prefHeight="464.0" prefWidth="585.0" />
-            <AnchorPane fx:id="mapRoads" layoutX="410.0" layoutY="110.0" prefHeight="464.0" prefWidth="585.0" />
-            <AnchorPane fx:id="mapBuildings" layoutX="420.0" layoutY="120.0" prefHeight="464.0" prefWidth="585.0" />
                 <AnchorPane layoutX="280.0" layoutY="-9.0" prefHeight="502.0" prefWidth="655.0">
                     <children>
                         <Button fx:id="E5" layoutX="531.0" layoutY="133.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
