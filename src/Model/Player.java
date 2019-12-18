@@ -58,11 +58,40 @@ public class Player {
         int lumber = cards.get( "Lumber");
         int grain = cards.get( "Grain");
         int brick = cards.get( "Brick");
+        int random;
 
         int steal = (wool + ore + lumber + grain + brick) / 2;
-        for ( int i = 0; i < steal; i++)
+        while ( steal > 0 )
         {
-            // remove random cards from player
+            random = (int) Math.ceil( Math.random() * 5);
+            if ( random == 1 && wool > 0 )
+            {
+                cards.put( "Wool", cards.get( "Wool")-1);
+                wool--;
+            }
+            else if ( random == 2 && ore > 0 )
+            {
+                cards.put( "Ore", cards.get( "Ore")-1);
+                ore--;
+            }
+            else if ( random == 3 && lumber > 0 )
+            {
+                cards.put( "Lumber", cards.get( "Lumber")-1);
+                wool--;
+            }
+            else if ( random == 4 && grain > 0 )
+            {
+                cards.put( "Grain", cards.get( "Grain")-1);
+                grain--;
+            }
+            else if ( random == 5 && brick > 0)
+            {
+                cards.put( "Brick", cards.get( "Brick")-1);
+                brick--;
+            }
+            else
+                continue;
+            steal--;
         }
 
     }

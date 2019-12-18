@@ -30,7 +30,7 @@ public class GameManager {
 
     public GameManager(String player1, String player2, String player3 , String player4) {
         this.playerManager = new PlayerManager( player1, player2, player3 , player4);
-        playerNo = 0;
+        playerNo = -1;
         turnNo = 1;
         firstTurn = false;
         secondTurn = false;
@@ -119,6 +119,11 @@ public class GameManager {
             return true;
         }
         return false;
+    }
+
+    private boolean moveRobber( int newLoc)
+    {
+        return map.moveRobber( newLoc);
     }
 
     public String gameOver()

@@ -42,7 +42,7 @@ public class Map
         int pasture = 4;
         int desert = 1;
         int random;
-            ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12));
+        ArrayList<Integer> numbers = new ArrayList<Integer>(Arrays.asList(2,3,3,4,4,5,5,6,6,8,8,9,9,10,10,11,11,12));
         Collections.shuffle( numbers);
 
         int i = 0;
