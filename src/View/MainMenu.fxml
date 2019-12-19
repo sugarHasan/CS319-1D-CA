@@ -5,33 +5,86 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ControllerMainMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ControllerMainMenu">
    <children>
-      <ImageView id="background" fitHeight="340.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/CatanImage.jpeg" />
-         </image>
-      </ImageView>
-      <Button id="playGame" layoutX="262.0" layoutY="107.0" mnemonicParsing="false" onAction="#PlayGame" text="Play Game">
-         <font>
-            <Font name="Hoefler Text" size="13.0" />
-         </font></Button>
-      <Button id="howToPlay" layoutX="259.0" layoutY="157.0" mnemonicParsing="false" onAction="#howToPlay" text="How to Play">
-         <font>
-            <Font name="Hoefler Text" size="13.0" />
-         </font></Button>
-      <Button id="settings" layoutX="269.0" layoutY="206.0" mnemonicParsing="false" onAction="#settings" text="Settings">
-         <font>
-            <Font name="Hoefler Text" size="13.0" />
-         </font></Button>
-      <Button layoutX="34.0" layoutY="299.0" mnemonicParsing="false" onAction="#exit" text="Exit">
-         <font>
-            <Font name="Hoefler Text" size="13.0" />
-         </font></Button>
-      <Label layoutX="111.0" layoutY="35.0" text="The Settlers of Catan" textAlignment="CENTER">
-         <font>
-            <Font name="Hoefler Text" size="43.0" />
-         </font>
-      </Label>
+      <AnchorPane fx:id="animationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0">
+              <children>
+                 <ImageView id="background" fx:id="imgView" fitHeight="788.0" fitWidth="1387.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                       <Image url="@../images/Mainscene/Screen Recording 2019-12-18 at 23.45.35_0000.jpg" />
+                    </image>
+                 </ImageView>
+              </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0">
+              <children>
+                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="594.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                       <Image url="@../images/Button/Green.png" />
+                    </image>
+                 </ImageView>
+                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="594.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                       <Image url="@../images/Button/Yellow.png" />
+                    </image>
+                 </ImageView>
+                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="595.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                       <Image url="@../images/Button/Blue.png" />
+                    </image>
+                 </ImageView>
+                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                       <Image url="@../images/Button/Red.png" />
+                    </image>
+                 </ImageView>
+                 <Label layoutX="368.0" layoutY="43.0" text="The Settlers of Catan" textAlignment="CENTER">
+                    <font>
+                       <Font name="Carter One" size="64.0" />
+                    </font>
+                 </Label>
+                 <Label layoutX="595.0" layoutY="198.0" prefHeight="59.0" prefWidth="198.0" text="Play Game">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font>
+                 </Label>
+                 <Label layoutX="626.0" layoutY="345.0" prefHeight="68.0" prefWidth="139.0" text="How To">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font>
+                 </Label>
+                 <Label layoutX="614.0" layoutY="530.0" prefHeight="68.0" prefWidth="160.0" text="Settings" textAlignment="CENTER">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font>
+                 </Label>
+                 <Label layoutX="73.0" layoutY="601.0" prefHeight="68.0" prefWidth="79.0" text="Exit" textAlignment="CENTER">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font>
+                 </Label>
+                 <Label layoutX="653.0" layoutY="387.0" prefHeight="68.0" prefWidth="85.0" text="Play">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font>
+                 </Label>
+                 <Button id="howToPlay" layoutX="543.0" layoutY="337.0" mnemonicParsing="false" onAction="#howToPlay" opacity="0.0" prefHeight="100.0" prefWidth="300.0" text="How to Play">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font></Button>
+                 <Button id="playGame" layoutX="543.0" layoutY="185.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="100.0" prefWidth="300.0" text="Play Game">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font></Button>
+                 <Button id="settings" layoutX="543.0" layoutY="494.0" mnemonicParsing="false" onAction="#settings" opacity="0.0" prefHeight="100.0" prefWidth="300.0" text="Settings">
+                    <font>
+                       <Font name="Carter One" size="36.0" />
+                    </font></Button>
+                 <Button layoutX="17.0" layoutY="566.0" mnemonicParsing="false" onAction="#exit" opacity="0.0" prefHeight="138.0" prefWidth="187.0" text="Exit">
+                    <font>
+                       <Font name="Hoefler Text" size="13.0" />
+                    </font></Button>
+              </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

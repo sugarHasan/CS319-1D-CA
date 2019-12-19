@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,15 +28,13 @@ public class ControllerSettings implements Initializable {
     static boolean isSongPlaying = false;
     private String musicFile = "Pusu.mp3";
 
+    @FXML
+    private AnchorPane rootPane;
+
     public void backToMenu(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(tableViewScene);
-        window.show();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
