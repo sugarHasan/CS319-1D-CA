@@ -180,6 +180,14 @@ public class Main extends Application implements Initializable {
         refreshPlayerScores();
         refreshLongestRoad();
     }
+
+    //for robber and knight card. Location starts with 0.
+    public void hexCenterPressed(ActionEvent event) throws IOException, URISyntaxException {
+        //to be implemented
+        String id = ((Node)event.getSource()).getId();
+        int location = Integer.parseInt(id.substring(1));
+
+    }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
         //to be implemented
 

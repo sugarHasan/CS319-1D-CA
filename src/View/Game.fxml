@@ -314,6 +314,25 @@
             </AnchorPane>
                 <AnchorPane layoutX="280.0" layoutY="-9.0" prefHeight="502.0" prefWidth="655.0">
                     <children>
+                  <Button fx:id="M0" layoutX="275.0" layoutY="175.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M1" layoutX="381.0" layoutY="175.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M2" layoutX="487.0" layoutY="175.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M3" layoutX="220.0" layoutY="250.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M4" layoutX="326.0" layoutY="250.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M5" layoutX="432.0" layoutY="250.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M6" layoutX="538.0" layoutY="250.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M7" layoutX="165.0" layoutY="325.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M8" layoutX="275.0" layoutY="325.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M9" layoutX="381.0" layoutY="325.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M10" layoutX="487.0" layoutY="325.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M11" layoutX="593.0" layoutY="325.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M12" layoutX="220.0" layoutY="400.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M13" layoutX="326.0" layoutY="400.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M14" layoutX="432.0" layoutY="400.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M15" layoutX="538.0" layoutY="400.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M16" layoutX="275.0" layoutY="478.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M17" layoutX="381.0" layoutY="478.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
+                  <Button fx:id="M18" layoutX="487.0" layoutY="478.0" mnemonicParsing="false" onAction="#hexCenterPressed" opacity="0.0" scaleY="2.0" text="              " />
                         <Button fx:id="E5" layoutX="531.0" layoutY="133.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
                         <Button fx:id="E17" layoutX="584.0" layoutY="210.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
                         <Button fx:id="E32" layoutX="642.0" layoutY="285.0" mnemonicParsing="false" onAction="#edgePressed" opacity="0.0" prefHeight="31.0" prefWidth="24.0" style="-fx-rotate: -65;" />
