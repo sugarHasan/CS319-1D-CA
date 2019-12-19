@@ -328,12 +328,12 @@ public class BuildingManager {
         else if(contains(road2Image,location))
         {
             // {1,3,5,11,13,15,17,24,26,28,30,32,39,41,43,45,47,54,56,58,60,66,68,70}
-            if(1 <= location && location <= 3 )
+            if(1 <= location && location <= 5 )
             {
                 x = 175 + (106 * ((location - 1) / 2 ));
                 y = 5;
             }
-            else if(11 <= location && location <=15)
+            else if(11 <= location && location <=17)
             {
                 x = 119 + (106 * ((location - 11) / 2 ));
                 y = 80;

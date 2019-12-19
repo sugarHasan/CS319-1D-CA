@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -549,7 +549,10 @@ public class Main extends Application implements Initializable {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, FontFormatException {
+        //Font.createFont("Carter One", Main.class.getResource("/Font.CarterOne/CarterOne.ttf").toURI().toString());
+
+        //Font.createFont(Font.TRUETYPE_FONT, new File("/Font.CarterOne/CarterOne.ttf"));
         launch(args);
 
     }

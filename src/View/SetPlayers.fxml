@@ -27,7 +27,7 @@
                 <Font name="Carter One" size="36.0" />
             </font>
         </Label>
-        <Label layoutX="503.0" layoutY="37.0" text="How To Play" textAlignment="CENTER">
+        <Label layoutX="503.0" layoutY="37.0" text="Set Players" textAlignment="CENTER">
             <font>
                 <Font name="Carter One" size="64.0" />
             </font>
