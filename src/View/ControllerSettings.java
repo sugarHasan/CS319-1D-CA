@@ -48,7 +48,6 @@ public class ControllerSettings implements Initializable {
     }
     public void PlayMusic()
     {
-
         if(!isSongPlaying)
         {
             if (player != null) {
