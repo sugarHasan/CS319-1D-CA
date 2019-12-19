@@ -104,7 +104,7 @@ public class PlayerManager {
 
             for ( int j = 0; j < players.length; j++)
             {
-                if ( players[j].getName().equals( playerName) && j != currentPlayerNo )
+                if ( j != currentPlayerNo && players[j].getName().equals( playerName) )
                 {
                     resource = players[j].stealRandomResource();
                     break;
@@ -117,7 +117,8 @@ public class PlayerManager {
             else
                 break;
         }
-        players[currentPlayerNo].addResource( resource);
+        if ( !resource.equals( ""))
+            players[currentPlayerNo].addResource( resource);
     }
 
     public int largestArmy() {
