@@ -58,7 +58,6 @@ public class ControllerMainMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         init();
     }
 
