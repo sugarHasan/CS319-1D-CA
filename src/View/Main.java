@@ -109,6 +109,7 @@ public class Main extends Application implements Initializable {
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
+        mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
 
         offer = true;
         playerNames = new String[4];
