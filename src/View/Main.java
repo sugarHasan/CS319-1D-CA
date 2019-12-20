@@ -144,6 +144,7 @@ public class Main extends Application implements Initializable {
 
         gameManager.visualizeMap( hexTiles);
     }
+
     public void playerBoxPressed(ActionEvent event) throws IOException{
         System.out.println( "player box was used");
     }
