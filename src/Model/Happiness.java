@@ -5,7 +5,7 @@ public class Happiness {
 
     public Happiness()
     {
-        value = 6;
+        value = 5;
     }
 
     public int getHappinessValue()
