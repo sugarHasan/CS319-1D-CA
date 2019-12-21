@@ -464,7 +464,15 @@ public class Main extends Application implements Initializable {
     }
 
     public void offerButtonPressed(ActionEvent event) throws IOException{
-
+        int receiverNo = -1;
+        if( playerBox.getValue().equals(Player1Trade))
+            receiverNo = 0;
+        else if( playerBox.getValue().equals(Player2Trade))
+            receiverNo = 1;
+        else if( playerBox.getValue().equals(Player3Trade))
+            receiverNo = 2;
+        else if( playerBox.getValue().equals(Player4Trade))
+            receiverNo = 3;
 
         if(!offer){
             if(!givenResource.equals("") && !wantedResource.equals("")) {
@@ -476,10 +484,9 @@ public class Main extends Application implements Initializable {
         }
         else
         {
-            if(!givenResource.equals("") && !wantedResource.equals("")) {
-                if (!givenResource.equals(wantedResource)){
-                    gameManager.tradeResource(givenResource, wantedResource);
-                    refreshResources();
+            if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                if ( !givenResource.equals( wantedResource) ){
+                    gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
                 }
             }
         }

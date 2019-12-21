@@ -22,9 +22,9 @@ public class Map
     private Land[] lands;
     private Robber robber;
 
-    public Map(AnchorPane robberImage) throws URISyntaxException {
+    public Map() throws URISyntaxException {
         lands = new Land[NO_OF_LANDS];
-        createMap(robberImage);
+        createMap();
     }
 
     public void visualizeMap(AnchorPane anchorPane) throws URISyntaxException {
@@ -34,16 +34,16 @@ public class Map
         }
     }
 
-    public void copyMap( Land[] map, AnchorPane robberImage) throws URISyntaxException {
+    public void copyMap( Land[] map) throws URISyntaxException {
         for ( int i = 0; i < map.length; i++)
         {
             if ( map[i] instanceof Desert )
-                robber = new Robber( i, robberImage);
+                robber = new Robber( i);
             lands[i] = map[i];
         }
     }
 
-    private void createMap( AnchorPane robberImage) throws URISyntaxException {
+    private void createMap() throws URISyntaxException {
         int hill = 3;
         int mountain = 4;
         int forest = 4;

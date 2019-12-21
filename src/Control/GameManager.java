@@ -35,7 +35,7 @@ public class GameManager {
         secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
-        map = new Map( robberImage);
+        map = new Map();
         synchronizeMap();
     }
 
@@ -162,30 +162,30 @@ public class GameManager {
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
-    public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
+    public boolean addRoad(int location) throws URISyntaxException {
         if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setRoadImage(returnPlayerColor(),location,mapRoads);
+            buildingManager.setRoadImage(returnPlayerColor(),location);
             return true;
         }
         else
             return false;
     }
 
-    public boolean addSettlement(int location, AnchorPane mapBuildings) throws URISyntaxException {
+    public boolean addSettlement(int location) throws URISyntaxException {
         if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;
         }
         else
             return false;
     }
 
-    public boolean addCity(int location, AnchorPane mapBuildings) throws URISyntaxException {
+    public boolean addCity(int location) throws URISyntaxException {
         if(buildingManager.buildCity(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;
         }
         else
