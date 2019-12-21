@@ -5,11 +5,11 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientManager
+public abstract class ClientManager
 {
     private Socket socket;
     private Thread msgListenerThread;
-    private final String ip = "192.168.43.105";
+    private final String ip = "127.0.0.1";
 
 
     public ClientManager( int serverPort) throws UnknownHostException, IOException
@@ -22,6 +22,7 @@ public class ClientManager
             }
         });
         msgListenerThread.start();
+        System.out.println("CLIENT IS CREATED");
     }
     public void sendMessage( String msg)
     {
@@ -64,9 +65,7 @@ public class ClientManager
         }
     }
 
-    public void received(String msg){
-
-    }
+    public abstract void received(String msg);
 
     public void close()
     {
