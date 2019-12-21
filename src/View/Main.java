@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
@@ -36,11 +37,11 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static MapManager mapManager;
     private boolean offer;
-    private String givenResource = "";
-    private int givenResourceNumber = 0;
-    private String wantedResource = "";
-    private int wantedResourceNumber = 0;
-
+    private String givenResourcesOffer = "";
+    private String wantedResourcesOffer = "";
+    private boolean multiPlayer;
+    private boolean myTurn;
+    private boolean server;
 
     @FXML private ComboBox playerBox;
     @FXML private RadioButton playerRadio, bankRadio;
@@ -160,26 +161,50 @@ public class Main extends Application implements Initializable {
 
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
+        System.out.println( "player radio was used");
         playerBox.setDisable( false);
     }
 
     public void bankRadioPressed(ActionEvent event) throws IOException{
         offer = false;
+        System.out.println( "bank radio was used");
         playerBox.setDisable( true);
     }
 
     public void edgePressed(ActionEvent event) throws IOException, URISyntaxException {
-        //to be implemented
-        String id = ((Node)event.getSource()).getId();
-        int location = Integer.parseInt(id.substring(1));
-        if(gameManager.addRoad(location)) {
-            //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
-            ((javafx.scene.control.Button) event.getSource()).setDisable(true);
-            //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
+        if(!multiPlayer) {
+            String id = ((Node) event.getSource()).getId();
+            int location = Integer.parseInt(id.substring(1));
+            if (gameManager.addRoad(location)) {
+                ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+            }
+            refreshResources();
+            refreshPlayerScores();
+            refreshLongestRoad();
         }
-        refreshResources();
-        refreshPlayerScores();
-        refreshLongestRoad();
+        else if(myTurn){
+
+            if(server) {
+                String id = ((Node) event.getSource()).getId();
+                int location = Integer.parseInt(id.substring(1));
+                if (serverGameManager.addRoad(location)) {
+                    ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                }
+                refreshResources();
+                refreshPlayerScores();
+                refreshLongestRoad();
+            }
+            else{
+                String id = ((Node) event.getSource()).getId();
+                int location = Integer.parseInt(id.substring(1));
+                if (clientGameManager.addRoad(location)) {
+                    ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                }
+                refreshResources();
+                refreshPlayerScores();
+                refreshLongestRoad();
+            }
+        }
     }
 
     //for robber and knight card. Location starts with 0.
@@ -187,14 +212,22 @@ public class Main extends Application implements Initializable {
         //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        gameManager.changeRobberLocation(location);
+
     }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
-        String oldResource = givenResource;
-
-        String id = ((Node)event.getSource()).getId();
-        ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
-
+        //to be implemented
+        String id = ((Node) event.getSource()).getId();
+        if(!multiPlayer) {
+            ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
+        }
+        else if(myTurn){
+            if(server){
+                ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + serverGameManager.returnPlayerColor());
+            }
+            else{
+                ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + clientGameManager.returnPlayerColor());
+            }
+        }
         if(id.equals("givenResourceGrain"))
         {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
@@ -202,7 +235,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Grain";
+            givenResourcesOffer = "Grain";
         }
         else if(id.equals("givenResourceBrick"))
         {
@@ -211,7 +244,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Brick";
+            givenResourcesOffer = "Brick";
         }
         else if(id.equals("givenResourceLumber"))
         {
@@ -220,7 +253,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Lumber";
+            givenResourcesOffer = "Lumber";
         }
         else if(id.equals("givenResourceOre"))
         {
@@ -229,7 +262,7 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Ore";
+            givenResourcesOffer = "Ore";
         }
         else if(id.equals("givenResourceWool"))
         {
@@ -238,7 +271,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Wool";
+            givenResourcesOffer = "Wool";
         }
         else
         {
@@ -248,19 +281,24 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "";
+            givenResourcesOffer = "";
         }
-        if ( givenResource.equals( oldResource))
-            givenResourceNumber++;
-        else
-            givenResourceNumber = 1;
     }
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
-        String oldResource = wantedResource;
+        //to be implemented
 
         String id = ((Node)event.getSource()).getId();
-        ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
-
+        if(!multiPlayer) {
+            ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
+        }
+        else if(myTurn){
+            if(server){
+                ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + serverGameManager.returnPlayerColor());
+            }
+            else{
+                ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + clientGameManager.returnPlayerColor());
+            }
+        }
         if(id.equals("wantedResourceGrain"))
         {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
@@ -268,7 +306,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Grain";
+            wantedResourcesOffer = "Grain";
         }
         else if(id.equals("wantedResourceBrick"))
         {
@@ -277,7 +315,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Brick";
+            wantedResourcesOffer = "Brick";
         }
         else if(id.equals("wantedResourceLumber"))
         {
@@ -286,7 +324,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Lumber";
+            wantedResourcesOffer = "Lumber";
         }
         else if(id.equals("wantedResourceOre"))
         {
@@ -295,7 +333,7 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Ore";
+            wantedResourcesOffer = "Ore";
         }
         else if(id.equals("wantedResourceWool"))
         {
@@ -304,7 +342,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Wool";
+            wantedResourcesOffer = "Wool";
         }
         else
         {
@@ -314,135 +352,71 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "";
+            wantedResourcesOffer = "";
         }
-        if ( wantedResource.equals( oldResource))
-            wantedResourceNumber++;
-        else
-            wantedResourceNumber = 1;
     }
 
     private void refreshResources(){
-        int[] resources = gameManager.getResources();
-        grainNo.setText("" +  resources[0]);
-        brickNo.setText("" +  resources[1]);
-        oreNo.setText("" +  resources[2]);
-        lumberNo.setText("" +  resources[3]);
-        woolNo.setText("" +  resources[4]);
-    }
-    public void refreshDevelopmentCards(){
-        int[] developments =  gameManager.getDevelopmentCards();
-        KnightNo.setText("" +  developments[0]);
-        VictoryNo.setText("" +  developments[1]);
-        RoadNo.setText("" +  developments[2]);
-        PlentyNo.setText("" +  developments[3]);
-        MonoNo.setText("" +  developments[4]);
-
-    }
-
-    public void buyDevelopmentCard( ActionEvent event) throws IOException{
-        gameManager.buyDevelopmentCard();
-        refreshResources();
-        refreshPlayerScores();
-        refreshHighestArmy();
-        refreshDevelopmentCards();
-    }
-
-    public void cornerPressed(ActionEvent event) throws IOException, URISyntaxException {
-        //to be implemented
-        String id = ((Node)event.getSource()).getId();
-        int location = Integer.parseInt(id.substring(1));
-        if ( gameManager.addSettlement(location) ) {
-            //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
-            //((javafx.scene.control.Button) event.getSource()).setDisable(true);
-            //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
+        if(!multiPlayer) {
+            int[] resources = gameManager.getResources();
+            grainNo.setText("" +  resources[0]);
+            brickNo.setText("" +  resources[1]);
+            oreNo.setText("" +  resources[2]);
+            lumberNo.setText("" +  resources[3]);
+            woolNo.setText("" +  resources[4]);
         }
-        else if(gameManager.addCity(location)){
-            //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
-            //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
-            //((javafx.scene.control.Button) event.getSource()).setDisable(true);
-        }
-        refreshResources();
-        refreshPlayerScores();
-    }
-    public void endTurn(ActionEvent event) throws IOException{
-        gameManager.nextTurn();
-        refreshResources();
-        refreshPlayerScores();
-        refreshHighestArmy();
-        refreshLongestRoad();
-        refreshDevelopmentCards();
-        playerName.setText("" + gameManager.getPlayerName());
-        if(gameManager.getTurnDice()!=0){
-            RollNo.setText("" + gameManager.getTurnDice());
-        }
-        else{
-            RollNo.setText("Turn : " + gameManager.getTurnNo());
-        }
-    }
-
-    public void refreshPlayerScores()
-    {
-        int[] playerScores = gameManager.getScoreBoard();
-        for(int i = 0 ; i < 4 ; i++){
-            if(playerScores[i]>=10){
-                gameOverPopUp(gameOver());
+        else if(myTurn){
+            if(server) {
+                int[] resources = serverGameManager.getResources();
+                grainNo.setText("" +  resources[0]);
+                brickNo.setText("" +  resources[1]);
+                oreNo.setText("" +  resources[2]);
+                lumberNo.setText("" +  resources[3]);
+                woolNo.setText("" +  resources[4]);
+            }
+            else{
+                int[] resources = clientGameManager.getResources();
+                grainNo.setText("" +  resources[0]);
+                brickNo.setText("" +  resources[1]);
+                oreNo.setText("" +  resources[2]);
+                lumberNo.setText("" +  resources[3]);
+                woolNo.setText("" +  resources[4]);
             }
         }
 
-        p1Score.setText("" + playerScores[0]);
-        p2Score.setText("" + playerScores[1]);
-        p3Score.setText("" + playerScores[2]);
-        p4Score.setText("" + playerScores[3]);
     }
-    public void gameOverPopUp(String gameWinner) {
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text(gameWinner +" WINS!!"));
-        Scene dialogScene = new Scene(dialogVbox, 100, 100);
-        dialog.setScene(dialogScene);
-        dialog.show();
-    }
-    public String gameOver(){
-        return gameManager.gameOver();
+    public void refreshDevelopmentCards() {
+        if (!MultiPlayer) {
+            int[] developments = gameManager.getDevelopmentCards();
+            KnightNo.setText("" + developments[0]);
+            VictoryNo.setText("" + developments[1]);
+            RoadNo.setText("" + developments[2]);
+            PlentyNo.setText("" + developments[3]);
+            MonoNo.setText("" + developments[4]);
+        }
+        else if (myTurn) {
+
+            if (server) {
+                int[] developments = serverGameManager.getDevelopmentCards();
+                KnightNo.setText("" + developments[0]);
+                VictoryNo.setText("" + developments[1]);
+                RoadNo.setText("" + developments[2]);
+                PlentyNo.setText("" + developments[3]);
+                MonoNo.setText("" + developments[4]);
+            } else {
+                int[] developments = clientGameManager.getDevelopmentCards();
+                KnightNo.setText("" + developments[0]);
+                VictoryNo.setText("" + developments[1]);
+                RoadNo.setText("" + developments[2]);
+                PlentyNo.setText("" + developments[3]);
+                MonoNo.setText("" + developments[4]);
+            }
+
+        }
     }
 
-    public void refreshHighestArmy()
-    {
-        int army = gameManager.largestArmy();
 
-        if(army==0){
-            playerHighestArmy.setText(p1.getText());
-        }
-        else if(army==1){
-            playerHighestArmy.setText(p2.getText());
-        }
-        else if(army==2){
-            playerHighestArmy.setText(p3.getText());
-        }
-        else if(army==3){
-            playerHighestArmy.setText(p4.getText());
-        }
 
-    }
-
-    public void refreshLongestRoad()
-    {
-        int road = gameManager.longestRoad();
-        if(road==0){
-            playerLongestRoad.setText(p1.getText());
-        }
-        else if(road==1){
-            playerLongestRoad.setText(p2.getText());
-        }
-        else if(road==2){
-            playerLongestRoad.setText(p3.getText());
-        }
-        else if(road==3){
-            playerLongestRoad.setText(p4.getText());
-        }
-    }
     public void tradeWithPlayer()
     {
         if(playerBox.getValue().equals(Player1Trade))
@@ -463,30 +437,315 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    public void offerButtonPressed(ActionEvent event) throws IOException{
-        int receiverNo = -1;
-        if( playerBox.getValue().equals(Player1Trade))
-            receiverNo = 0;
-        else if( playerBox.getValue().equals(Player2Trade))
-            receiverNo = 1;
-        else if( playerBox.getValue().equals(Player3Trade))
-            receiverNo = 2;
-        else if( playerBox.getValue().equals(Player4Trade))
-            receiverNo = 3;
+    public void buyDevelopmentCard( ActionEvent event) throws IOException{
+        if(!multiPlayer) {
+            gameManager.buyDevelopmentCard();
+            refreshResources();
+            refreshPlayerScores();
+            refreshHighestArmy();
+            refreshDevelopmentCards();
+        }
+        else if(myTurn){
+            if(server){
+                serverGameManager.buyDevelopmentCard();
+                refreshResources();
+                refreshPlayerScores();
+                refreshHighestArmy();
+                refreshDevelopmentCards();
+            }
+            else{
+                clientGameManager.buyDevelopmentCard();
+                refreshResources();
+                refreshPlayerScores();
+                refreshHighestArmy();
+                refreshDevelopmentCards();
+            }
+        }
+    }
 
-        if(!offer){
-            if(!givenResource.equals("") && !wantedResource.equals("")) {
-                if (!givenResource.equals(wantedResource)){
-                    gameManager.tradeResource(givenResource, wantedResource);
-                    refreshResources();
+    public void cornerPressed(ActionEvent event) throws IOException, URISyntaxException {
+        //to be implemented
+        if(!multiPlayer) {
+            String id = ((Node) event.getSource()).getId();
+            int location = Integer.parseInt(id.substring(1));
+            if (gameManager.addSettlement(location)) {
+                //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
+                //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
+            } else if (gameManager.addCity(location)) {
+                //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
+                //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
+                //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+            }
+            refreshResources();
+            refreshPlayerScores();
+        }
+        else if(myTurn){
+            if(server){
+                String id = ((Node) event.getSource()).getId();
+                int location = Integer.parseInt(id.substring(1));
+                if (serverGameManager.addSettlement(location)) {
+                    //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
+                    //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                    //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
+                } else if (serverGameManager.addCity(location)) {
+                    //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
+                    //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
+                    //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                }
+                refreshResources();
+                refreshPlayerScores();
+            }
+            else{
+                String id = ((Node) event.getSource()).getId();
+                int location = Integer.parseInt(id.substring(1));
+                if (clientGameManager.addSettlement(location)) {
+                    //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
+                    //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                    //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
+                } else if (clientGameManager.addCity(location)) {
+                    //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
+                    //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
+                    //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                }
+                refreshResources();
+                refreshPlayerScores();
+            }
+        }
+    }
+    public void endTurn(ActionEvent event) throws IOException {
+        if (!multiPlayer) {
+            gameManager.nextTurn();
+            refreshResources();
+            refreshPlayerScores();
+            refreshHighestArmy();
+            refreshLongestRoad();
+            refreshDevelopmentCards();
+            playerName.setText("" + gameManager.getPlayerName());
+            if (gameManager.getTurnDice() != 0) {
+                RollNo.setText("" + gameManager.getTurnDice());
+            } else {
+                RollNo.setText("Turn : " + gameManager.getTurnNo());
+            }
+        }
+        else if(myTurn){
+            if(server){
+                serverGameManager.nextTurn();
+                refreshResources();
+                refreshPlayerScores();
+                refreshHighestArmy();
+                refreshLongestRoad();
+                refreshDevelopmentCards();
+                playerName.setText("" + serverGameManager.getPlayerName());
+                if (serverGameManager.getTurnDice() != 0) {
+                    RollNo.setText("" + serverGameManager.getTurnDice());
+                } else {
+                    RollNo.setText("Turn : " + serverGameManager.getTurnNo());
+                }
+            }
+            else{
+                clientGameManager.nextTurn();
+                refreshResources();
+                refreshPlayerScores();
+                refreshHighestArmy();
+                refreshLongestRoad();
+                refreshDevelopmentCards();
+                playerName.setText("" + clientGameManager.getPlayerName());
+                if (clientGameManager.getTurnDice() != 0) {
+                    RollNo.setText("" + clientGameManager.getTurnDice());
+                } else {
+                    RollNo.setText("Turn : " + clientGameManager.getTurnNo());
                 }
             }
         }
-        else
+    }
+
+    public void refreshPlayerScores()
+    {
+        if(!multiPlayer) {
+            int[] playerScores = gameManager.getScoreBoard();
+            for (int i = 0; i < 4; i++) {
+                if (playerScores[i] >= 10) {
+                    gameOverPopUp(gameOver());
+                }
+            }
+
+            p1Score.setText("" + playerScores[0]);
+            p2Score.setText("" + playerScores[1]);
+            p3Score.setText("" + playerScores[2]);
+            p4Score.setText("" + playerScores[3]);
+        }
+        else if(myTurn)
         {
-            if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                if ( !givenResource.equals( wantedResource) ){
-                    gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+            if(server){
+                int[] playerScores = serverGameManager.getScoreBoard();
+                for (int i = 0; i < 4; i++) {
+                    if (playerScores[i] >= 10) {
+                        gameOverPopUp(gameOver());
+                    }
+                }
+
+                p1Score.setText("" + playerScores[0]);
+                p2Score.setText("" + playerScores[1]);
+                p3Score.setText("" + playerScores[2]);
+                p4Score.setText("" + playerScores[3]);
+            }
+            else{
+                int[] playerScores = serverGameManager.getScoreBoard();
+                for (int i = 0; i < 4; i++) {
+                    if (playerScores[i] >= 10) {
+                        gameOverPopUp(gameOver());
+                    }
+                }
+
+                p1Score.setText("" + playerScores[0]);
+                p2Score.setText("" + playerScores[1]);
+                p3Score.setText("" + playerScores[2]);
+                p4Score.setText("" + playerScores[3]);
+            }
+        }
+    }
+    public void gameOverPopUp(String gameWinner) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text(gameWinner +" WINS!!"));
+        Scene dialogScene = new Scene(dialogVbox, 100, 100);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+    public String gameOver(){
+        if(!multiPlayer) {
+            return gameManager.gameOver();
+        }
+        else if(myTurn){
+            if(server){
+                return serverGameManager.gameOver();
+            }
+            else{
+                return clientGameManager.gameOver();
+            }
+        }
+    }
+
+    public void refreshHighestArmy()
+    {
+        if(!multiPlayer) {
+            int army = gameManager.largestArmy();
+
+            if (army == 0) {
+                playerHighestArmy.setText(p1.getText());
+            } else if (army == 1) {
+                playerHighestArmy.setText(p2.getText());
+            } else if (army == 2) {
+                playerHighestArmy.setText(p3.getText());
+            } else if (army == 3) {
+                playerHighestArmy.setText(p4.getText());
+            }
+        }
+        else if(myTurn){
+            if(server){
+                int army = serverGameManager.largestArmy();
+
+                if (army == 0) {
+                    playerHighestArmy.setText(p1.getText());
+                } else if (army == 1) {
+                    playerHighestArmy.setText(p2.getText());
+                } else if (army == 2) {
+                    playerHighestArmy.setText(p3.getText());
+                } else if (army == 3) {
+                    playerHighestArmy.setText(p4.getText());
+                }
+            }
+            else{
+                int army = clientGameManager.largestArmy();
+
+                if (army == 0) {
+                    playerHighestArmy.setText(p1.getText());
+                } else if (army == 1) {
+                    playerHighestArmy.setText(p2.getText());
+                } else if (army == 2) {
+                    playerHighestArmy.setText(p3.getText());
+                } else if (army == 3) {
+                    playerHighestArmy.setText(p4.getText());
+                }
+            }
+            }
+        }
+
+    public void refreshLongestRoad()
+    {
+        if(!multiPlayer) {
+            int road = gameManager.longestRoad();
+            if (road == 0) {
+                playerLongestRoad.setText(p1.getText());
+            } else if (road == 1) {
+                playerLongestRoad.setText(p2.getText());
+            } else if (road == 2) {
+                playerLongestRoad.setText(p3.getText());
+            } else if (road == 3) {
+                playerLongestRoad.setText(p4.getText());
+            }
+        }
+        else if(myTurn){
+            if(server){
+                int road = clientGameManager.longestRoad();
+                if (road == 0) {
+                    playerLongestRoad.setText(p1.getText());
+                } else if (road == 1) {
+                    playerLongestRoad.setText(p2.getText());
+                } else if (road == 2) {
+                    playerLongestRoad.setText(p3.getText());
+                } else if (road == 3) {
+                    playerLongestRoad.setText(p4.getText());
+                }
+            }
+            else{
+                int road = serverGameManager.longestRoad();
+                if (road == 0) {
+                    playerLongestRoad.setText(p1.getText());
+                } else if (road == 1) {
+                    playerLongestRoad.setText(p2.getText());
+                } else if (road == 2) {
+                    playerLongestRoad.setText(p3.getText());
+                } else if (road == 3) {
+                    playerLongestRoad.setText(p4.getText());
+                }
+            }
+        }
+    }
+
+
+    public void offerButtonPressed(ActionEvent event) throws IOException{
+        if(!multiPlayer) {
+            if (!offer) {
+                if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
+                    if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
+                        gameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                        refreshResources();
+                    }
+                }
+            }
+        }
+        else if(myTurn){
+            if(server){
+                if (!offer) {
+                    if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
+                        if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
+                            serverGameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                            refreshResources();
+                        }
+                    }
+                }
+            }
+            else{
+                if (!offer) {
+                    if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
+                        if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
+                            clientGameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                            refreshResources();
+                        }
+                    }
                 }
             }
         }
@@ -537,30 +796,65 @@ public class Main extends Application implements Initializable {
     }
 
     public void playCard(ActionEvent actionEvent) {
-        if(playCardNo.getValue().equals(Monopoly))
-        {
-            if(!playerCardType().equals("")) {
-                gameManager.playMonopoly(playerCardType());
+        if(!multiPlayer) {
+            if (playCardNo.getValue().equals(Monopoly)) {
+                if (!playerCardType().equals("")) {
+                    gameManager.playMonopoly(playerCardType());
+                }
+            } else if (playCardNo.getValue().equals(Knight)) {
+
+            } else if (playCardNo.getValue().equals(RoadBuilding)) {
+
+                gameManager.playRoadBuilding();
+
+            } else if (playCardNo.getValue().equals(YearOfPlenty)) {
+                if (!playerCardType().equals("")) {
+                    gameManager.playYearOfPlenty(playerCardType());
+                }
+            }
+            refreshResources();
+            refreshDevelopmentCards();
+        }
+        else if(myTurn){
+            if(server){
+                if (playCardNo.getValue().equals(Monopoly)) {
+                    if (!playerCardType().equals("")) {
+                        serverGameManager.playMonopoly(playerCardType());
+                    }
+                } else if (playCardNo.getValue().equals(Knight)) {
+
+                } else if (playCardNo.getValue().equals(RoadBuilding)) {
+
+                    serverGameManager.playRoadBuilding();
+
+                } else if (playCardNo.getValue().equals(YearOfPlenty)) {
+                    if (!playerCardType().equals("")) {
+                        serverGameManager.playYearOfPlenty(playerCardType());
+                    }
+                }
+                refreshResources();
+                refreshDevelopmentCards();
+            }
+            else{
+                if (playCardNo.getValue().equals(Monopoly)) {
+                    if (!playerCardType().equals("")) {
+                        clientGameManager.playMonopoly(playerCardType());
+                    }
+                } else if (playCardNo.getValue().equals(Knight)) {
+
+                } else if (playCardNo.getValue().equals(RoadBuilding)) {
+
+                    clientGameManager.playRoadBuilding();
+
+                } else if (playCardNo.getValue().equals(YearOfPlenty)) {
+                    if (!playerCardType().equals("")) {
+                        clientGameManager.playYearOfPlenty(playerCardType());
+                    }
+                }
+                refreshResources();
+                refreshDevelopmentCards();
             }
         }
-        else if(playCardNo.getValue().equals(Knight))
-        {
-
-        }
-        else if(playCardNo.getValue().equals(RoadBuilding))
-        {
-
-            gameManager.playRoadBuilding();
-
-        }
-        else if(playCardNo.getValue().equals(YearOfPlenty))
-        {
-            if(!playerCardType().equals("")) {
-                gameManager.playYearOfPlenty(playerCardType());
-            }
-        }
-        refreshResources();
-        refreshDevelopmentCards();
     }
 
     @Override
