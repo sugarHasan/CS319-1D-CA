@@ -7,6 +7,7 @@ import Model.DevelopmentCardTypes.ProgressCardTypes.RoadCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.YearOfPlentyCard;
 import Model.DevelopmentCardTypes.VictoryPointCard;
 import Model.Map;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -63,10 +64,10 @@ public class ClientGameManager extends ClientManager{
         DICE_TO_ADJACENT_TOWNS_WOOL = map.getDiceAdjacency( "Wool");
     }
 
-    public void visualizeMap() throws URISyntaxException {
-        map.visualizeMap();
-    }
 
+    public void visualizeMap( AnchorPane anchorPane) throws URISyntaxException {
+        map.visualizeMap( anchorPane);
+    }
     public boolean changeRobberLocation( int newLoc)
     {
         return map.moveRobber( newLoc);

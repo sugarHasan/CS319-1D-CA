@@ -1,7 +1,10 @@
 package View;
 
+import Control.ClientGameManager;
 import Control.GameManager;
 import Control.MapManager;
+import Control.ServerGameManager;
+import Model.Offer;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -28,6 +31,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -35,6 +39,8 @@ public class Main extends Application implements Initializable {
 
     private String[] playerNames;
     private static GameManager gameManager;
+    private static ServerGameManager serverGameManager;
+    private static ClientGameManager clientGameManager;
     private static MapManager mapManager;
     private boolean offer;
     private String givenResourcesOffer = "";
@@ -135,8 +141,53 @@ public class Main extends Application implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-        gameManager = new GameManager(playerNames[0] , playerNames[1] , playerNames[2] , playerNames[3], robberAnchorPane);
-        gameManager.nextTurn();
+        if(multiPlayer) {
+            if (server) {
+                serverGameManager = new ServerGameManager(2222, playerNames[0]);
+
+            } else {
+                clientGameManager = new ClientGameManager(2222, playerNames[0]);
+            }
+        }
+        else{
+            gameManager = new GameManager(playerNames[0] , playerNames[1] , playerNames[2] , playerNames[3], robberAnchorPane);
+            gameManager.nextTurn();
+
+        }
+        if(multiPlayer) {
+            if (server) {
+                RollNo.setText("Turn : " + serverGameManager.getTurnNo());
+                this.refreshResources();
+                this.refreshPlayerScores();
+                this.refreshHighestArmy();
+                this.refreshLongestRoad();
+                playerName.setText("" + serverGameManager.getPlayerName());
+
+                serverGameManager.visualizeMap( hexTiles);
+
+            } else {
+                RollNo.setText("Turn : " + clientGameManager.getTurnNo());
+                this.refreshResources();
+                this.refreshPlayerScores();
+                this.refreshHighestArmy();
+                this.refreshLongestRoad();
+                playerName.setText("" + clientGameManager.getPlayerName());
+
+                clientGameManager.visualizeMap( hexTiles);
+            }
+        }
+        else{
+            RollNo.setText("Turn : " + gameManager.getTurnNo());
+            this.refreshResources();
+            this.refreshPlayerScores();
+            this.refreshHighestArmy();
+            this.refreshLongestRoad();
+            playerName.setText("" + gameManager.getPlayerName());
+
+            gameManager.visualizeMap( hexTiles);
+
+        }
+
         RollNo.setText("Turn : " + gameManager.getTurnNo());
         this.refreshResources();
         this.refreshPlayerScores();
@@ -386,7 +437,7 @@ public class Main extends Application implements Initializable {
 
     }
     public void refreshDevelopmentCards() {
-        if (!MultiPlayer) {
+        if (!multiPlayer) {
             int[] developments = gameManager.getDevelopmentCards();
             KnightNo.setText("" + developments[0]);
             VictoryNo.setText("" + developments[1]);
@@ -614,6 +665,21 @@ public class Main extends Application implements Initializable {
         dialog.setScene(dialogScene);
         dialog.show();
     }
+
+    public void offerPopUp(){
+        ArrayList<Offer> offerList = GameManager.listOffers();
+
+        for(int i = 0; i < offerList.size(); i++) {
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            VBox dialogVbox = new VBox(20);
+            dialogVbox.getChildren().add(new Text(gameWinner + " WINS!!"));
+            Scene dialogScene = new Scene(dialogVbox, 100, 100);
+            dialog.setScene(dialogScene);
+            dialog.show();
+        }
+    }
+
     public String gameOver(){
         if(!multiPlayer) {
             return gameManager.gameOver();
