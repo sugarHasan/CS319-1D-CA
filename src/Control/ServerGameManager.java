@@ -288,6 +288,7 @@ public class ServerGameManager extends ServerManager{
             this.visualizeMap();
         }
     }
+
     @Override
     public void connectionEstablished() {
         if(playerJoined!=4){
