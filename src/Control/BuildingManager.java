@@ -5,6 +5,7 @@ import Model.BuildingTypes.City;
 import Model.BuildingTypes.Road;
 import Model.BuildingTypes.Settlement;
 import Model.Player;
+import View.Main;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -102,11 +103,13 @@ public class BuildingManager {
         return result;
     }
 
-    public void setBuildingImage(String color, int location, AnchorPane MapBuildings) throws URISyntaxException {
+    public void setBuildingImage(String color, int location) throws URISyntaxException {
         int x = 0;
         int y = 0;
 
         //"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
+
+        AnchorPane MapBuildings = Main.mapBuildings;
 
         String playerColor = "";
         if(color.equals("#FFA500"))
@@ -220,7 +223,7 @@ public class BuildingManager {
 
     }
 
-    public void setRoadImage(String color, int location, AnchorPane mapRoads) throws URISyntaxException {
+    public void setRoadImage(String color, int location) throws URISyntaxException {
         int x = 0;
         int y = 0;
 
@@ -233,6 +236,8 @@ public class BuildingManager {
             playerColor = "Green";
         else if(color.equals("#87CEFA"))
             playerColor = "Blue";
+
+        AnchorPane mapRoads = Main.mapBuildings;
 
         if(contains(road1Image,location))
         {

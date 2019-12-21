@@ -71,10 +71,10 @@ public class Main extends Application implements Initializable {
     @FXML
     private Button startButton;
 
-    @FXML private AnchorPane hexTiles;
-    @FXML private AnchorPane mapBuildings;
-    @FXML private AnchorPane mapRoads;
-    @FXML private AnchorPane robberAnchorPane;
+    @FXML public static AnchorPane hexTiles;
+    @FXML public static AnchorPane mapBuildings;
+    @FXML public static AnchorPane mapRoads;
+    @FXML public static AnchorPane robberAnchorPane;
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -173,7 +173,7 @@ public class Main extends Application implements Initializable {
         //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        if(gameManager.addRoad(location, mapRoads)) {
+        if(gameManager.addRoad(location)) {
             //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
             ((javafx.scene.control.Button) event.getSource()).setDisable(true);
             //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
@@ -367,12 +367,12 @@ public class Main extends Application implements Initializable {
         //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        if ( gameManager.addSettlement(location, mapBuildings) ) {
+        if ( gameManager.addSettlement(location) ) {
             //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
             //((javafx.scene.control.Button) event.getSource()).setDisable(true);
             //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
         }
-        else if(gameManager.addCity(location, mapBuildings)){
+        else if(gameManager.addCity(location)){
             //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
             //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
             //((javafx.scene.control.Button) event.getSource()).setDisable(true);
