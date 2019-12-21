@@ -2,16 +2,17 @@ package Model;
 import Model.BuildingTypes.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 
 public class Player {
-    private final int NO_OF_EDGE_FOR_ROAD = 72;
+    private final int NO_OF_PATHS = 72;
+    private final int[] DOCK_LOCATIONS = { 0, 1, 3, 5, 10, 11, 15, 16, 26, 32, 33, 38, 42, 46, 47, 49, 51, 52};
 
     private ArrayList<Building> buildings;
     private HashMap<String , Integer> cards;
     private int victoryPoints;
     private String name;
+    private Happiness happiness;
 
     public Player(String name){
         this.name = name;
@@ -30,6 +31,7 @@ public class Player {
 
         victoryPoints = 0;
         buildings = new ArrayList<Building>();
+        happiness = new Happiness();
     }
 
 
@@ -38,6 +40,7 @@ public class Player {
         int numberOfCard = cards.get(cardName);
         cards.put(cardName , cards.get(cardName)+1);
     }
+
     public boolean removeCard(Card removeCard){
         String cardName = removeCard.getCardType();
         int numberOfCard = cards.get(cardName);
@@ -136,6 +139,29 @@ public class Player {
         }
     }
 
+    public void fishing()
+    {
+        int count = 0;
+        double random;
+        for ( int i = 0; i < buildings.size(); i++ )
+        {
+            for ( int j = 0; j < DOCK_LOCATIONS.length; j++ )
+            {
+                if ( buildings.get( i).getLocation() == DOCK_LOCATIONS[j] )
+                {
+                    random = Math.random();
+                    if ( random < 0.33 )
+                    {
+                        System.out.println( "Thats fish");
+                        count++;
+                    }
+                    break;
+                }
+            }
+        }
+        happiness.caughtFish( count);
+    }
+
     public void addBuilding(Building newBuilding){
         buildings.add(newBuilding);
     }
@@ -177,7 +203,7 @@ public class Player {
     }
 
     public int longestRoad(){
-        int[][] adjList = new int[NO_OF_EDGE_FOR_ROAD][NO_OF_EDGE_FOR_ROAD];
+        int[][] adjList = new int[NO_OF_PATHS][NO_OF_PATHS];
         for(int i = 0 ; i < buildings.size() ; i++){
             if(buildings.get(i) instanceof Road){
                 Road road = (Road)buildings.get(i);
@@ -195,8 +221,8 @@ public class Player {
             }
         }
         int longestRoad = 0;
-        for(int i = 0 ; i < NO_OF_EDGE_FOR_ROAD ; i++){
-            boolean[] visited = new boolean[NO_OF_EDGE_FOR_ROAD];
+        for(int i = 0; i < NO_OF_PATHS; i++){
+            boolean[] visited = new boolean[NO_OF_PATHS];
             longestRoad = Math.max(dfs(adjList , visited , i) , longestRoad);
         }
         return longestRoad;
@@ -206,7 +232,7 @@ public class Player {
         if(visited[index])  return 0;
         visited[index] = true;
         int res = 1;
-        for(int i = 0 ; i < NO_OF_EDGE_FOR_ROAD ; i++){
+        for(int i = 0; i < NO_OF_PATHS; i++){
             if(adjList[index][i] == 1){
                 if(!visited[i]){
                     res += dfs(adjList , visited , i);
@@ -237,6 +263,13 @@ public class Player {
         cards.put( resource, cards.get( resource) + 1);
     }
 
+    public void printBuildings()
+    {
+        for ( int i = 0; i < buildings.size(); i++ )
+        {
+            System.out.println( "Building: " + i);
+        }
+    }
     public void addResource(int town , String resource){
         for(int i = 0 ; i < buildings.size() ; i++){
             if(buildings.get(i) instanceof Settlement){
@@ -316,6 +349,11 @@ public class Player {
         developments[3] = cards.get("YearOfPlenty");
         developments[4] = cards.get("Monopoly");
         return developments;
+    }
+
+    public boolean canBuild()
+    {
+        return happiness.canBuild();
     }
 
     public boolean buyRoad(){

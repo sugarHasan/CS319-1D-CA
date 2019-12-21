@@ -36,13 +36,18 @@ public class BuildingManager {
 
     public boolean buildRoad(Player player, int location){
         if(buildingsRoad[location] == null){
-            if(player.buyRoad()) {
+            if( player.canBuild() && player.buyRoad()) {
                 player.addBuilding(new Road(player, location));
                 buildingsRoad[location] = new Road(player, location);
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean checkBuildLocation( Player player, int location)
+    {
+        return true;
     }
 
     public boolean buildSettlement(Player player, int location){
@@ -69,7 +74,7 @@ public class BuildingManager {
 
     public boolean buildCity(Player player, int location){
         if(buildingsCityAndSettlement[location] != null){
-            if(buildingsCityAndSettlement[location].getPlayer().getName().equals(player.getName()) ) {
+            if(buildingsCityAndSettlement[location].getPlayer().getName().equals(player.getName())) {
                 ArrayList<Building> buildings = player.getBuildings();
                 for (int i = 0; i < buildings.size(); i++) {
                     if (buildings.get(i) instanceof Road) {
@@ -77,7 +82,7 @@ public class BuildingManager {
                         int[] adjCity = road.getAdjacentCity();
                         for (int j = 0; j < adjCity.length; j++) {
                             if (adjCity[j] == location) {
-                                if(player.buyCity()) {
+                                if( player.canBuild() && player.buyCity()) {
                                     //player.removeSettlement(location);
                                     player.addBuilding(new City(player, location));
                                     buildingsCityAndSettlement[location] = new City(player, location);

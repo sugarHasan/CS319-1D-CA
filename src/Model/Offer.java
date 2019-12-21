@@ -3,13 +3,13 @@ package Model;
 public class Offer {
     private Player sender;
     private Player receiver;
-    private ResourceCard offeredItem;
-    private ResourceCard demandedItem;
+    private String offeredItem;
+    private String demandedItem;
     private int offerNum;
     private int demandNum;
 
-    public Offer(Player sender, Player receiver, ResourceCard offeredItem,
-                 ResourceCard demandedItem, int offerNum, int demandNum) {
+    public Offer(Player sender, Player receiver, String offeredItem,
+                 String demandedItem, int offerNum, int demandNum) {
         this.sender = sender;
         this.receiver = receiver;
         this.offeredItem = offeredItem;
@@ -34,19 +34,19 @@ public class Offer {
         this.receiver = receiver;
     }
 
-    public ResourceCard getOfferedItem() {
+    public String getOfferedItem() {
         return offeredItem;
     }
 
-    public void setOfferedItem(ResourceCard offeredItem) {
+    public void setOfferedItem(String offeredItem) {
         this.offeredItem = offeredItem;
     }
 
-    public ResourceCard getDemandedItem() {
+    public String getDemandedItem() {
         return demandedItem;
     }
 
-    public void setDemandedItem(ResourceCard demandedItem) {
+    public void setDemandedItem(String demandedItem) {
         this.demandedItem = demandedItem;
     }
 

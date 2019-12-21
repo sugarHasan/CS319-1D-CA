@@ -1,8 +1,6 @@
 package Control;
 import Control.PlayerManager;
-import Model.Map;
-import Model.Player;
-import Model.Card;
+import Model.*;
 import Model.DevelopmentCardTypes.*;
 import Model.DevelopmentCardTypes.ProgressCardTypes.*;
 import javafx.scene.Node;
@@ -37,7 +35,7 @@ public class GameManager {
         secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
-        map = new Map();
+        map = new Map( robberImage);
         synchronizeMap();
     }
 
@@ -164,30 +162,30 @@ public class GameManager {
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
-    public boolean addRoad(int location) throws URISyntaxException {
+    public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
         if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setRoadImage(returnPlayerColor(),location);
+            buildingManager.setRoadImage(returnPlayerColor(),location,mapRoads);
             return true;
         }
         else
             return false;
     }
 
-    public boolean addSettlement(int location) throws URISyntaxException {
+    public boolean addSettlement(int location, AnchorPane mapBuildings) throws URISyntaxException {
         if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location);
+            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
             return true;
         }
         else
             return false;
     }
 
-    public boolean addCity(int location) throws URISyntaxException {
+    public boolean addCity(int location, AnchorPane mapBuildings) throws URISyntaxException {
         if(buildingManager.buildCity(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location);
+            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
             return true;
         }
         else
@@ -202,8 +200,27 @@ public class GameManager {
         }
         turnDice = this.rollDice();
         this.distributeResources(turnDice);
+        updateHappiness();
         return playerManager.getPlayers()[playerNo].getName();
     }
+
+    private void updateHappiness()
+    {
+        playerManager.fishing();
+        Player[] ps = playerManager.getPlayers();
+        for ( int i = 0; i< ps.length; i++)
+        {
+            System.out.println( ps[i].getName());
+            ps[i].printBuildings();
+        }
+    }
+
+    public void makeOffer( int receiverNo, String offeredItem,
+                           String demandedItem, int offerNum, int demandNum)
+    {
+        playerManager.makeOffer( playerNo, receiverNo, offeredItem, demandedItem, offerNum, demandNum);
+    }
+
     public int getTurnDice() {
         return turnDice;
     }

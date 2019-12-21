@@ -1,4 +1,5 @@
 package Control;
+import Model.Offer;
 import Model.Player;
 import Model.Card;
 
@@ -6,16 +7,17 @@ import java.util.ArrayList;
 
 public class PlayerManager {
     private Player[] players;
+    private OfferManager offerManager;
 
     public PlayerManager(String player1, String player2 , String player3 , String player4) {
+        offerManager = new OfferManager();
+
         players = new Player[4];
         players[0] = new Player(player1);
         players[1] = new Player(player2);
         players[2] = new Player(player3);
         players[3] = new Player(player4);
     }
-
-
 
     public void distributeResources(int town, String resource){
         for(int i = 0 ; i < players.length ; i++){
@@ -61,8 +63,20 @@ public class PlayerManager {
         this.players = players;
     }
 
+    public void fishing()
+    {
+        for ( int i = 0; i < players.length; i++ )
+            players[i].fishing();
+    }
+
     public boolean tradeResource(int playerNo , String given , String wanted){
         return players[playerNo].tradeResource(given , wanted);
+    }
+
+    public void makeOffer( int senderNo, int receiverNo, String offeredItem,
+                           String demandedItem, int offerNum, int demandNum)
+    {
+        offerManager.makeOffer( players[senderNo], players[receiverNo], offeredItem, demandedItem, offerNum, demandNum);
     }
 
     public boolean buyDevelopmentCard(int playerNo) {

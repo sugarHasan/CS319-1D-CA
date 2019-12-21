@@ -23,7 +23,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
@@ -37,8 +36,10 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static MapManager mapManager;
     private boolean offer;
-    private String givenResourcesOffer = "";
-    private String wantedResourcesOffer = "";
+    private String givenResource = "";
+    private int givenResourceNumber = 0;
+    private String wantedResource = "";
+    private int wantedResourceNumber = 0;
 
 
     @FXML private ComboBox playerBox;
@@ -159,13 +160,11 @@ public class Main extends Application implements Initializable {
 
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
-        System.out.println( "player radio was used");
         playerBox.setDisable( false);
     }
 
     public void bankRadioPressed(ActionEvent event) throws IOException{
         offer = false;
-        System.out.println( "bank radio was used");
         playerBox.setDisable( true);
     }
 
@@ -191,7 +190,7 @@ public class Main extends Application implements Initializable {
 
     }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
-        //to be implemented
+        String oldResource = givenResource;
 
         String id = ((Node)event.getSource()).getId();
         ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
@@ -203,7 +202,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Grain";
+            givenResource = "Grain";
         }
         else if(id.equals("givenResourceBrick"))
         {
@@ -212,7 +211,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Brick";
+            givenResource = "Brick";
         }
         else if(id.equals("givenResourceLumber"))
         {
@@ -221,7 +220,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Lumber";
+            givenResource = "Lumber";
         }
         else if(id.equals("givenResourceOre"))
         {
@@ -230,7 +229,7 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Ore";
+            givenResource = "Ore";
         }
         else if(id.equals("givenResourceWool"))
         {
@@ -239,7 +238,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Wool";
+            givenResource = "Wool";
         }
         else
         {
@@ -249,11 +248,15 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "";
+            givenResource = "";
         }
+        if ( givenResource.equals( oldResource))
+            givenResourceNumber++;
+        else
+            givenResourceNumber = 1;
     }
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
-        //to be implemented
+        String oldResource = wantedResource;
 
         String id = ((Node)event.getSource()).getId();
         ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
@@ -265,7 +268,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Grain";
+            wantedResource = "Grain";
         }
         else if(id.equals("wantedResourceBrick"))
         {
@@ -274,7 +277,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Brick";
+            wantedResource = "Brick";
         }
         else if(id.equals("wantedResourceLumber"))
         {
@@ -283,7 +286,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Lumber";
+            wantedResource = "Lumber";
         }
         else if(id.equals("wantedResourceOre"))
         {
@@ -292,7 +295,7 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Ore";
+            wantedResource = "Ore";
         }
         else if(id.equals("wantedResourceWool"))
         {
@@ -301,7 +304,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Wool";
+            wantedResource = "Wool";
         }
         else
         {
@@ -311,8 +314,12 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "";
+            wantedResource = "";
         }
+        if ( wantedResource.equals( oldResource))
+            wantedResourceNumber++;
+        else
+            wantedResourceNumber = 1;
     }
 
     private void refreshResources(){
@@ -331,28 +338,6 @@ public class Main extends Application implements Initializable {
         PlentyNo.setText("" +  developments[3]);
         MonoNo.setText("" +  developments[4]);
 
-    }
-
-
-
-    public void tradeWithPlayer()
-    {
-        if(playerBox.getValue().equals(Player1Trade))
-        {
-
-        }
-        else if(playerBox.getValue().equals(Player2Trade))
-        {
-
-        }
-        else if(playerBox.getValue().equals(Player3Trade))
-        {
-
-        }
-        else if(playerBox.getValue().equals(Player4Trade))
-        {
-
-        }
     }
 
     public void buyDevelopmentCard( ActionEvent event) throws IOException{
@@ -458,13 +443,42 @@ public class Main extends Application implements Initializable {
             playerLongestRoad.setText(p4.getText());
         }
     }
+    public void tradeWithPlayer()
+    {
+        if(playerBox.getValue().equals(Player1Trade))
+        {
 
+        }
+        else if(playerBox.getValue().equals(Player2Trade))
+        {
+
+        }
+        else if(playerBox.getValue().equals(Player3Trade))
+        {
+
+        }
+        else if(playerBox.getValue().equals(Player4Trade))
+        {
+
+        }
+    }
 
     public void offerButtonPressed(ActionEvent event) throws IOException{
+
+
         if(!offer){
-            if(!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
-                if (!givenResourcesOffer.equals(wantedResourcesOffer)){
-                    gameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+            if(!givenResource.equals("") && !wantedResource.equals("")) {
+                if (!givenResource.equals(wantedResource)){
+                    gameManager.tradeResource(givenResource, wantedResource);
+                    refreshResources();
+                }
+            }
+        }
+        else
+        {
+            if(!givenResource.equals("") && !wantedResource.equals("")) {
+                if (!givenResource.equals(wantedResource)){
+                    gameManager.tradeResource(givenResource, wantedResource);
                     refreshResources();
                 }
             }

@@ -7,11 +7,12 @@ import java.util.ArrayList;
 public class OfferManager {
     ArrayList<Offer> offers = new ArrayList<Offer>();
 
-    public void makeOffer( Player sender, Player receiver, ResourceCard offeredItem,
-                           ResourceCard demandedItem, int offerNum, int demandNum)
+    public void makeOffer( Player sender, Player receiver, String offeredItem,
+                           String demandedItem, int offerNum, int demandNum)
     {
         offers.add( new Offer( sender, receiver, offeredItem, demandedItem, offerNum, demandNum));
     }
+
     public ArrayList<Offer> listOffers( Player player)
     {
         /*
