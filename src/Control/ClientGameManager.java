@@ -75,8 +75,8 @@ public class ClientGameManager extends ClientManager{
     }
 
 
-    public void visualizeMap( AnchorPane anchorPane) throws URISyntaxException {
-        map.visualizeMap( anchorPane);
+    public void visualizeMap() throws URISyntaxException {
+        map.visualizeMap();
     }
     public boolean changeRobberLocation( int newLoc)
     {
@@ -185,9 +185,9 @@ public class ClientGameManager extends ClientManager{
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
-    //public boolean addRoad(int location) throws URISyntaxException {
-
-    //}
+    public boolean addRoad(int location) throws URISyntaxException {
+        return true;
+    }
 
     public boolean addSettlement(int location) throws URISyntaxException {
         if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))

@@ -181,9 +181,9 @@ public class ServerGameManager extends ServerManager{
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
-   // public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
-
-    //};
+    public boolean addRoad(int location) throws URISyntaxException {
+    return true;
+    }
 
     public boolean addSettlement(int location) throws URISyntaxException {
         if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))
