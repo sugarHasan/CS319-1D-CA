@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ControllerSettings">
+    <children>
+        <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0">
+            <children>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="595.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/Button/Blue.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="626.0" layoutY="510.0" prefHeight="59.0" prefWidth="141.0" text="Back To">
+            <font>
+                <Font name="Carter One" size="36.0" />
+            </font>
+        </Label>
+      <Label layoutX="644.0" layoutY="547.0" prefHeight="59.0" prefWidth="105.0" text="Menu">
+         <font>
+            <Font name="Carter One" size="36.0" />
+         </font>
+      </Label>
+        <Button id="settings" layoutX="597.0" layoutY="499.0" mnemonicParsing="false" onAction="#backToMenu" opacity="0.0" prefHeight="130.0" prefWidth="198.0" text="Back to menu">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font></Button>
+        <Label layoutX="368.0" layoutY="43.0" text="The Settlers of Catan" textAlignment="CENTER">
+            <font>
+                <Font name="Carter One" size="64.0" />
+            </font>
+        </Label>
+      <CheckBox fx:id="music" layoutX="613.0" layoutY="240.0" mnemonicParsing="false" onAction="#PlayMusic" text="Music">
+         <font>
+            <Font name="Carter One" size="36.0" />
+         </font>
+      </CheckBox>
+    </children>
+</AnchorPane>
+    </children>
+</AnchorPane>
