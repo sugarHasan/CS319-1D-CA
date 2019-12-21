@@ -25,6 +25,7 @@ public class GameManager {
     private boolean firstTurn;
     private boolean secondTurn;
     private int turnDice;
+    private int oldlocactionRobber = -1;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
     public GameManager(String player1, String player2, String player3 , String player4,AnchorPane robberImage) throws URISyntaxException {
@@ -57,7 +58,18 @@ public class GameManager {
 
     public boolean changeRobberLocation( int newLoc)
     {
-        return map.moveRobber( newLoc);
+        int newLocation = map.getRobbersLocation();
+        if(newLoc == newLocation)
+        {
+            return false;
+        }
+        else if(oldlocactionRobber != newLocation)
+        {
+            oldlocactionRobber = newLoc;
+            return map.moveRobber( newLoc);
+        }
+        else
+            return false;
     }
 
     public int getRobbersLocation()
@@ -202,6 +214,7 @@ public class GameManager {
         turnDice = this.rollDice();
         this.distributeResources(turnDice);
         updateHappiness();
+        oldlocactionRobber = -1;
         return playerManager.getPlayers()[playerNo].getName();
     }
 
