@@ -1,13 +1,18 @@
 package Control;
 
+import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import static View.Main.*;
 
-public class ServerManager {
+
+public abstract class ServerManager {
     private final String TERMINATION = "###";
     private ServerSocket server;
     private ArrayList<Socket> sockets;
@@ -15,13 +20,14 @@ public class ServerManager {
     private ArrayList<Thread> messageListeners;
     private Thread connectionListener;
     private int noOfPlayer;
-    private final String ip = "192.168.43.105";
+    private final String ip = "127.0.0.1";
 
 
     public ServerManager(int port) throws IOException{
         //InetAddress address = new InetAddress(ip);
         server = new ServerSocket(port ,4 , InetAddress.getByName(ip));
         messageListeners = new ArrayList<Thread>();
+        sockets = new ArrayList<Socket>();
         isBlocked = false;
         noOfPlayer = 1;
         connectionListener = new Thread(new Runnable() {
@@ -31,8 +37,10 @@ public class ServerManager {
             }
         });
         connectionListener.start();
+        System.out.println("SERVER IS CREATED");
 
     }
+
 
     private void listenConnection() {
         while ( !stopListening) {
@@ -42,6 +50,7 @@ public class ServerManager {
             } catch (IOException e) {
                 break;
             }
+            if(socket == null)  break;
 
             if (stopListening)
                 return;
@@ -60,15 +69,20 @@ public class ServerManager {
             messageListeners.add(new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    listenForMessages(socket);
+                    try {
+                        listenForMessages(socket);
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
                 }
             }));
             messageListeners.get(messageListeners.size() - 1).start();
         }
     }
 
-    private void listenForMessages( Socket socket)
-    {
+    public abstract void received(String message);
+
+    private void listenForMessages( Socket socket) throws URISyntaxException {
         String message = "";
         boolean isAlive = true;
 
@@ -81,6 +95,12 @@ public class ServerManager {
             catch (IOException e)
             {
                 isAlive = false;
+            }
+            if ( message.contains(TERMINATION))
+            {
+                received( message.substring( 0, message.length() - 3));
+                sendMessageToAll(message);
+                message = "";
             }
         }
         while ( isBlocked)
@@ -99,12 +119,8 @@ public class ServerManager {
         sockets.remove( socket);
         isBlocked = false;
     }
-    private void received(String substring, Socket socket) {
-    }
-    private void connectionEstablished(Socket socket) {
-        noOfPlayer++;
-        System.out.println("NO of players in the game: " + noOfPlayer);
-    }
+
+    private void connectionEstablished();
     public void sendMessageToAll( String msg)
     {
         byte[] data = msg.getBytes();
