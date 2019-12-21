@@ -1,5 +1,6 @@
 package Model;
 
+import View.Main;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,12 +11,15 @@ import java.net.URISyntaxException;
 public class Robber {
     private int location;
     private ImageView robberImage;
+    private AnchorPane anchorPane;
 
-    public Robber( int loc, AnchorPane image) throws URISyntaxException {
+    public Robber( int loc) throws URISyntaxException {
 
         //Image img = new Image(getClass().getResource("/images/Robber.png").toURI().toString());
         //robberImage = new ImageView(img);
-        robberImage = (ImageView) image.getChildren().get(0);//.add(robberImage);
+
+        anchorPane = Main.robberAnchorPane;
+        robberImage = (ImageView) anchorPane.getChildren().get(0);//.add(robberImage);
 
         //robberImage = ((ImageView)image.getChildren().get(image.getChildren().size() - 1));
         location = loc;

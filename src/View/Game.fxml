@@ -162,6 +162,11 @@
                            <Image url="@../images/Panels/Panel2.png" />
                        </image>
                    </ImageView>
+                  <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="840.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="1.25">
+                     <image>
+                        <Image url="@../images/Panels/Panel1.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
             <AnchorPane fx:id="robberPane" layoutX="550.0" layoutY="600.0" prefHeight="200.0" prefWidth="300.0">
                <children>
@@ -461,7 +466,7 @@
                         <Button fx:id="C50" layoutX="560.0" layoutY="512.0" mnemonicParsing="false" onAction="#cornerPressed" opacity="0.0" prefHeight="0.0" prefWidth="0.0" />
                     </children>
                 </AnchorPane>
-            <AnchorPane layoutX="1050.0" prefHeight="400.0" prefWidth="313.0">
+            <AnchorPane layoutX="1070.0" prefHeight="400.0" prefWidth="313.0">
                <children>
                         <Label text="Development Cards">
                             <font>

@@ -44,6 +44,19 @@ public class ControllerMainMenu implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("SetPlayers.fxml"));
         rootPane.getChildren().setAll(pane);
     }
+
+    public void CreateGame(ActionEvent event) throws IOException
+    {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateGame.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
+    public void JoinGame(ActionEvent event) throws IOException
+    {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("JoinGame.fxml"));
+        rootPane.getChildren().setAll(pane);
+    }
+
     public void exit(ActionEvent event)
     {
         System.exit(0);

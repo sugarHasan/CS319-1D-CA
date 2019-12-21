@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -71,10 +71,10 @@ public class Main extends Application implements Initializable {
     @FXML
     private Button startButton;
 
-    @FXML private AnchorPane hexTiles;
-    @FXML private AnchorPane mapBuildings;
-    @FXML private AnchorPane mapRoads;
-    @FXML private AnchorPane robberAnchorPane;
+    @FXML public static AnchorPane hexTiles;
+    @FXML public static AnchorPane mapBuildings;
+    @FXML public static AnchorPane mapRoads;
+    @FXML public static AnchorPane robberAnchorPane;
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -109,6 +109,7 @@ public class Main extends Application implements Initializable {
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
+        mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
 
         offer = true;
         playerNames = new String[4];
@@ -143,6 +144,7 @@ public class Main extends Application implements Initializable {
 
         gameManager.visualizeMap( hexTiles);
     }
+
     public void playerBoxPressed(ActionEvent event) throws IOException{
         System.out.println( "player box was used");
     }
@@ -171,7 +173,7 @@ public class Main extends Application implements Initializable {
         //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        if(gameManager.addRoad(location, mapRoads)) {
+        if(gameManager.addRoad(location)) {
             //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
             ((javafx.scene.control.Button) event.getSource()).setDisable(true);
             //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
@@ -365,12 +367,12 @@ public class Main extends Application implements Initializable {
         //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        if ( gameManager.addSettlement(location, mapBuildings) ) {
+        if ( gameManager.addSettlement(location) ) {
             //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
             //((javafx.scene.control.Button) event.getSource()).setDisable(true);
             //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
         }
-        else if(gameManager.addCity(location, mapBuildings)){
+        else if(gameManager.addCity(location)){
             //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
             //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
             //((javafx.scene.control.Button) event.getSource()).setDisable(true);
@@ -549,7 +551,10 @@ public class Main extends Application implements Initializable {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, FontFormatException {
+        //Font.createFont("Carter One", Main.class.getResource("/Font.CarterOne/CarterOne.ttf").toURI().toString());
+
+        //Font.createFont(Font.TRUETYPE_FONT, new File("/Font.CarterOne/CarterOne.ttf"));
         launch(args);
 
     }

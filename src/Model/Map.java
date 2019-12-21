@@ -87,7 +87,7 @@ public class Map
             {
                 desert--;
                 lands[i] = new Desert( 7);
-                robber = new Robber(i,robberImage);
+                robber = new Robber(i);
                 i++;
                 continue;
             }
