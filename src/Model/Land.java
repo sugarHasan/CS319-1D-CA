@@ -1,6 +1,7 @@
 package Model;
 import Model.Building;
 import Model.ResourceCard;
+import View.Main;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -53,7 +54,7 @@ public class Land {
         type = resource;
     }
 
-    public void setHex( int location, AnchorPane hexTiles) throws URISyntaxException {
+    public void setHex( int location) throws URISyntaxException {
         int x = 0;
         int y = 0;
         if (0 <= location && location <= 2) {
@@ -80,6 +81,8 @@ public class Land {
 
         //hex.setFitHeight(120);
         //hex.setFitWidth(120);
+
+        AnchorPane hexTiles = Main.hexTiles;
 
         hexTiles.getChildren().add(hex);
 

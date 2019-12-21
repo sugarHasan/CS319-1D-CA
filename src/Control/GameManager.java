@@ -96,6 +96,7 @@ public class GameManager {
         if ( dice == 7 )
         {
             playerManager.robberSteals();
+            //changeRobberLocation();
             // will change robbers location to selected pos
         }
         else if( dice <= 12 && dice > 1)

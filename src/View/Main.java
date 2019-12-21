@@ -187,7 +187,7 @@ public class Main extends Application implements Initializable {
         //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-
+        gameManager.changeRobberLocation(location);
     }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
         String oldResource = givenResource;
