@@ -65,7 +65,7 @@ public abstract class ServerManager {
             isBlocked = true;
             sockets.add(socket);
             isBlocked = false;
-            connectionEstablished(socket);
+            connectionEstablished();
             messageListeners.add(new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -80,7 +80,7 @@ public abstract class ServerManager {
         }
     }
 
-    public abstract void received(String message);
+    public abstract void received(String message) throws URISyntaxException;
 
     private void listenForMessages( Socket socket) throws URISyntaxException {
         String message = "";
@@ -120,7 +120,7 @@ public abstract class ServerManager {
         isBlocked = false;
     }
 
-    private void connectionEstablished();
+    public abstract void connectionEstablished();
     public void sendMessageToAll( String msg)
     {
         byte[] data = msg.getBytes();

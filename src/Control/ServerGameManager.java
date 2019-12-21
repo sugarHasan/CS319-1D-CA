@@ -47,7 +47,7 @@ public class ServerGameManager extends ServerManager{
         secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
-        map = new Map(robberImage);
+        map = new Map();
         synchronizeMap();
     }
 
@@ -63,8 +63,8 @@ public class ServerGameManager extends ServerManager{
         DICE_TO_ADJACENT_TOWNS_WOOL = map.getDiceAdjacency( "Wool");
     }
 
-    public void visualizeMap( AnchorPane anchorPane) throws URISyntaxException {
-        map.visualizeMap( anchorPane);
+    public void visualizeMap() throws URISyntaxException {
+        map.visualizeMap();
     }
 
     public boolean changeRobberLocation( int newLoc)
@@ -174,24 +174,24 @@ public class ServerGameManager extends ServerManager{
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
-    public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
+   // public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
 
-    }
+    //};
 
-    public boolean addSettlement(int location, AnchorPane mapBuildings) throws URISyntaxException {
+    public boolean addSettlement(int location) throws URISyntaxException {
         if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;
         }
         else
             return false;
     }
 
-    public boolean addCity(int location, AnchorPane mapBuildings) throws URISyntaxException {
+    public boolean addCity(int location) throws URISyntaxException {
         if(buildingManager.buildCity(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;
         }
         else
@@ -239,19 +239,19 @@ public class ServerGameManager extends ServerManager{
     }
 
     @Override
-    public void received(String message) {
+    public void received(String message) throws URISyntaxException {
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
             this.nextTurn();
         }
         else if(id.equals("AB")){
-            this.addRoad(Integer.parseInt(message.substring(2)) , mapRoads);
+            //this.addRoad(Integer.parseInt(message.substring(2)) );
         }
         else if(id.equals("AC")){
-            this.addSettlement(Integer.parseInt(message.substring(2)) , mapRoads);
+            this.addSettlement(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AD")){
-            this.addCity(Integer.parseInt(message.substring(2)) , mapRoads);
+            this.addCity(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AE")){
             this.rollDice();
@@ -278,10 +278,10 @@ public class ServerGameManager extends ServerManager{
             this.buyDevelopmentCard();
         }
         else if(id.equals("CC")){
-            this.chatMessage(message.substring(2));
+            //this.chatMessage(message.substring(2));
         }
         else if(id.equals("CD")){
-            this.gameStart(message.substring(2));  //Name of the players connect the game 
+            //this.gameStart(message.substring(2));  //Name of the players connect the game
         }
         else if(id.equals("CE")){
             this.synchronizeMap();  //Creates map for all players
