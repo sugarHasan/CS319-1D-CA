@@ -99,7 +99,12 @@ public class Main extends Application implements Initializable {
     }
     public void PlayGame(ActionEvent event) throws IOException, URISyntaxException {
 
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("Game.fxml"));
+        Parent tableViewParent;
+        if(multiPlayer)
+            tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
+        else
+            tableViewParent = FXMLLoader.load(getClass().getResource("Game.fxml"));
+
         grainNo = (javafx.scene.control.Label) tableViewParent.lookup("#grainNo");
         brickNo = (javafx.scene.control.Label) tableViewParent.lookup("#brickNo");
         oreNo = (javafx.scene.control.Label) tableViewParent.lookup("#oreNo");
@@ -116,6 +121,7 @@ public class Main extends Application implements Initializable {
         playerHighestArmy = ((javafx.scene.control.Label) tableViewParent.lookup("#playerHighestArmy"));
         playerLongestRoad = ((javafx.scene.control.Label) tableViewParent.lookup("#playerLongestRoad"));
         RollNo = ((javafx.scene.control.Label) tableViewParent.lookup("#RollNo"));
+        playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
@@ -123,27 +129,41 @@ public class Main extends Application implements Initializable {
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
 
         offer = true;
-        playerNames = new String[4];
-        playerNames[0] = player1.getText();
-        playerNames[1] = player2.getText();
-        playerNames[2] = player3.getText();
-        playerNames[3] = player4.getText();
-        for(int i = 0; i < 4; i++)
+        if(!multiPlayer)
         {
-            if(playerNames[i].isEmpty())
+            playerNames = new String[4];
+            playerNames[0] = player1.getText();
+            playerNames[1] = player2.getText();
+            playerNames[2] = player3.getText();
+            playerNames[3] = player4.getText();
+            for(int i = 0; i < 4; i++)
             {
-                playerNames[i] = "Player " + (i + 1);
+                if(playerNames[i].isEmpty())
+                {
+                    playerNames[i] = "Player " + (i + 1);
+                }
             }
+            p1.setText(playerNames[0]);
+            p2.setText(playerNames[1]);
+            p3.setText(playerNames[2]);
+            p4.setText(playerNames[3]);
         }
-        p1.setText(playerNames[0]);
-        p2.setText(playerNames[1]);
-        p3.setText(playerNames[2]);
-        p4.setText(playerNames[3]);
-        playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
+        else
+        {
+            playerNames = new String[1];
+            playerNames[0] = player1.getText();
+            if(playerNames[0].isEmpty())
+            {
+                playerNames[0] = "Player 1";
+            }
+            p1.setText(playerNames[0]);
+        }
+
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
+
         if(multiPlayer) {
             if (server) {
                 serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
