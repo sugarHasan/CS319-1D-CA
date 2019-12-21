@@ -41,6 +41,9 @@ public class Main extends Application implements Initializable {
     private String wantedResource = "";
     private int wantedResourceNumber = 0;
 
+    public static boolean multiPlayer;
+    public static boolean myTurn;
+    public static boolean server;
 
     @FXML private ComboBox playerBox;
     @FXML private RadioButton playerRadio, bankRadio;
@@ -72,10 +75,10 @@ public class Main extends Application implements Initializable {
     @FXML
     private Button startButton;
 
-    @FXML public static AnchorPane hexTiles;
-    @FXML public static AnchorPane mapBuildings;
-    @FXML public static AnchorPane mapRoads;
-    @FXML public static AnchorPane robberAnchorPane;
+    @FXML static public AnchorPane hexTiles;
+    @FXML static public AnchorPane mapBuildings;
+    @FXML static public AnchorPane mapRoads;
+    @FXML static public AnchorPane robberAnchorPane;
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -143,7 +146,7 @@ public class Main extends Application implements Initializable {
         this.refreshLongestRoad();
         playerName.setText("" + gameManager.getPlayerName());
 
-        gameManager.visualizeMap( hexTiles);
+        gameManager.visualizeMap();
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{

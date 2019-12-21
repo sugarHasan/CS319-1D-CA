@@ -51,8 +51,8 @@ public class GameManager {
         DICE_TO_ADJACENT_TOWNS_WOOL = map.getDiceAdjacency( "Wool");
     }
 
-    public void visualizeMap( AnchorPane anchorPane) throws URISyntaxException {
-        map.visualizeMap( anchorPane);
+    public void visualizeMap() throws URISyntaxException {
+        map.visualizeMap();
     }
 
     public boolean changeRobberLocation( int newLoc)
@@ -97,7 +97,7 @@ public class GameManager {
         {
             playerManager.robberSteals();
             //changeRobberLocation();
-            // will change robbers location to selected pos
+            //will change robbers location to selected pos
         }
         else if( dice <= 12 && dice > 1)
         {

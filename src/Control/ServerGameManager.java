@@ -14,8 +14,6 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static View.Main.gameManager;
-
 public class ServerGameManager extends ServerManager{
     private final String[] PLAYER_COLORS = {"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
     private int[][] DICE_TO_ADJACENT_TOWNS_WOOL = {{} , {} , {} , {40,44,45,48,49,52} , {31,36,37,41,42,46} , {17,22,23,28,29,34} , {20,25,26,31,32,37} , {} , {} , {} , {} , {} , {} };
@@ -34,10 +32,19 @@ public class ServerGameManager extends ServerManager{
     private boolean secondTurn;
     private int turnDice;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
+    private AnchorPane robber;
+    private AnchorPane hex;
+    private AnchorPane buildings;
+    private AnchorPane roads;
     //private ServerManager serverManager;
 
-    public ServerGameManager( int port, String player1) throws URISyntaxException, IOException {
+    public ServerGameManager( int port, String player1,AnchorPane robber,AnchorPane hex,AnchorPane buildings,AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
+
+        this.robber = robber;
+        this.hex = hex;
+        this.buildings = buildings;
+        this.roads = roads;
         this.playerManager = new PlayerManager( player1," player2", "player3" , "player4");
         playerNo = -1;
         playerJoined = 1;
@@ -245,7 +252,7 @@ public class ServerGameManager extends ServerManager{
             this.nextTurn();
         }
         else if(id.equals("AB")){
-            //this.addRoad(Integer.parseInt(message.substring(2)) );
+            //this.addRoad(Integer.parseInt(message.substring(2)), roads);
         }
         else if(id.equals("AC")){
             this.addSettlement(Integer.parseInt(message.substring(2)));

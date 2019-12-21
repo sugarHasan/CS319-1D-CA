@@ -114,7 +114,7 @@ public class BuildingManager {
 
         //"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
 
-        AnchorPane MapBuildings = Main.mapBuildings;
+        AnchorPane mapBuildings = Main.mapBuildings;
 
         String playerColor = "";
         if(color.equals("#FFA500"))
@@ -195,9 +195,9 @@ public class BuildingManager {
             ImageView building = new ImageView(img);
             building.setId("Settlement");
 
-            MapBuildings.getChildren().add(building);
+            mapBuildings.getChildren().add(building);
 
-            buildingsImages[location] = ((ImageView) MapBuildings.getChildren().get(MapBuildings.getChildren().size() -1 ));
+            buildingsImages[location] = ((ImageView) mapBuildings.getChildren().get(mapBuildings.getChildren().size() -1 ));
 
             //((ImageView) MapBuildings.getChildren().get(MapBuildings.getChildren().size() -1 )).setId("" + location);
 
@@ -225,7 +225,6 @@ public class BuildingManager {
             buildingsImages[location].setFitHeight(40);
             buildingsImages[location].setFitWidth(40);
         }
-
     }
 
     public void setRoadImage(String color, int location) throws URISyntaxException {
@@ -242,7 +241,7 @@ public class BuildingManager {
         else if(color.equals("#87CEFA"))
             playerColor = "Blue";
 
-        AnchorPane mapRoads = Main.mapBuildings;
+        AnchorPane mapRoads = Main.mapRoads;
 
         if(contains(road1Image,location))
         {

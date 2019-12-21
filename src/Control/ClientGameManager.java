@@ -7,6 +7,7 @@ import Model.DevelopmentCardTypes.ProgressCardTypes.RoadCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.YearOfPlentyCard;
 import Model.DevelopmentCardTypes.VictoryPointCard;
 import Model.Map;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -33,8 +34,18 @@ public class ClientGameManager extends ClientManager{
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
     //private ServerManager serverManager;
 
-    public ClientGameManager(int port, String playerName) throws URISyntaxException, IOException {
+    private AnchorPane robber;
+    private AnchorPane hex;
+    private AnchorPane buildings;
+    private AnchorPane roads;
+
+    public ClientGameManager(int port, String playerName, AnchorPane robber, AnchorPane hex, AnchorPane buildings, AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
+
+        this.robber = robber;
+        this.hex = hex;
+        this.buildings = buildings;
+        this.roads = roads;
         this.playerManager = new PlayerManager("player1", " player2", "player3", "player4");
         playerNo = -1;
         lastAdded = 1;

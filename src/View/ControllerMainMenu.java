@@ -25,6 +25,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
+import View.Main;
 
 public class ControllerMainMenu implements Initializable {
     public void howToPlay(ActionEvent event) throws IOException
@@ -47,12 +48,16 @@ public class ControllerMainMenu implements Initializable {
 
     public void CreateGame(ActionEvent event) throws IOException
     {
+        Main.server = true;
+        Main.multiPlayer = true;
         AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateGame.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
     public void JoinGame(ActionEvent event) throws IOException
     {
+        Main.server = false;
+        Main.multiPlayer = true;
         AnchorPane pane = FXMLLoader.load(getClass().getResource("JoinGame.fxml"));
         rootPane.getChildren().setAll(pane);
     }
@@ -74,9 +79,7 @@ public class ControllerMainMenu implements Initializable {
 
         init();
     }
-
     public void init() {
-
 
         for (int i = 0; i < images.length; i++) {
             images[i] = (new Image("images/Mainscene/Screen Recording 2019-12-18 at 23.45.35_000" + i + ".jpg"));
