@@ -1,5 +1,18 @@
 package Control;
 
+import Model.Card;
+import Model.DevelopmentCardTypes.KnightCard;
+import Model.DevelopmentCardTypes.ProgressCardTypes.MonopolyCard;
+import Model.DevelopmentCardTypes.ProgressCardTypes.RoadCard;
+import Model.DevelopmentCardTypes.ProgressCardTypes.YearOfPlentyCard;
+import Model.DevelopmentCardTypes.VictoryPointCard;
+import Model.Map;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class ClientGameManager extends ClientManager{
 	private final String[] PLAYER_COLORS = {"#FFA500" , "#FF6347" , "#98FB98" , "#87CEFA"};
     private int[][] DICE_TO_ADJACENT_TOWNS_WOOL = {{} , {} , {} , {40,44,45,48,49,52} , {31,36,37,41,42,46} , {17,22,23,28,29,34} , {20,25,26,31,32,37} , {} , {} , {} , {} , {} , {} };
@@ -20,9 +33,9 @@ public class ClientGameManager extends ClientManager{
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
     //private ServerManager serverManager;
 
-    public ClientGameManager( int port , String playerName) throws URISyntaxException, IOException {
+    public ClientGameManager(int port, String playerName) throws URISyntaxException, IOException {
         super(port);
-        this.playerManager = new PlayerManager( "player1"," player2", "player3" , "player4");
+        this.playerManager = new PlayerManager("player1", " player2", "player3", "player4");
         playerNo = -1;
         lastAdded = 1;
         turnNo = 1;
@@ -31,7 +44,7 @@ public class ClientGameManager extends ClientManager{
         sendNameToServer(playerName);
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
-        map = new Map(robberImage);
+        map = new Map();
         synchronizeMap();
     }
     public void sendNameToServer(String playerName){
@@ -50,8 +63,8 @@ public class ClientGameManager extends ClientManager{
         DICE_TO_ADJACENT_TOWNS_WOOL = map.getDiceAdjacency( "Wool");
     }
 
-    public void visualizeMap( AnchorPane anchorPane) throws URISyntaxException {
-        map.visualizeMap( anchorPane);
+    public void visualizeMap() throws URISyntaxException {
+        map.visualizeMap();
     }
 
     public boolean changeRobberLocation( int newLoc)
@@ -161,24 +174,24 @@ public class ClientGameManager extends ClientManager{
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
-    public boolean addRoad(int location, AnchorPane mapRoads) throws URISyntaxException {
+    //public boolean addRoad(int location) throws URISyntaxException {
 
-    }
+    //}
 
-    public boolean addSettlement(int location, AnchorPane mapBuildings) throws URISyntaxException {
+    public boolean addSettlement(int location) throws URISyntaxException {
         if(buildingManager.buildSettlement(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;
         }
         else
             return false;
     }
 
-    public boolean addCity(int location, AnchorPane mapBuildings) throws URISyntaxException {
+    public boolean addCity(int location) throws URISyntaxException {
         if(buildingManager.buildCity(playerManager.getPlayers()[playerNo] , location))
         {
-            buildingManager.setBuildingImage(returnPlayerColor(),location,mapBuildings);
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;
         }
         else
@@ -226,19 +239,19 @@ public class ClientGameManager extends ClientManager{
     }
 
     @Override
-    public void received(String message) {
+    public void received(String message) throws URISyntaxException {
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
             this.nextTurn();
         }
         else if(id.equals("AB")){
-            this.addRoad(Integer.parseInt(message.substring(2)) , mapRoads);
+            //this.addRoad(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AC")){
-        	this.addSettlement(Integer.parseInt(message.substring(2)) , mapRoads);
+        	this.addSettlement(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AD")){
-        	this.addCity(Integer.parseInt(message.substring(2)) , mapRoads);
+        	this.addCity(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AE")){
         	this.rollDice();
@@ -265,10 +278,10 @@ public class ClientGameManager extends ClientManager{
         	this.buyDevelopmentCard();
         }
         else if(id.equals("CC")){
-        	this.chatMessage(message.substring(2));
+        	//this.chatMessage(message.substring(2));
         }
         else if(id.equals("CD")){
-        	this.gameStart(message.substring(2));  //Name of the players connect the game 
+        	//this.gameStart(message.substring(2));  //Name of the players connect the game
         }
       	else if(id.equals("CE")){
       		this.synchronizeMap();	//Creates map for all players

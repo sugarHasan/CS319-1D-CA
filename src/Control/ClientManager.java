@@ -3,6 +3,7 @@ package Control;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 
 public abstract class ClientManager
@@ -65,7 +66,7 @@ public abstract class ClientManager
         }
     }
 
-    public abstract void received(String msg);
+    public abstract void received(String msg) throws URISyntaxException;
 
     public void close()
     {
