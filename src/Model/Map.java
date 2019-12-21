@@ -34,7 +34,16 @@ public class Map
         }
     }
 
-    private void createMap(AnchorPane robberImage) throws URISyntaxException {
+    public void copyMap( Land[] map, AnchorPane robberImage) throws URISyntaxException {
+        for ( int i = 0; i < map.length; i++)
+        {
+            if ( map[i] instanceof Desert )
+                robber = new Robber( i, robberImage);
+            lands[i] = map[i];
+        }
+    }
+
+    private void createMap( AnchorPane robberImage) throws URISyntaxException {
         int hill = 3;
         int mountain = 4;
         int forest = 4;
@@ -136,5 +145,63 @@ public class Map
             }
         }
         return adjacency;
+    }
+
+    public String encodeMap()
+    {
+        String result = "";
+        for ( int i = 0; i < NO_OF_LANDS; i++ )
+        {
+            result = result + i;
+            if ( lands[i] instanceof Desert )
+                result = result + "DE";
+            else if ( lands[i] instanceof Field )
+                result = result + "FI";
+            else if ( lands[i] instanceof Forest )
+                result = result + "FO";
+            else if ( lands[i] instanceof Hill )
+                result = result + "HI";
+            else if ( lands[i] instanceof Mountain )
+                result = result + "MO";
+            else if ( lands[i] instanceof Pasture )
+                result = result + "PA";
+            else
+                result = result + "  ";
+            if ( lands[i].getNumber() < 10 )
+                result = result + 0;
+            result = result + lands[i].getNumber();
+        }
+        return result;
+    }
+
+    public Land[] decodeMap( String source)
+    {
+        Land[] map = new Land[ NO_OF_LANDS];
+        int location, number;
+        String type;
+        int i = 0;
+        while ( i < NO_OF_LANDS * 5 && i+4 < source.length())
+        {
+            location = Integer.parseInt( source.substring( i, i+1));
+            type = source.substring( i+2, i+4);
+            number = Integer.parseInt( source.substring( i+3, i+5));
+
+            if ( type.equals( "DE"))
+                map[location] = new Desert( number);
+            else if ( type.equals( "FI"))
+                map[location] = new Field( number);
+            else if ( type.equals( "FO"))
+                map[location] = new Forest( number);
+            else if ( type.equals( "HI"))
+                map[location] = new Hill( number);
+            else if ( type.equals( "MO"))
+                map[location] = new Mountain( number);
+            else if ( type.equals( "PA"))
+                map[location] = new Pasture( number);
+
+            if ( location == NO_OF_LANDS - 1)
+                break;
+        }
+        return map;
     }
 }
