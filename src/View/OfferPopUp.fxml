@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
+<AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
    <children>
       <ImageView fitHeight="59.0" fitWidth="59.0" layoutX="199.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -56,22 +56,22 @@
    </Label>
       <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="95.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="281.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="29.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From:">
+      <Text layoutX="19.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From:">
          <font>
             <Font name="Carter One" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="25.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Offers:" wrappingWidth="38.0000039935112">
+      <Text layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Offers:" wrappingWidth="46.000001952052116">
          <font>
             <Font name="Carter One" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="211.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wants:">
+      <Text layoutX="208.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wants:">
          <font>
             <Font name="Carter One" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="239.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:">
+      <Text layoutX="237.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To:">
          <font>
             <Font name="Carter One" size="12.0" />
          </font>

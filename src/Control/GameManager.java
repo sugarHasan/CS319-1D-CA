@@ -304,4 +304,6 @@ public class GameManager {
     {
         return turnNo;
     }
+
+    public int getTurnPlayerHappiness() { return playerManager.getPlayerHappiness(playerNo);}
 }

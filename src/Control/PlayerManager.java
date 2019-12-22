@@ -221,4 +221,6 @@ public class PlayerManager {
     public void changeIndexPlayerName(String substring, int i) {
         players[i].changeName(substring);
     }
+
+    public int getPlayerHappiness(int playerNo) { return  players[playerNo].getHappiness(); }
 }
