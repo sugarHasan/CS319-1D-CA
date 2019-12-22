@@ -505,32 +505,27 @@ public class Main extends Application implements Initializable {
             }
             else
             {
-                int receiverNo = -1;
-                if( playerBox.getValue().equals(Player1Trade))
-                    receiverNo = 0;
-                else if( playerBox.getValue().equals(Player2Trade))
-                    receiverNo = 1;
-                else if( playerBox.getValue().equals(Player3Trade))
-                    receiverNo = 2;
-                else if( playerBox.getValue().equals(Player4Trade))
-                    receiverNo = 3;
+                if( playerBox.getValue() != null) {
+                    int receiverNo = -1;
+                    if (playerBox.getValue().equals(Player1Trade))
+                        receiverNo = 0;
+                    else if (playerBox.getValue().equals(Player2Trade))
+                        receiverNo = 1;
+                    else if (playerBox.getValue().equals(Player3Trade))
+                        receiverNo = 2;
+                    else if (playerBox.getValue().equals(Player4Trade))
+                        receiverNo = 3;
 
-                if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                    if ( !givenResource.equals( wantedResource) )
-                    {
-                        if( !multiPlayer)
-                        {
-                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                        }
-                        else if( myTurn)
-                        {
-                            if( server)
-                            {
-                                serverGameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                            }
-                            else
-                            {
-                                clientGameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                    if (!givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                        if (!givenResource.equals(wantedResource)) {
+                            if (!multiPlayer) {
+                                gameManager.makeOffer(receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                            } else if (myTurn) {
+                                if (server) {
+                                    serverGameManager.makeOffer(receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                                } else {
+                                    clientGameManager.makeOffer(receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                                }
                             }
                         }
                     }
