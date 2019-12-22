@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#joinGame" prefHeight="730.0" prefWidth="1387.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#joinGame" prefHeight="730.0" prefWidth="1387.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
     <children>
         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1010.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -40,34 +37,34 @@
                 <Font name="Carter One" size="36.0" />
             </font>
         </Label>
-        <Button id="startGame" layoutX="1008.0" layoutY="162.0" mnemonicParsing="false" onAction="#joinGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Join Game">
-            <font>
-                <Font name="Hoefler Text" size="13.0" />
-            </font></Button>
-        <Button layoutX="54.0" layoutY="523.0" mnemonicParsing="false" onAction="#backToMenu" opacity="0.0" prefHeight="150.0" prefWidth="198.0" text="Go Back">
-            <font>
-                <Font name="Hoefler Text" size="13.0" />
-            </font></Button>
         <Label layoutX="230.0" layoutY="202.0" prefHeight="59.0" prefWidth="161.0" text="Name:">
             <font>
                 <Font name="Carter One" size="36.0" />
             </font>
         </Label>
       <TextField fx:id="player1" layoutX="369.0" layoutY="193.0" prefHeight="78.0" prefWidth="446.0" />
-      <Button id="startGame" layoutX="1009.0" layoutY="538.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Start Game">
-         <font>
-            <Font name="Hoefler Text" size="13.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1008.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Button/Yellow.png" />
          </image>
       </ImageView>
+        <Button id="startGame" layoutX="1008.0" layoutY="162.0" mnemonicParsing="false" onAction="#joinGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Join Game">
+            <font>
+                <Font name="Hoefler Text" size="13.0" />
+            </font></Button>
       <Label layoutX="1067.0" layoutY="568.0" prefHeight="59.0" prefWidth="82.0" text="Start">
          <font>
             <Font name="Carter One" size="36.0" />
          </font>
       </Label>
+        <Button layoutX="54.0" layoutY="523.0" mnemonicParsing="false" onAction="#backToMenu" opacity="0.0" prefHeight="150.0" prefWidth="198.0" text="Go Back">
+            <font>
+                <Font name="Hoefler Text" size="13.0" />
+            </font></Button>
+      <Button id="startGame" layoutX="1009.0" layoutY="538.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Start Game">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
