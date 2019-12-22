@@ -1,9 +1,7 @@
 package Control;
-import Control.PlayerManager;
 import Model.*;
 import Model.DevelopmentCardTypes.*;
 import Model.DevelopmentCardTypes.ProgressCardTypes.*;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URISyntaxException;
@@ -25,7 +23,7 @@ public class GameManager {
     private boolean firstTurn;
     private boolean secondTurn;
     private int turnDice;
-    private int oldlocactionRobber = -1;
+    private int RobbersOldLocation = -1;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
     public GameManager(String player1, String player2, String player3 , String player4, AnchorPane robberImage) throws URISyntaxException {
@@ -63,9 +61,9 @@ public class GameManager {
         {
             return false;
         }
-        else if( oldlocactionRobber != newLocation)
+        else if( RobbersOldLocation != newLocation)
         {
-            oldlocactionRobber = newLoc;
+            RobbersOldLocation = newLoc;
             if ( map.moveRobber( newLoc))
             {
                 playKnightCard( newLoc);
@@ -113,8 +111,6 @@ public class GameManager {
         if ( dice == 7 )
         {
             playerManager.robberSteals();
-            //changeRobberLocation();
-            //will change robbers location to selected position
         }
         else if( dice <= 12 && dice > 1)
         {
@@ -230,7 +226,7 @@ public class GameManager {
         turnDice = this.rollDice();
         this.distributeResources(turnDice);
         updateHappiness();
-        oldlocactionRobber = -1;
+        RobbersOldLocation = -1;
         return playerManager.getPlayers()[playerNo].getName();
     }
 

@@ -4,6 +4,7 @@ import Control.ClientGameManager;
 import Control.GameManager;
 import Control.ServerGameManager;
 import Model.Offer;
+import Model.Player;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -53,6 +54,7 @@ public class Main extends Application implements Initializable {
     public static boolean multiPlayer;
     public static boolean myTurn;
     public static boolean server;
+    public static String myName;
 
     Parent tableViewParent;
     @FXML private ComboBox playerBox;
@@ -137,6 +139,7 @@ public class Main extends Application implements Initializable {
         //tableViewParent = FXMLLoader.load(getClass().getResource("CreateGame.fxml"));
         //startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
         //startCreateGame.setDisable(true);
+        myName = player1.getText();
         serverGameManager = new ServerGameManager(2222, player1.getText(),robberAnchorPane,hexTiles,mapBuildings,mapRoads);
     }
 
@@ -147,6 +150,7 @@ public class Main extends Application implements Initializable {
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        myName = player1.getText();
         clientGameManager = new ClientGameManager(2222, player1.getText(), robberAnchorPane,hexTiles,mapBuildings,mapRoads);
 
     }
@@ -227,9 +231,21 @@ public class Main extends Application implements Initializable {
                 //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
                 myTurn = true;
+                serverGameManager.sendGameData();
+                playerNames = new String[4];
+                Player[] p = serverGameManager.getPlayerArray();
+                for(int i = 0 ; i < p.length ; i++){
+                    playerNames[i] = p[i].getName();
+                }
+                p1.setText(playerNames[0]);
+                p2.setText(playerNames[1]);
+                p3.setText(playerNames[2]);
+                p4.setText(playerNames[3]);
+
             } else {
                 //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
-                clientGameManager.nextTurn();
+                //clientGameManager.sendMessage("XAA");
+                myTurn = false;
             }
         }
         else{
@@ -264,7 +280,6 @@ public class Main extends Application implements Initializable {
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
             gameManager.visualizeMap();
-
         }
 
        /*// playerBox.setButtonCell();
@@ -279,7 +294,13 @@ public class Main extends Application implements Initializable {
 
     public void wantedBoxPressed(ActionEvent event) throws IOException{
     }
-
+    public void refresh(){
+        refreshResources();
+        refreshDevelopmentCards();
+        refreshResources();
+        refreshHighestArmy();
+        refreshPlayerScores();
+    }
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
@@ -324,7 +345,7 @@ public class Main extends Application implements Initializable {
                 int location = Integer.parseInt(id.substring(1));
                 if (clientGameManager.addRoad(location)) {
                     ((javafx.scene.control.Button) event.getSource()).setDisable(true);
-                    clientGameManager.sendMessage("AB" + location+"###");
+                    clientGameManager.sendMessage("XAB" + location+"###");
                 }
                 refreshResources();
                 refreshPlayerScores();
@@ -723,7 +744,9 @@ public class Main extends Application implements Initializable {
         }
         else if(myTurn){
             if(server){
-                serverGameManager.nextTurn();
+                String temp = serverGameManager.nextTurn();
+                if(temp.equals(myName)) myTurn = true;
+                else    myTurn = false;
                 refreshResources();
                 refreshPlayerScores();
                 refreshHighestArmy();
@@ -737,7 +760,8 @@ public class Main extends Application implements Initializable {
                 }
             }
             else{
-                clientGameManager.nextTurn();
+//                clientGameManager.nextTurn();
+                clientGameManager.sendMessage("XAA");
                 refreshResources();
                 refreshPlayerScores();
                 refreshHighestArmy();

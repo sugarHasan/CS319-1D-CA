@@ -28,7 +28,6 @@ public class Map
     }
 
     public Map( Land[] map) throws URISyntaxException {
-        System.out.println( "Map");
         lands = new Land[NO_OF_LANDS];
         copyMap( map);
     }
@@ -37,6 +36,10 @@ public class Map
         for(int i = 0; i < NO_OF_LANDS; i++)
         {
             lands[i].setHex(i);
+            if ( lands[i] instanceof Desert)
+            {
+                robber.changeImagePos( i);
+            }
         }
     }
 
@@ -44,8 +47,11 @@ public class Map
         for ( int i = 0; i < map.length; i++)
         {
             if ( map[i] instanceof Desert )
+            {
                 robber = new Robber( i);
+            }
             lands[i] = map[i];
+            lands[i].setCornerLocations( ADJACENT_INTERSECTIONS_TO_LANDS[i]);
         }
     }
 

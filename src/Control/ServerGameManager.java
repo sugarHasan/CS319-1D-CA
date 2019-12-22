@@ -38,16 +38,17 @@ public class ServerGameManager extends ServerManager{
     private AnchorPane hex;
     private AnchorPane buildings;
     private AnchorPane roads;
+    private int dice;
     //private ServerManager serverManager;
 
-    public ServerGameManager( int port, String player1,AnchorPane robber,AnchorPane hex,AnchorPane buildings,AnchorPane roads) throws URISyntaxException, IOException {
+    public ServerGameManager( int port, String player1,AnchorPane robberImage,AnchorPane hex,AnchorPane buildings,AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
 
         this.robber = robber;
         this.hex = hex;
         this.buildings = buildings;
         this.roads = roads;
-        this.playerManager = new PlayerManager( player1," player2", "player3" , "player4");
+        this.playerManager = new PlayerManager( player1,"player2", "player3" , "player4");
         playerNo = -1;
         playerJoined = 1;
         lastAdded = 1;
@@ -58,7 +59,7 @@ public class ServerGameManager extends ServerManager{
         buildingManager = new BuildingManager();
         map = new Map();
         synchronizeMap();
-        map.visualizeMap();
+        visualizeMap();
     }
 
     public String returnPlayerColor(){
@@ -230,7 +231,10 @@ public class ServerGameManager extends ServerManager{
             turnNo++;
         }
         turnDice = this.rollDice();
+        sendMessageToAll("AA" +turnDice + "###");
         this.distributeResources(turnDice);
+        if(Main.myName.equals(playerManager.getName(playerNo))) Main.myTurn = true;
+        else    Main.myTurn = false;
         return playerManager.getPlayers()[playerNo].getName();
     }
 
@@ -298,59 +302,61 @@ public class ServerGameManager extends ServerManager{
     @Override
     public void received(String message) throws URISyntaxException {
         System.out.println(message);
-        sendMessageToAll(message+"###");
-        String id = message.substring(0 , 2);
-        if(id.equals("AA")){
+        sendMessageToAll(message.substring(1)+"###");
+        String id = message.substring(0 , 3);
+        if(id.equals("XAA")){
             this.nextTurn();
         }
-        else if(id.equals("AB")){
-            this.addRoad(Integer.parseInt(message.substring(2)));
+        else if(id.equals("XAB")){
+            this.addRoad(Integer.parseInt(message.substring(3)));
         }
-        else if(id.equals("AC")){
-            this.addSettlement(Integer.parseInt(message.substring(2)));
+        else if(id.equals("XAC")){
+            this.addSettlement(Integer.parseInt(message.substring(3)));
         }
-        else if(id.equals("AD")){
-            this.addCity(Integer.parseInt(message.substring(2)));
+        else if(id.equals("XAD")){
+            this.addCity(Integer.parseInt(message.substring(3)));
         }
-        else if(id.equals("AE")){
+        else if(id.equals("XAE")){
             this.rollDice();
         }
-        else if(id.equals("BA")){
-            this.playMonopoly(message.substring(2)); //String message for resourceType
+        else if(id.equals("XBA")){
+            this.playMonopoly(message.substring(3)); //String message for resourceType
         }
-        else if(id.equals("BB")){
-            this.playYearOfPlenty(message.substring(2));  //String message for resourceType
+        else if(id.equals("XBB")){
+            this.playYearOfPlenty(message.substring(3));  //String message for resourceType
         }
-        else if(id.equals("BC")){
+        else if(id.equals("XBC")){
             this.playRoadBuilding();
         }
-        else if(id.equals("BD")){
-            this.playKnightCard(Integer.parseInt(message.substring(2)));
+        else if(id.equals("XBD")){
+            this.playKnightCard(Integer.parseInt(message.substring(3)));
         }
-        else if(id.equals("BE")){
-            this.distributeResources(Integer.parseInt(message.substring(2))); //Integer for diceNumber
+        else if(id.equals("XBE")){
+            this.distributeResources(Integer.parseInt(message.substring(3))); //Integer for diceNumber
         }
-        else if(id.equals("CA")){
-            this.changeRobberLocation(Integer.parseInt(message.substring(2))); //Int for robberLocation
+        else if(id.equals("XCA")){
+            this.changeRobberLocation(Integer.parseInt(message.substring(3))); //Int for robberLocation
         }
-        else if(id.equals("CB")){
+        else if(id.equals("XCB")){
             this.buyDevelopmentCard();
         }
-        else if(id.equals("CC")){
+        else if(id.equals("XCC")){
             //this.chatMessage(message.substring(2));
         }
-        else if(id.equals("CD")){
+        else if(id.equals("XCD")){
+            System.out.println("INSIDE XCD");
             if(lastAdded<4) {
-                playerManager.changeIndexPlayerName(message.substring(2), lastAdded);
+                playerManager.changeIndexPlayerName(message.substring(3), lastAdded);
                 lastAdded++;
                 //Main.refreshPlayerScores();
+                System.out.println("AD DEGISTIRME:    " + playerManager.getName(lastAdded-1));
             }
             if(lastAdded == 4){
                 Main.myTurn = true;
                 lastAdded++;
             }
         }
-        else if(id.equals("CE")){
+        else if(id.equals("XCE")){
             this.synchronizeMap();  //Creates map for all players
             this.visualizeMap();
         }
@@ -363,17 +369,20 @@ public class ServerGameManager extends ServerManager{
             playerJoined++;
             // playerManager.setPlayerName() DO IN received
             if(playerJoined==2){
-                sendGameData();
+
             }
         }
     }
 
     public void sendGameData(){
         System.out.println("SEND GAME DATA");
-        for(int i = 0 ; i < 1 ; i++){
+        for(int i = 0 ; i < 2 ; i++){
             super.sendMessageToAll("CF"+i+playerManager.getPlayers()[i].getName()+"###");
         }
         sendMessageToAll( "CE" + map.encodeMap());
-        System.out.println( map.encodeMap());
+        System.out.println( map.getRobbersLocation());
+    }
+    public Player[] getPlayerArray(){
+        return playerManager.getPlayers();
     }
 }
