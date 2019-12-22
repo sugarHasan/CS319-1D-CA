@@ -32,7 +32,6 @@ public class ClientGameManager extends ClientManager{
     private int turnNo;
     private boolean firstTurn;
     private boolean secondTurn;
-    private int turnDice;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
     //private ServerManager serverManager;
 
@@ -40,6 +39,7 @@ public class ClientGameManager extends ClientManager{
     private AnchorPane hex;
     private AnchorPane buildings;
     private AnchorPane roads;
+    private int dice;
 
     public ClientGameManager(int port, String playerName, AnchorPane robber, AnchorPane hex, AnchorPane buildings, AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
@@ -62,7 +62,7 @@ public class ClientGameManager extends ClientManager{
     }
 
     public void sendNameToServer(String playerName){
-    	super.sendMessage("CD" + playerName + "###");
+    	super.sendMessage("XCD" + playerName + "###");
     }
 
     public String returnPlayerColor(){
@@ -223,13 +223,13 @@ public class ClientGameManager extends ClientManager{
             return false;
     }
 
-    public String nextTurn(){
+    public String nextTurn(int turnDice){
         playerNo++;
         if(playerNo == 4) {
             playerNo = 0;
             turnNo++;
         }
-        turnDice = this.rollDice();
+        dice = turnDice;
         this.distributeResources(turnDice);
         return playerManager.getPlayers()[playerNo].getName();
     }
@@ -260,9 +260,6 @@ public class ClientGameManager extends ClientManager{
         return playerManager.declineOffer( offer);
     }
 
-    public int getTurnDice() {
-        return turnDice;
-    }
 
     public int[] getResources(){
         return playerManager.getPlayers()[playerNo].getResources();
@@ -295,7 +292,7 @@ public class ClientGameManager extends ClientManager{
         System.out.println(message);
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
-            this.nextTurn();
+            this.nextTurn(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AB")){
             this.addRoad(Integer.parseInt(message.substring(2)));
@@ -350,6 +347,9 @@ public class ClientGameManager extends ClientManager{
       	    visualizeMap();
       	}
     }
-    
 
+
+    public int getTurnDice() {
+        return dice;
+    }
 }
