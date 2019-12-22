@@ -345,6 +345,7 @@ public class ClientGameManager extends ClientManager{
             }
             createMap( map.decodeMap( message.substring(2)));
       	    visualizeMap();
+      	    System.out.println( "Client robber: "+map.getRobbersLocation());
       	}
     }
 

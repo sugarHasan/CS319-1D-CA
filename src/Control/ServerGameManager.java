@@ -59,7 +59,7 @@ public class ServerGameManager extends ServerManager{
         buildingManager = new BuildingManager();
         map = new Map();
         synchronizeMap();
-        map.visualizeMap();
+        visualizeMap();
     }
 
     public String returnPlayerColor(){
@@ -380,7 +380,7 @@ public class ServerGameManager extends ServerManager{
             super.sendMessageToAll("CF"+i+playerManager.getPlayers()[i].getName()+"###");
         }
         sendMessageToAll( "CE" + map.encodeMap());
-        System.out.println( map.encodeMap());
+        System.out.println( map.getRobbersLocation());
     }
     public Player[] getPlayerArray(){
         return playerManager.getPlayers();

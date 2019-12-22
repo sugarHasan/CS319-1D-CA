@@ -267,7 +267,6 @@ public class Main extends Application implements Initializable {
                 this.refreshHighestArmy();
                 this.refreshLongestRoad();
                 playerName.setText("" + clientGameManager.getPlayerName());
-                clientGameManager.visualizeMap();
             }
         }
         else{
@@ -278,7 +277,6 @@ public class Main extends Application implements Initializable {
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
             gameManager.visualizeMap();
-
         }
 
        /*// playerBox.setButtonCell();
