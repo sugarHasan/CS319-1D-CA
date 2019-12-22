@@ -152,6 +152,8 @@ public class Map
         String result = "";
         for ( int i = 0; i < NO_OF_LANDS; i++ )
         {
+            if ( i < 10 )
+                result = result + 0;
             result = result + i;
             if ( lands[i] instanceof Desert )
                 result = result + "DE";
@@ -171,6 +173,7 @@ public class Map
                 result = result + 0;
             result = result + lands[i].getNumber();
         }
+        result = result + "###";
         return result;
     }
 
@@ -180,11 +183,11 @@ public class Map
         int location, number;
         String type;
         int i = 0;
-        while ( i < NO_OF_LANDS * 5 && i+4 < source.length())
+        while ( i < NO_OF_LANDS * 6 && i+5 < source.length())
         {
-            location = Integer.parseInt( source.substring( i, i+1));
-            type = source.substring( i+2, i+4);
-            number = Integer.parseInt( source.substring( i+3, i+5));
+            location = Integer.parseInt( source.substring( i, i+2));
+            type = source.substring( i+3, i+5);
+            number = Integer.parseInt( source.substring( i+4, i+6));
 
             if ( type.equals( "DE"))
                 map[location] = new Desert( number);
@@ -201,6 +204,8 @@ public class Map
 
             if ( location == NO_OF_LANDS - 1)
                 break;
+
+            i = i + 6;
         }
         return map;
     }
