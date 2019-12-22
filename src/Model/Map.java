@@ -27,6 +27,11 @@ public class Map
         createMap();
     }
 
+    public Map( Land[] map) throws URISyntaxException {
+        lands = new Land[NO_OF_LANDS];
+        copyMap( map);
+    }
+
     public void visualizeMap() throws URISyntaxException {
         for(int i = 0; i < NO_OF_LANDS; i++)
         {
