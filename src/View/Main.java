@@ -812,26 +812,27 @@ public class Main extends Application implements Initializable {
 
     public String playerCardType()
     {
-        if(playCardType.getValue().equals(playCardGrain))
-        {
-            return "Grain";
-        }
-        else if(playCardType.getValue().equals(playCardBrick))
-        {
-            return "Brick";
-        }
-        else if(playCardType.getValue().equals(playCardOre))
-        {
-            return "Ore";
-        }
-        else if(playCardType.getValue().equals(playCardLumber))
-        {
-            return "Lumber";
-        }
-        else if(playCardType.getValue().equals(playCardWool))
-        {
-            return "Wool";
-        }
+        if ( playCardType.getValue() != null)
+            if(playCardType.getValue().equals(playCardGrain))
+            {
+                return "Grain";
+            }
+            else if(playCardType.getValue().equals(playCardBrick))
+            {
+                return "Brick";
+            }
+            else if(playCardType.getValue().equals(playCardOre))
+            {
+                return "Ore";
+            }
+            else if(playCardType.getValue().equals(playCardLumber))
+            {
+                return "Lumber";
+            }
+            else if(playCardType.getValue().equals(playCardWool))
+            {
+                return "Wool";
+            }
         return "";
     }
 

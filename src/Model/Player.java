@@ -338,7 +338,7 @@ public class Player {
                     break;
             }
 
-        if ( hasResource( given, ratio))
+        if ( hasCard( given, ratio))
         {
             cards.put( given, cards.get( given) - ratio);
             cards.put( wanted, cards.get( wanted) + 1);
@@ -353,9 +353,9 @@ public class Player {
         cards.put( wantedResource, cards.get( wantedResource) - wantedResourceNumber);
     }
 
-    public boolean hasResource( String resource, int value)
+    public boolean hasCard(String type, int value)
     {
-        if ( cards.get( resource) >= value )
+        if ( cards.get( type) >= value )
             return true;
         return false;
     }
@@ -380,18 +380,35 @@ public class Player {
         return resourceNumber;
     }
 
-    public void playMonopoly(String resourceType, int totalResource) {
-        cards.put("Monopoly" , cards.get("Monopoly") - 1);
-        cards.put(resourceType , totalResource+cards.get(resourceType));
+    public boolean playMonopoly(String resourceType, int totalResource) {
+        if ( hasCard( "Monopoly", 1) )
+        {
+            cards.put("Monopoly" , cards.get("Monopoly") - 1);
+            cards.put(resourceType , totalResource+cards.get(resourceType));
+            return true;
+        }
+        return false;
     }
 
-    public void playYearOfPlenty(String resourceType) {
-        cards.put("YearOfPlenty" , cards.get("YearOfPlenty") - 1);
-        cards.put(resourceType , cards.get(resourceType)+2);
+    public boolean playYearOfPlenty(String resourceType) {
+        if ( hasCard("YearOfPlenty", 1))
+        {
+            cards.put("YearOfPlenty" , cards.get("YearOfPlenty") - 1);
+            cards.put(resourceType , cards.get(resourceType)+2);
+            return true;
+        }
+        return false;
     }
 
-    public void playRoadBuilding() {
-        cards.put("RoadBuilding" , cards.get("RoadBuilding") - 1);
+    public boolean playRoadBuilding() {
+        if ( hasCard( "RoadBuilding", 1))
+        {
+            cards.put( "RoadBuilding" , cards.get( "RoadBuilding") - 1);
+            cards.put( "Brick", cards.get( "Brick") + 2);
+            cards.put( "Lumber", cards.get( "Lumber") + 2);
+            return true;
+        }
+        return false;
     }
 
     public int[] getResources() {
@@ -420,7 +437,7 @@ public class Player {
     }
 
     public boolean buyRoad(){
-        if(cards.get("Brick")>= 1 &&  cards.get("Lumber")>= 1){
+        if( hasCard("Brick", 1) && hasCard("Lumber", 1)){
             cards.put("Lumber" , cards.get("Lumber")-1);
             cards.put("Brick" , cards.get("Brick")-1);
             return true;
@@ -429,7 +446,8 @@ public class Player {
     }
 
     public boolean buySettlement(){
-        if(cards.get("Brick")>= 1 &&  cards.get("Lumber")>= 1 && cards.get("Grain")>= 1 &&  cards.get("Wool")>= 1){
+        if( hasCard("Brick", 1) && hasCard("Lumber", 1)
+                && hasCard("Grain", 1) && hasCard("Wool", 1) ){
             cards.put("Lumber" , cards.get("Lumber")-1);
             cards.put("Brick" , cards.get("Brick")-1);
             cards.put("Grain" , cards.get("Grain")-1);
@@ -440,7 +458,7 @@ public class Player {
     }
 
     public boolean buyCity() {
-        if(cards.get("Grain")>= 2 &&  cards.get("Ore")>= 3){
+        if( hasCard("Grain", 2) && hasCard("Ore", 3) ){
             cards.put("Grain" , cards.get("Grain")-2);
             cards.put("Ore" , cards.get("Ore")-3);
             return true;
