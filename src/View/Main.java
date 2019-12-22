@@ -612,6 +612,7 @@ public class Main extends Application implements Initializable {
                     RollNo.setText("Turn : " + clientGameManager.getTurnNo());
                 }
             }
+            offerPopUp();
         }
     }
 
@@ -676,6 +677,38 @@ public class Main extends Application implements Initializable {
         dialog.setScene(dialogScene);
         dialog.show();
     }
+
+    public void offerPopUp() throws IOException {
+        ArrayList<Offer> offerList;
+        if ( !multiPlayer)
+            offerList = gameManager.listOffer();
+        else if ( myTurn)
+        {
+            if ( server)
+            {
+                offerList = serverGameManager.listOffer();
+            }
+            else
+            {
+                offerList = clientGameManager.listOffer();
+            }
+        }
+
+        for(int i = 0; i < offerList.size(); i++) {
+            Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+            Scene scene = new Scene(root);
+
+            Stage stage = new Stage();
+            stage.setTitle("Offer");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+            //stage.close();
+        }
+    }
+
     public static String gameOver(){
         return gameManager.gameOver();
     }
