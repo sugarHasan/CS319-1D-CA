@@ -97,6 +97,17 @@ public class Main extends Application implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
+
+    public void initializeGame(ActionEvent event) throws IOException, URISyntaxException{
+        System.out.println( "INIT GAME");
+    }
+
+    public void joinGame(ActionEvent event) throws IOException, URISyntaxException {
+        System.out.println( "JOIN GAME");
+    }
+
+
     public void PlayGame(ActionEvent event) throws IOException, URISyntaxException {
 
         Parent tableViewParent;
