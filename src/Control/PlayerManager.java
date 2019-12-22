@@ -1,4 +1,5 @@
 package Control;
+import Model.DevelopmentCardTypes.KnightCard;
 import Model.Offer;
 import Model.Player;
 import Model.Card;
@@ -155,7 +156,7 @@ public class PlayerManager {
         this.players[playerNo].playRoadBuilding();
     }
 
-    public void playKnightCard( int currentPlayerNo, ArrayList<Player> toDraw)
+    public boolean playKnightCard( int currentPlayerNo, ArrayList<Player> toDraw)
     {
         if ( players[currentPlayerNo].hasCard( "Knight", 1))
         {
@@ -185,7 +186,10 @@ public class PlayerManager {
             }
             if ( !resource.equals( ""))
                 players[currentPlayerNo].addResource( resource);
+            players[currentPlayerNo].playKnightCard();
+            return true;
         }
+        return false;
     }
 
     public int largestArmy() {

@@ -411,6 +411,16 @@ public class Player {
         return false;
     }
 
+    public boolean playKnightCard()
+    {
+        if ( hasCard( "Knight", 1) )
+        {
+            cards.put( "Knight", cards.get( "Knight") - 1);
+            return true;
+        }
+        return false;
+    }
+
     public int[] getResources() {
         int [] resources = new int[5];
         resources[0] = cards.get("Grain");
