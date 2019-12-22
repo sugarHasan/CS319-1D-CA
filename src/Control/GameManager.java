@@ -233,6 +233,7 @@ public class GameManager {
     private void updateHappiness()
     {
         playerManager.fishing();
+        playerManager.checkRobberPresence( playerNo, getRobbersLocation());
     }
 
     public void makeOffer( int receiverNo, String offeredItem,

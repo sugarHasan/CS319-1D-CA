@@ -128,7 +128,6 @@ public class Main extends Application implements Initializable {
         window.show();
     }
 
-
     public void initializeGame(ActionEvent event) throws IOException, URISyntaxException{
         System.out.println( "INIT GAME");
         tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
@@ -292,6 +291,7 @@ public class Main extends Application implements Initializable {
 
     public void wantedBoxPressed(ActionEvent event) throws IOException{
     }
+
     public void refresh(){
         refreshResources();
         refreshDevelopmentCards();
@@ -299,6 +299,7 @@ public class Main extends Application implements Initializable {
         refreshHighestArmy();
         refreshPlayerScores();
     }
+
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
@@ -389,6 +390,7 @@ public class Main extends Application implements Initializable {
                 }
 
     }
+
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
         String oldResource = givenResource;
@@ -467,6 +469,7 @@ public class Main extends Application implements Initializable {
 
         givenResourcesOfferID.setText("x " + givenResourceNumber);
     }
+
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
         String oldResource = wantedResource;
 
@@ -620,6 +623,7 @@ public class Main extends Application implements Initializable {
         }
 
     }
+
     public void refreshDevelopmentCards() {
         if (!multiPlayer) {
             int[] developments = gameManager.getDevelopmentCards();
@@ -1132,7 +1136,6 @@ public class Main extends Application implements Initializable {
     private ObservableValue<? extends String> textValueProperty() {
         return textValueProperty();
     }
+
     private final StringProperty textValue = new SimpleStringProperty("waiting for input");
-
-
 }
