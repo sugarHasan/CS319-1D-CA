@@ -98,6 +98,10 @@ public class Player {
         }
     }
 
+    public int getHappiness() {
+        return happiness.getHappinessValue();
+    }
+
     public String stealRandomResource()
     {
         if ( cards.get( "Wool") < 0

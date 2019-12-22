@@ -29,7 +29,7 @@
                            <Image url="@../images/Background.png" />
                        </image>
                    </ImageView>
-                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-290.0" pickOnBounds="true" preserveRatio="true">
+                   <ImageView fitHeight="804.0" fitWidth="1412.0" layoutX="-330.0" pickOnBounds="true" preserveRatio="true" scaleX="1.17">
                        <image>
                            <Image url="@../images/Panels/Panel.png" />
                        </image>
@@ -167,6 +167,16 @@
                         <Image url="@../images/Panels/Panel1.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="35.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/happiness.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="happiness" layoutX="70.0" layoutY="16.0" text="happiness">
+                     <font>
+                        <Font name="Carter One" size="20.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
             <AnchorPane fx:id="robberPane" layoutX="550.0" layoutY="600.0" prefHeight="200.0" prefWidth="300.0">
                <children>
