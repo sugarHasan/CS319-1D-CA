@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,6 +57,7 @@ public class ControllerMainMenu implements Initializable {
         Main.multiPlayer = true;
         AnchorPane pane = FXMLLoader.load(getClass().getResource("CreateGame.fxml"));
         rootPane.getChildren().setAll(pane);
+        //Main.startCreateGame.setEnabled(false);
     }
 
     public void JoinGame(ActionEvent event) throws IOException
@@ -63,7 +65,12 @@ public class ControllerMainMenu implements Initializable {
         Main.server = false;
         Main.multiPlayer = true;
         AnchorPane pane = FXMLLoader.load(getClass().getResource("JoinGame.fxml"));
+
         rootPane.getChildren().setAll(pane);
+        ((Button) rootPane.lookup("#startJoinGame")).setDisable(true);
+
+        //Main.startJoinGame.setEnabled(false);
+
     }
 
     public void exit(ActionEvent event)

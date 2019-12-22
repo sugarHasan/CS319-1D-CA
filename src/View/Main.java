@@ -109,6 +109,8 @@ public class Main extends Application implements Initializable {
     private ImageView offeredResource;
     @FXML
     private ImageView takenResource;
+    @FXML
+    private Label happiness;
 
     @FXML static public AnchorPane hexTiles;
     @FXML static public AnchorPane mapBuildings;
@@ -182,6 +184,7 @@ public class Main extends Application implements Initializable {
         playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
         playerBox = ((javafx.scene.control.ComboBox) tableViewParent.lookup("#playerBox"));
         startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
+        happiness  = ((javafx.scene.control.Label) tableViewParent.lookup("#happiness"));
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
@@ -284,6 +287,8 @@ public class Main extends Application implements Initializable {
 
        /*// playerBox.setButtonCell();
         startCreateGame.setDisable(true);*/
+
+       happiness.setText("" + gameManager.getTurnPlayerHappiness());
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
@@ -777,6 +782,7 @@ public class Main extends Application implements Initializable {
         }
         knightCardPlayed = false;
         offerPopUp();
+        happiness.setText("" + gameManager.getTurnPlayerHappiness());
     }
 
     public static void refreshPlayerScores()
@@ -1160,12 +1166,14 @@ public class Main extends Application implements Initializable {
         primaryStage.setTitle("Settlers of Catan");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
     }
 
-    public static void main(String[] args) throws IOException, FontFormatException {
+    public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
         //Font.createFont("Carter One", Main.class.getResource("/Font.CarterOne/CarterOne.ttf").toURI().toString());
 
-        //Font.createFont(Font.TRUETYPE_FONT, new File("/Font.CarterOne/CarterOne.ttf"));
+        //Font.createFont(Font.TRUETYPE_FONT, new File("/Font.CarterOneCarterOne.ttf"));
+
         launch(args);
 
     }

@@ -54,9 +54,9 @@
                 <Font name="Carter One" size="36.0" />
             </font>
         </Label>
-      <TextField disable="true" layoutX="81.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
-      <TextField disable="true" layoutX="506.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
-      <TextField disable="true" layoutX="935.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <TextField fx:id="createGamePlayer1" disable="true" layoutX="81.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <TextField fx:id="CreateGamePlayer2" disable="true" layoutX="506.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <TextField fx:id="createPlayer3" disable="true" layoutX="935.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
       <ImageView fitHeight="112.0" fitWidth="185.0" layoutX="1026.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Button/Yellow.png" />
@@ -67,7 +67,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <Button id="startCreateGame" fx:id="startCreateGame"  layoutX="1025.0" layoutY="568.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="118.0" prefWidth="148.0" text="Start Game">
+      <Button id="startCreateGame" fx:id="startCreateGame" layoutX="1025.0" layoutY="568.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="118.0" prefWidth="148.0" text="Start Game">
          <font>
             <Font name="Hoefler Text" size="13.0" />
          </font>
