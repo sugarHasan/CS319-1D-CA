@@ -46,7 +46,6 @@ public class Main extends Application implements Initializable {
     private static ClientGameManager clientGameManager;
     private boolean offer = true;
     private boolean knightCardPlayed = false;
-    private boolean offerBoo;
     private String givenResource = "";
     private int givenResourceNumber = 0;
     private String wantedResource = "";
@@ -868,7 +867,6 @@ public class Main extends Application implements Initializable {
         {
             System.out.println( "INSIDE");
             for(int i = 0; i < offerList.size(); i++) {
-                offerBoo = false;
                 if (offerList.get(i).getDemandedItem().equals("Wool")) {
                     Taken = "Sheep";
                 } else if( offerList.get(i).getDemandedItem().equals("Lumber")) {
@@ -948,13 +946,18 @@ public class Main extends Application implements Initializable {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
-                acceptOffer.setOnAction( e -> {
-                    offerBoo = true;
+                ArrayList<Offer> finalOfferList = offerList;
+                int finalI = i;
+
+
+                acceptOffer.setOnAction(e -> {
+                    System.out.println(gameManager.acceptOffer( finalOfferList.get(finalI)));
+                    refreshResources();
                     stage.close();
                 });
 
                 refuseOffer.setOnAction( e -> {
-                    offerBoo = false;
+                    System.out.println("SET ON ACTION");
                     stage.close();
                 });
             }
