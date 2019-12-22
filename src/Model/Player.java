@@ -19,10 +19,10 @@ public class Player {
         this.name = name;
         cards = new HashMap<String , Integer>();
         cards.put("Wool" , 0);
-        cards.put("Ore" , 6);
+        cards.put("Ore" , 0);
         cards.put("Lumber" , 0);
-        cards.put("Grain" , 4);
-        cards.put("Brick" , 2);
+        cards.put("Grain" , 0);
+        cards.put("Brick" , 0);
         cards.put("Knight" , 0);
         cards.put("RoadBuilding" , 0);
         cards.put("YearOfPlenty" , 0);
@@ -64,38 +64,42 @@ public class Player {
         int brick = cards.get( "Brick");
         int random;
 
-        int steal = (wool + ore + lumber + grain + brick) / 2;
-        while ( steal > 0 )
+        int steal = wool + ore + lumber + grain + brick;
+        if ( steal > 7 )
         {
-            random = (int) Math.ceil( Math.random() * 5);
-            if ( random == 1 && wool > 0 )
+            steal = steal / 2;
+            while ( steal > 0 )
             {
-                cards.put( "Wool", cards.get( "Wool")-1);
-                wool--;
+                random = (int) Math.ceil( Math.random() * 5);
+                if ( random == 1 && wool > 0 )
+                {
+                    cards.put( "Wool", cards.get( "Wool")-1);
+                    wool--;
+                }
+                else if ( random == 2 && ore > 0 )
+                {
+                    cards.put( "Ore", cards.get( "Ore")-1);
+                    ore--;
+                }
+                else if ( random == 3 && lumber > 0 )
+                {
+                    cards.put( "Lumber", cards.get( "Lumber")-1);
+                    lumber--;
+                }
+                else if ( random == 4 && grain > 0 )
+                {
+                    cards.put( "Grain", cards.get( "Grain")-1);
+                    grain--;
+                }
+                else if ( random == 5 && brick > 0)
+                {
+                    cards.put( "Brick", cards.get( "Brick")-1);
+                    brick--;
+                }
+                else
+                    continue;
+                steal--;
             }
-            else if ( random == 2 && ore > 0 )
-            {
-                cards.put( "Ore", cards.get( "Ore")-1);
-                ore--;
-            }
-            else if ( random == 3 && lumber > 0 )
-            {
-                cards.put( "Lumber", cards.get( "Lumber")-1);
-                lumber--;
-            }
-            else if ( random == 4 && grain > 0 )
-            {
-                cards.put( "Grain", cards.get( "Grain")-1);
-                grain--;
-            }
-            else if ( random == 5 && brick > 0)
-            {
-                cards.put( "Brick", cards.get( "Brick")-1);
-                brick--;
-            }
-            else
-                continue;
-            steal--;
         }
     }
 
@@ -196,11 +200,11 @@ public class Player {
 
     public void sadnessLose()
     {
-        int random;
-        boolean stole = false;
-
         if ( happiness.loseCard() )
         {
+            int random;
+            boolean stole = false;
+
             while ( !stole )
             {
                 stole = true;
@@ -341,6 +345,13 @@ public class Player {
             if(buildings.get(i) instanceof City){
                 if(buildings.get(i).getLocation() == town){
                     cards.put(resource , cards.get(resource)+2);
+                }
+            }
+            if( buildings.get(i) instanceof Capital)
+            {
+                if( buildings.get(i).getLocation() == town)
+                {
+                    cards.put( resource, cards.get(resource)+3);
                 }
             }
         }
