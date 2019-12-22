@@ -966,13 +966,13 @@ public class Main extends Application implements Initializable {
 
 
                 acceptOffer.setOnAction(e -> {
-                    System.out.println(gameManager.acceptOffer( finalOfferList.get(finalI)));
+                    gameManager.acceptOffer( finalOfferList.get(finalI));
                     refreshResources();
                     stage.close();
                 });
 
                 refuseOffer.setOnAction( e -> {
-                    System.out.println("SET ON ACTION");
+                    gameManager.declineOffer( finalOfferList.get(finalI));
                     stage.close();
                 });
             }
