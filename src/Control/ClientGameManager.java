@@ -7,6 +7,7 @@ import Model.DevelopmentCardTypes.ProgressCardTypes.RoadCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.YearOfPlentyCard;
 import Model.DevelopmentCardTypes.VictoryPointCard;
 import Model.Map;
+import Model.Land;
 import Model.Offer;
 import javafx.scene.layout.AnchorPane;
 
@@ -52,18 +53,25 @@ public class ClientGameManager extends ClientManager{
         turnNo = 1;
         firstTurn = false;
         secondTurn = false;
+        if ( playerName == null)
+            playerName = "Player";
         sendNameToServer(playerName);
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
         map = new Map();
-        synchronizeMap();
     }
+
     public void sendNameToServer(String playerName){
     	super.sendMessage("CD" + playerName + "###");
     }
 
     public String returnPlayerColor(){
         return PLAYER_COLORS[playerNo];
+    }
+
+    public void createMap( Land[] toCopy) throws URISyntaxException {
+        map = new Map( toCopy);
+        synchronizeMap();
     }
 
     private void synchronizeMap() {
@@ -78,6 +86,7 @@ public class ClientGameManager extends ClientManager{
     public void visualizeMap() throws URISyntaxException {
         map.visualizeMap();
     }
+
     public boolean changeRobberLocation( int newLoc)
     {
         return map.moveRobber( newLoc);
@@ -323,8 +332,11 @@ public class ClientGameManager extends ClientManager{
         	//this.gameStart(message.substring(2));  //Name of the players connect the game
         }
       	else if(id.equals("CE")){
-      		this.synchronizeMap();	//Creates map for all players
-      		this.visualizeMap();
+      	    while ( map == null)
+            {
+
+            }
+            map = new Map( map.decodeMap( message.substring(2)));
       	}
     }
     

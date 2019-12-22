@@ -53,6 +53,7 @@ public class Main extends Application implements Initializable {
     public static boolean myTurn;
     public static boolean server;
 
+    Parent tableViewParent;
     @FXML private ComboBox playerBox;
     @FXML private RadioButton playerRadio, bankRadio;
     @FXML private  javafx.scene.control.Button offerButton;
@@ -78,6 +79,9 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String Player1Trade ,Player2Trade ,Player3Trade ,Player4Trade ;
     @FXML private ComboBox playCardType;
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
+    @FXML private javafx.scene.control.Label givenResourcesOfferID;
+    @FXML private javafx.scene.control.Label wantedResourcesOfferID;
+    @FXML private javafx.scene.control.Button startCreateGame;
     @FXML
     private TextField player1;
     @FXML
@@ -96,9 +100,6 @@ public class Main extends Application implements Initializable {
     @FXML static public AnchorPane mapRoads;
     @FXML static public AnchorPane robberAnchorPane;
 
-    public Main() {
-    }
-
     public void backToMenu(ActionEvent event) throws IOException
     {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -113,12 +114,24 @@ public class Main extends Application implements Initializable {
 
     public void initializeGame(ActionEvent event) throws IOException, URISyntaxException{
         System.out.println( "INIT GAME");
+        tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
+        hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
+        mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
+        robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
+        mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        serverGameManager = new ServerGameManager(2222, player1.getText(),robberAnchorPane,hexTiles,mapBuildings,mapRoads);
     }
 
     public void joinGame(ActionEvent event) throws IOException, URISyntaxException {
         System.out.println( "JOIN GAME");
-    }
+        tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
+        hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
+        mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
+        robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
+        mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        clientGameManager = new ClientGameManager(2222, player1.getText(), robberAnchorPane,hexTiles,mapBuildings,mapRoads);
 
+    }
 
     public void PlayGame(ActionEvent event) throws IOException, URISyntaxException {
 
@@ -145,6 +158,8 @@ public class Main extends Application implements Initializable {
         playerLongestRoad = ((javafx.scene.control.Label) tableViewParent.lookup("#playerLongestRoad"));
         RollNo = ((javafx.scene.control.Label) tableViewParent.lookup("#RollNo"));
         playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
+        playerBox = ((javafx.scene.control.ComboBox) tableViewParent.lookup("#playerBox"));
+        startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
@@ -190,11 +205,11 @@ public class Main extends Application implements Initializable {
         window.show();
         if(multiPlayer) {
             if (server) {
-                serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+                //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
                 //myTurn = true;
             } else {
-                clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+                //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 clientGameManager.nextTurn();
             }
         }
@@ -230,7 +245,12 @@ public class Main extends Application implements Initializable {
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
             gameManager.visualizeMap();
+
         }
+
+        offer = true;
+       // playerBox.setButtonCell();
+        startCreateGame.setDisable(true);
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
@@ -245,11 +265,15 @@ public class Main extends Application implements Initializable {
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
+        givenResourcesOfferID.setDisable(false);
+        wantedResourcesOfferID.setDisable(false);
     }
 
     public void bankRadioPressed(ActionEvent event) throws IOException{
         offer = false;
         playerBox.setDisable( true);
+        givenResourcesOfferID.setDisable(true);
+        wantedResourcesOfferID.setDisable(true);
     }
 
     public void edgePressed(ActionEvent event) throws IOException, URISyntaxException {
@@ -371,6 +395,8 @@ public class Main extends Application implements Initializable {
             givenResourceNumber++;
         else
             givenResourceNumber = 1;
+
+        givenResourcesOfferID.setText("x " + givenResourceNumber);
     }
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
         String oldResource = wantedResource;
@@ -437,6 +463,8 @@ public class Main extends Application implements Initializable {
             wantedResourceNumber++;
         else
             wantedResourceNumber = 1;
+
+        wantedResourcesOfferID.setText("x " + wantedResourceNumber);
     }
 
     public void offerButtonPressed(ActionEvent event) throws IOException{
