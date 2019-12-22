@@ -678,8 +678,8 @@ public class Main extends Application implements Initializable {
                     RollNo.setText("Turn : " + clientGameManager.getTurnNo());
                 }
             }
-            offerPopUp();
         }
+        offerPopUp();
     }
 
     public static void refreshPlayerScores()
