@@ -108,8 +108,8 @@ public class PlayerManager {
             }
 
             if ( senderNo >= 0 && senderNo < players.length && receiverNo >= 0 && receiverNo < players.length
-                    && players[senderNo].hasResource( offer.getOfferedItem(), offer.getOfferNum())
-                    && players[receiverNo].hasResource( offer.getDemandedItem(), offer.getDemandNum()) )
+                    && players[senderNo].hasCard( offer.getOfferedItem(), offer.getOfferNum())
+                    && players[receiverNo].hasCard( offer.getDemandedItem(), offer.getDemandNum()) )
             {
                 players[senderNo].manageOffer( offer.getDemandedItem(), offer.getDemandNum(),
                                                offer.getOfferedItem(), offer.getOfferNum());
@@ -135,13 +135,16 @@ public class PlayerManager {
     }
 
     public void playMonopoly(String resourceType , int playerNo) {
-        int totalResource = 0;
-        for(int i = 0 ; i < players.length ; i++){
-            if(i!=playerNo){
-                totalResource += players[playerNo].affectMonopoly(resourceType);
+        if ( players[playerNo].hasCard( "Monopoly", 1))
+        {
+            int totalResource = 0;
+            for(int i = 0 ; i < players.length ; i++){
+                if(i!=playerNo){
+                    totalResource += players[playerNo].affectMonopoly(resourceType);
+                }
             }
+            players[playerNo].playMonopoly(resourceType , totalResource);
         }
-        players[playerNo].playMonopoly(resourceType , totalResource);
     }
 
     public void playYearOfPlenty(String resourceType, int playerNo) {
@@ -154,32 +157,35 @@ public class PlayerManager {
 
     public void playKnightCard( int currentPlayerNo, ArrayList<Player> toDraw)
     {
-        String resource, playerName;
-        int random;
-
-        resource = "";
-        while ( toDraw.size() > 0 )
+        if ( players[currentPlayerNo].hasCard( "Knight", 1))
         {
-            random = (int) Math.ceil( Math.random() * toDraw.size());
-            playerName = toDraw.get(random).getName();
+            String resource, playerName;
+            int random;
 
-            for ( int j = 0; j < players.length; j++)
+            resource = "";
+            while ( toDraw.size() > 0 )
             {
-                if ( j != currentPlayerNo && players[j].getName().equals( playerName) )
+                random = (int) Math.ceil( Math.random() * toDraw.size());
+                playerName = toDraw.get(random).getName();
+
+                for ( int j = 0; j < players.length; j++)
                 {
-                    resource = players[j].stealRandomResource();
-                    break;
+                    if ( j != currentPlayerNo && players[j].getName().equals( playerName) )
+                    {
+                        resource = players[j].stealRandomResource();
+                        break;
+                    }
                 }
+                if ( resource.equals("") )
+                {
+                    toDraw.remove( random);
+                }
+                else
+                    break;
             }
-            if ( resource.equals("") )
-            {
-                toDraw.remove( random);
-            }
-            else
-                break;
+            if ( !resource.equals( ""))
+                players[currentPlayerNo].addResource( resource);
         }
-        if ( !resource.equals( ""))
-            players[currentPlayerNo].addResource( resource);
     }
 
     public int largestArmy() {

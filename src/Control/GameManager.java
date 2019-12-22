@@ -163,11 +163,13 @@ public class GameManager {
     }
 
     public void playMonopoly(String resourceType){
-        this.playerManager.playMonopoly(resourceType , playerNo);
+        if ( !resourceType.equals( ""))
+            this.playerManager.playMonopoly(resourceType , playerNo);
     }
 
     public void playYearOfPlenty(String resourceType){
-        this.playerManager.playYearOfPlenty(resourceType , playerNo);
+        if ( !resourceType.equals( ""))
+            this.playerManager.playYearOfPlenty(resourceType , playerNo);
     }
 
     public void playRoadBuilding(){
