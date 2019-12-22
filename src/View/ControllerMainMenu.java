@@ -9,12 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -30,8 +32,20 @@ import View.Main;
 public class ControllerMainMenu implements Initializable {
     public void howToPlay(ActionEvent event) throws IOException
     {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("HowToPlay.fxml"));
-        rootPane.getChildren().setAll(pane);
+        /*AnchorPane pane = FXMLLoader.load(getClass().getResource("HowToPlay.fxml"));
+        rootPane.getChildren().setAll(pane);*/
+
+        Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+        Scene scene = new Scene(root);
+
+        Stage stage = new Stage();
+        stage.setTitle("Offer");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+
+        //stage.close();
 
     }
     public void settings(ActionEvent event) throws IOException
