@@ -34,7 +34,6 @@ public class Player {
         happiness = new Happiness();
     }
 
-
     public void addCard(Card newCard){
         String cardName = newCard.getCardType();
         int numberOfCard = cards.get(cardName);
@@ -50,6 +49,7 @@ public class Player {
         }
         return false;
     }
+
     public ArrayList<Building> getBuildings() {
         return buildings;
     }
@@ -169,6 +169,17 @@ public class Player {
         happiness.caughtFish( count);
     }
 
+    public void checkRobberPresence( int robberLocation)
+    {
+        int count = 0;
+        for ( int i = 0; i < buildings.size(); i++ )
+        {
+            if ( buildings.get(i).getLocation() == robberLocation)
+                count++;
+        }
+        happiness.robberInTown( count);
+    }
+
     public void addBuilding(Building newBuilding){
         buildings.add(newBuilding);
     }
@@ -257,6 +268,7 @@ public class Player {
             }
         }
     }
+
     public String getName() {
         return name;
     }

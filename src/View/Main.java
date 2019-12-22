@@ -46,6 +46,7 @@ public class Main extends Application implements Initializable {
     private static ClientGameManager clientGameManager;
     private boolean offer = true;
     private boolean knightCardPlayed = false;
+    private boolean offerBoo;
     private String givenResource = "";
     private int givenResourceNumber = 0;
     private String wantedResource = "";
@@ -129,7 +130,6 @@ public class Main extends Application implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
-
 
     public void initializeGame(ActionEvent event) throws IOException, URISyntaxException{
         System.out.println( "INIT GAME");
@@ -299,6 +299,7 @@ public class Main extends Application implements Initializable {
 
     public void wantedBoxPressed(ActionEvent event) throws IOException{
     }
+
     public void refresh(){
         refreshResources();
         refreshDevelopmentCards();
@@ -306,6 +307,7 @@ public class Main extends Application implements Initializable {
         refreshHighestArmy();
         refreshPlayerScores();
     }
+
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
@@ -396,6 +398,7 @@ public class Main extends Application implements Initializable {
                 }
 
     }
+
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
         String oldResource = givenResource;
@@ -474,6 +477,7 @@ public class Main extends Application implements Initializable {
 
         givenResourcesOfferID.setText("x " + givenResourceNumber);
     }
+
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
         String oldResource = wantedResource;
 
@@ -627,6 +631,7 @@ public class Main extends Application implements Initializable {
         }
 
     }
+
     public void refreshDevelopmentCards() {
         if (!multiPlayer) {
             int[] developments = gameManager.getDevelopmentCards();
@@ -869,6 +874,7 @@ public class Main extends Application implements Initializable {
         {
             System.out.println( "INSIDE");
             for(int i = 0; i < offerList.size(); i++) {
+                offerBoo = false;
                 if (offerList.get(i).getDemandedItem().equals("Wool")) {
                     Taken = "Sheep";
                 } else if( offerList.get(i).getDemandedItem().equals("Lumber")) {
@@ -948,7 +954,15 @@ public class Main extends Application implements Initializable {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
-                //stage.close();
+                acceptOffer.setOnAction( e -> {
+                    offerBoo = true;
+                    stage.close();
+                });
+
+                refuseOffer.setOnAction( e -> {
+                    offerBoo = false;
+                    stage.close();
+                });
             }
         }
     }
@@ -1187,7 +1201,6 @@ public class Main extends Application implements Initializable {
     private ObservableValue<? extends String> textValueProperty() {
         return textValueProperty();
     }
+
     private final StringProperty textValue = new SimpleStringProperty("waiting for input");
-
-
 }

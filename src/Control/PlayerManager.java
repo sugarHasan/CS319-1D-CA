@@ -71,6 +71,11 @@ public class PlayerManager {
             players[i].fishing();
     }
 
+    public void checkRobberPresence( int playerNo, int robberLocation)
+    {
+        players[playerNo].checkRobberPresence( robberLocation);
+    }
+
     public boolean tradeResource(int playerNo , String given , String wanted){
         return players[playerNo].tradeResource(given , wanted);
     }
