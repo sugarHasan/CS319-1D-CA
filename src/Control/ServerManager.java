@@ -64,6 +64,7 @@ public abstract class ServerManager {
             }
             isBlocked = true;
             sockets.add(socket);
+            System.out.println("SOCKET SIZE: " + sockets.size());
             isBlocked = false;
             connectionEstablished();
             messageListeners.add(new Thread(new Runnable() {
@@ -85,6 +86,7 @@ public abstract class ServerManager {
     private void listenForMessages( Socket socket) throws URISyntaxException {
         String message = "";
         boolean isAlive = true;
+        System.out.println("IS LISTENING");
         while ( isAlive)
         {
             try
@@ -98,7 +100,6 @@ public abstract class ServerManager {
             if ( message.contains(TERMINATION))
             {
                 received( message.substring( 0, message.length() - 3));
-                sendMessageToAll(message);
                 message = "";
             }
         }
@@ -122,6 +123,8 @@ public abstract class ServerManager {
     public abstract void connectionEstablished();
     public void sendMessageToAll( String msg)
     {
+        ArrayList<Socket> erase = new ArrayList<>();
+
         byte[] data = msg.getBytes();
         for ( Socket socket : sockets)
         {
@@ -131,7 +134,7 @@ public abstract class ServerManager {
             }
             catch (IOException e)
             {
-
+                erase.add( socket);
             }
         }
 
@@ -147,37 +150,11 @@ public abstract class ServerManager {
                 Thread.currentThread().interrupt();
             }
         }
+        isBlocked = true;
+        sockets.removeAll( erase);
+        isBlocked = false;
     }
-    public void sendMessage( String msg, InetAddress address)
-    {
-        byte[] data = msg.getBytes();
-        for ( Socket socket : sockets)
-        {
-            if ( address.equals( socket.getInetAddress()))
-            {
-                try
-                {
-                    socket.getOutputStream().write( data);
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        while ( isBlocked)
-        {
-            try
-            {
-                Thread.sleep( 100);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
+
     public void stopListeningForConnections()
     {
         stopListening = true;

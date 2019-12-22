@@ -465,4 +465,8 @@ public class Player {
         }
         return false;
     }
+
+    public void changeName(String substring) {
+        name = substring;
+    }
 }

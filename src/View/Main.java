@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
 
-    private String[] playerNames;
+    private static String[] playerNames;
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
@@ -60,8 +60,14 @@ public class Main extends Application implements Initializable {
     @FXML private  javafx.scene.control.Label grainNo, brickNo, oreNo, lumberNo, woolNo;
     @FXML private  javafx.scene.control.Label KnightNo, VictoryNo, RoadNo, PlentyNo, MonoNo;
     @FXML private ListView<String> playerList;
-    @FXML private javafx.scene.control.Label p1, p2, p3, p4;
-    @FXML private javafx.scene.control.Label p1Score ,p2Score ,p3Score ,p4Score ;
+    @FXML private static javafx.scene.control.Label p1;
+    @FXML private static javafx.scene.control.Label p2;
+    @FXML private static javafx.scene.control.Label p3;
+    @FXML private static javafx.scene.control.Label p4;
+    @FXML private static javafx.scene.control.Label p1Score;
+    @FXML private static javafx.scene.control.Label p2Score;
+    @FXML private static javafx.scene.control.Label p3Score;
+    @FXML private static javafx.scene.control.Label p4Score ;
     @FXML private javafx.scene.control.Label playerHighestArmy;
     @FXML private javafx.scene.control.Label playerLongestRoad;
     @FXML private javafx.scene.control.Label playerName;
@@ -167,7 +173,7 @@ public class Main extends Application implements Initializable {
             if (server) {
                 serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
-                myTurn = true;
+                //myTurn = true;
             } else {
                 clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 clientGameManager.nextTurn();
@@ -598,7 +604,7 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    public void refreshPlayerScores()
+    public static void refreshPlayerScores()
     {
         if(!multiPlayer) {
             int[] playerScores = gameManager.getScoreBoard();
@@ -613,7 +619,7 @@ public class Main extends Application implements Initializable {
             p3Score.setText("" + playerScores[2]);
             p4Score.setText("" + playerScores[3]);
         }
-        else if(myTurn)
+        else
         {
             if(server){
                 int[] playerScores = serverGameManager.getScoreBoard();
@@ -622,14 +628,21 @@ public class Main extends Application implements Initializable {
                         gameOverPopUp(gameOver());
                     }
                 }
-
+                for(int i = 0 ; i < 4 ; i++)    playerNames[i] = serverGameManager.getPlayerName(i);
+//                System.out.println("MESAJ ICIN");
+//                System.out.println(playerNames[1]);
+//                System.out.println("MESAJ SONU");
                 p1Score.setText("" + playerScores[0]);
                 p2Score.setText("" + playerScores[1]);
                 p3Score.setText("" + playerScores[2]);
                 p4Score.setText("" + playerScores[3]);
+                p1.setText(playerNames[0]);
+                p2.setText(playerNames[1]);
+                p3.setText(playerNames[2]);
+                p4.setText(playerNames[3]);
             }
             else{
-                int[] playerScores = serverGameManager.getScoreBoard();
+                int[] playerScores = clientGameManager.getScoreBoard();
                 for (int i = 0; i < 4; i++) {
                     if (playerScores[i] >= 10) {
                         gameOverPopUp(gameOver());
@@ -643,7 +656,7 @@ public class Main extends Application implements Initializable {
             }
         }
     }
-    public void gameOverPopUp(String gameWinner) {
+    public static void gameOverPopUp(String gameWinner) {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         VBox dialogVbox = new VBox(20);
@@ -652,7 +665,7 @@ public class Main extends Application implements Initializable {
         dialog.setScene(dialogScene);
         dialog.show();
     }
-    public String gameOver(){
+    public static String gameOver(){
         return gameManager.gameOver();
     }
 
@@ -671,7 +684,7 @@ public class Main extends Application implements Initializable {
                 playerHighestArmy.setText(p4.getText());
             }
         }
-        else if(myTurn){
+        else{
             if(server){
                 int army = serverGameManager.largestArmy();
 
@@ -715,9 +728,9 @@ public class Main extends Application implements Initializable {
                 playerLongestRoad.setText(p4.getText());
             }
         }
-        else if(myTurn){
+        else {
             if(server){
-                int road = clientGameManager.longestRoad();
+                int road = serverGameManager.longestRoad();
                 if (road == 0) {
                     playerLongestRoad.setText(p1.getText());
                 } else if (road == 1) {
@@ -729,7 +742,7 @@ public class Main extends Application implements Initializable {
                 }
             }
             else{
-                int road = serverGameManager.longestRoad();
+                int road = clientGameManager.longestRoad();
                 if (road == 0) {
                     playerLongestRoad.setText(p1.getText());
                 } else if (road == 1) {

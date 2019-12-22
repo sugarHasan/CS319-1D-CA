@@ -16,14 +16,11 @@ public abstract class ClientManager
     public ClientManager( int serverPort) throws UnknownHostException, IOException
     {
         socket = new Socket( ip ,  serverPort);
-        msgListenerThread = new Thread( new Runnable() {
-            public void run()
-            {
-                try {
-                    listenForMessages();
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
+        msgListenerThread = new Thread(() -> {
+            try {
+                listenForMessages();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
             }
         });
         msgListenerThread.start();
@@ -57,20 +54,19 @@ public abstract class ClientManager
         while ( true)
         {
             message = "";
-            try
+            while ( !message.contains( TERMINATION))
             {
-                message += (char) stream.read();
+                try
+                {
+                    message += (char) stream.read();
+                }
+                catch (IOException e)
+                {
+                    return;
+                }
             }
-            catch (IOException e)
-            {
-                return;
-            }
-            if ( message.contains(TERMINATION))
-            {
-                System.out.println("MESAJ ALINIYOR");
-                received( message.substring( 0, message.length() - 3));
-                message = "";
-            }
+
+            received( message.substring( 0, message.length() - 3));
         }
     }
 
