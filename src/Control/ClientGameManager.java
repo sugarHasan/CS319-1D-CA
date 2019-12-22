@@ -41,7 +41,6 @@ public class ClientGameManager extends ClientManager{
 
     public ClientGameManager(int port, String playerName, AnchorPane robber, AnchorPane hex, AnchorPane buildings, AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
-
         this.robber = robber;
         this.hex = hex;
         this.buildings = buildings;
@@ -251,6 +250,7 @@ public class ClientGameManager extends ClientManager{
 
     @Override
     public void received(String message) throws URISyntaxException {
+        System.out.println(message);
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
             this.nextTurn();

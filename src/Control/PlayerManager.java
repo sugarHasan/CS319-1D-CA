@@ -203,4 +203,8 @@ public class PlayerManager {
     public String getName(int playerNo) {
         return players[playerNo].getName();
     }
+
+    public void changeIndexPlayerName(String substring, int i) {
+        players[i].changeName(substring);
+    }
 }

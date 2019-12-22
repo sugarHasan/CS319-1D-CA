@@ -5,6 +5,7 @@ import Model.Player;
 import Model.Card;
 import Model.DevelopmentCardTypes.*;
 import Model.DevelopmentCardTypes.ProgressCardTypes.*;
+import View.Main;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
@@ -182,6 +183,7 @@ public class ServerGameManager extends ServerManager{
     }
 
     public boolean addRoad(int location) throws URISyntaxException {
+        sendMessageToAll("DENEMEMU###");
     return true;
     }
 
@@ -239,7 +241,7 @@ public class ServerGameManager extends ServerManager{
     public String getPlayerName() {
         return playerManager.getName(playerNo);
     }
-
+    public String getPlayerName(int index){return playerManager.getName(index);}
     public int getTurnNo()
     {
         return turnNo;
@@ -247,6 +249,8 @@ public class ServerGameManager extends ServerManager{
 
     @Override
     public void received(String message) throws URISyntaxException {
+        System.out.println(message);
+        sendMessageToAll(message+"###");
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
             this.nextTurn();
@@ -288,7 +292,15 @@ public class ServerGameManager extends ServerManager{
             //this.chatMessage(message.substring(2));
         }
         else if(id.equals("CD")){
-            //this.gameStart(message.substring(2));  //Name of the players connect the game
+            if(lastAdded<4) {
+                playerManager.changeIndexPlayerName(message.substring(2), lastAdded);
+                lastAdded++;
+                //Main.refreshPlayerScores();
+            }
+            if(lastAdded == 4){
+                Main.myTurn = true;
+                lastAdded++;
+            }
         }
         else if(id.equals("CE")){
             this.synchronizeMap();  //Creates map for all players
@@ -298,15 +310,19 @@ public class ServerGameManager extends ServerManager{
 
     @Override
     public void connectionEstablished() {
-        if(playerJoined!=4){
+        if(playerJoined!=2){
+            System.out.println("CONNECTION ESTABLISHED");
             playerJoined++;
             // playerManager.setPlayerName() DO IN received
-            if(playerJoined==4){
+            if(playerJoined==2){
                 sendGameData();
             }
         }
     }
     public void sendGameData(){
-
+        System.out.println("SEND GAME DATA");
+        for(int i = 0 ; i < 2 ; i++){
+            super.sendMessageToAll("CD"+i+playerManager.getPlayers()[i].getName()+"###");
+        }
     }
 }

@@ -37,16 +37,16 @@ import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
 
-    private String[] playerNames;
+    private static String[] playerNames;
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
     private static MapManager mapManager;
     private boolean offer;
-    private String givenResource = "";
-    private int givenResourceNumber = 0;
-    private String wantedResource = "";
-    private int wantedResourceNumber = 0;
+    private String givenResourcesOffer = "";
+    //private int givenResourceNumber = 0;
+    private String wantedResourcesOffer = "";
+    //private int wantedResourceNumber = 0;
 
     public static boolean multiPlayer;
     public static boolean myTurn;
@@ -60,8 +60,14 @@ public class Main extends Application implements Initializable {
     @FXML private  javafx.scene.control.Label grainNo, brickNo, oreNo, lumberNo, woolNo;
     @FXML private  javafx.scene.control.Label KnightNo, VictoryNo, RoadNo, PlentyNo, MonoNo;
     @FXML private ListView<String> playerList;
-    @FXML private javafx.scene.control.Label p1, p2, p3, p4;
-    @FXML private javafx.scene.control.Label p1Score ,p2Score ,p3Score ,p4Score ;
+    @FXML private static javafx.scene.control.Label p1;
+    @FXML private static javafx.scene.control.Label p2;
+    @FXML private static javafx.scene.control.Label p3;
+    @FXML private static javafx.scene.control.Label p4;
+    @FXML private static javafx.scene.control.Label p1Score;
+    @FXML private static javafx.scene.control.Label p2Score;
+    @FXML private static javafx.scene.control.Label p3Score;
+    @FXML private static javafx.scene.control.Label p4Score ;
     @FXML private javafx.scene.control.Label playerHighestArmy;
     @FXML private javafx.scene.control.Label playerLongestRoad;
     @FXML private javafx.scene.control.Label playerName;
@@ -161,7 +167,7 @@ public class Main extends Application implements Initializable {
         }
         else
         {
-            playerNames = new String[1];
+            playerNames = new String[4];
             playerNames[0] = player1.getText();
             if(playerNames[0].isEmpty())
             {
@@ -174,19 +180,19 @@ public class Main extends Application implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-
         if(multiPlayer) {
             if (server) {
                 serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
-
+                serverGameManager.nextTurn();
+                //myTurn = true;
             } else {
                 clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+                clientGameManager.nextTurn();
             }
         }
         else{
             gameManager = new GameManager(playerNames[0] , playerNames[1] , playerNames[2] , playerNames[3], robberAnchorPane);
             gameManager.nextTurn();
-
         }
         if(multiPlayer) {
             if (server) {
@@ -194,9 +200,8 @@ public class Main extends Application implements Initializable {
                 this.refreshResources();
                 this.refreshPlayerScores();
                 this.refreshHighestArmy();
-                this.refreshLongestRoad();
+                //this.refreshLongestRoad();
                 playerName.setText("" + serverGameManager.getPlayerName());
-
                 serverGameManager.visualizeMap();
 
             } else {
@@ -206,7 +211,6 @@ public class Main extends Application implements Initializable {
                 this.refreshHighestArmy();
                 this.refreshLongestRoad();
                 playerName.setText("" + clientGameManager.getPlayerName());
-
                 clientGameManager.visualizeMap();
             }
         }
@@ -217,23 +221,17 @@ public class Main extends Application implements Initializable {
             this.refreshHighestArmy();
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
-
             gameManager.visualizeMap();
-
         }
-
-        RollNo.setText("Turn : " + gameManager.getTurnNo());
-        this.refreshResources();
-        this.refreshPlayerScores();
-        this.refreshHighestArmy();
-        this.refreshLongestRoad();
-        playerName.setText("" + gameManager.getPlayerName());
-
-        gameManager.visualizeMap();
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
-        System.out.println( "player box was used");
+    }
+
+    public void givenBoxPressed(ActionEvent event) throws IOException{
+    }
+
+    public void wantedBoxPressed(ActionEvent event) throws IOException{
     }
 
     public void playerRadioPressed(ActionEvent event) throws IOException{
@@ -247,6 +245,7 @@ public class Main extends Application implements Initializable {
     }
 
     public void edgePressed(ActionEvent event) throws IOException, URISyntaxException {
+        System.out.println("EDGE ");
         if(!multiPlayer) {
             String id = ((Node) event.getSource()).getId();
             int location = Integer.parseInt(id.substring(1));
@@ -258,7 +257,6 @@ public class Main extends Application implements Initializable {
             refreshLongestRoad();
         }
         else if(myTurn){
-
             if(server) {
                 String id = ((Node) event.getSource()).getId();
                 int location = Integer.parseInt(id.substring(1));
@@ -267,7 +265,7 @@ public class Main extends Application implements Initializable {
                 }
                 refreshResources();
                 refreshPlayerScores();
-                refreshLongestRoad();
+                //refreshLongestRoad();
             }
             else{
                 String id = ((Node) event.getSource()).getId();
@@ -282,16 +280,17 @@ public class Main extends Application implements Initializable {
         }
     }
 
+    //for robber and knight card. Location starts with 0.
     public void hexCenterPressed(ActionEvent event) throws IOException, URISyntaxException {
+        //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
         if(gameManager.getTurnDice() == 7)
             gameManager.changeRobberLocation(location);
     }
-
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
-        String oldResource = givenResource;
+        //String oldResource = givenResource;
 
         String id = ((Node) event.getSource()).getId();
         if(!multiPlayer) {
@@ -312,7 +311,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Grain";
+            givenResourcesOffer = "Grain";
         }
         else if(id.equals("givenResourceBrick"))
         {
@@ -321,7 +320,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Brick";
+            givenResourcesOffer = "Brick";
         }
         else if(id.equals("givenResourceLumber"))
         {
@@ -330,7 +329,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Lumber";
+            givenResourcesOffer = "Lumber";
         }
         else if(id.equals("givenResourceOre"))
         {
@@ -339,7 +338,7 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Ore";
+            givenResourcesOffer = "Ore";
         }
         else if(id.equals("givenResourceWool"))
         {
@@ -348,7 +347,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "Wool";
+            givenResourcesOffer = "Wool";
         }
         else
         {
@@ -358,16 +357,15 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResource = "";
+            givenResourcesOffer = "";
         }
-        if ( givenResource.equals( oldResource))
-            givenResourceNumber++;
-        else
-            givenResourceNumber = 1;
+        //if ( givenResource.equals( oldResource))
+        //    givenResourceNumber++;
+        //else
+        //    givenResourceNumber = 1;
     }
-
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
-        String oldResource = wantedResource;
+        String oldResource = wantedResourcesOffer;
 
         String id = ((Node)event.getSource()).getId();
         ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
@@ -379,7 +377,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Grain";
+            wantedResourcesOffer = "Grain";
         }
         else if(id.equals("wantedResourceBrick"))
         {
@@ -388,7 +386,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Brick";
+            wantedResourcesOffer = "Brick";
         }
         else if(id.equals("wantedResourceLumber"))
         {
@@ -397,7 +395,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Lumber";
+            wantedResourcesOffer = "Lumber";
         }
         else if(id.equals("wantedResourceOre"))
         {
@@ -406,7 +404,7 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Ore";
+            wantedResourcesOffer = "Ore";
         }
         else if(id.equals("wantedResourceWool"))
         {
@@ -415,7 +413,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "Wool";
+            wantedResourcesOffer = "Wool";
         }
         else
         {
@@ -425,101 +423,12 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResource = "";
+            wantedResourcesOffer = "";
         }
-        if ( wantedResource.equals( oldResource))
-            wantedResourceNumber++;
-        else
-            wantedResourceNumber = 1;
-    }
-
-    public void offerButtonPressed(ActionEvent event) throws IOException{
-        if(!multiPlayer) {
-            if(!offer){
-                if(!givenResource.equals("") && !wantedResource.equals("")) {
-                    if (!givenResource.equals(wantedResource)){
-                        gameManager.tradeResource(givenResource, wantedResource);
-                        refreshResources();
-                    }
-                }
-            }
-            else
-            {
-                int receiverNo = -1;
-                if( playerBox.getValue().equals(Player1Trade))
-                    receiverNo = 0;
-                else if( playerBox.getValue().equals(Player2Trade))
-                    receiverNo = 1;
-                else if( playerBox.getValue().equals(Player3Trade))
-                    receiverNo = 2;
-                else if( playerBox.getValue().equals(Player4Trade))
-                    receiverNo = 3;
-
-                if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                    if ( !givenResource.equals( wantedResource) ){
-                        gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                    }
-                }
-            }
-        }
-        else if(myTurn){
-            if(server){
-                if(!offer){
-                    if(!givenResource.equals("") && !wantedResource.equals("")) {
-                        if (!givenResource.equals(wantedResource)){
-                            gameManager.tradeResource(givenResource, wantedResource);
-                            refreshResources();
-                        }
-                    }
-                }
-                else
-                {
-                    int receiverNo = -1;
-                    if( playerBox.getValue().equals(Player1Trade))
-                        receiverNo = 0;
-                    else if( playerBox.getValue().equals(Player2Trade))
-                        receiverNo = 1;
-                    else if( playerBox.getValue().equals(Player3Trade))
-                        receiverNo = 2;
-                    else if( playerBox.getValue().equals(Player4Trade))
-                        receiverNo = 3;
-
-                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                        if ( !givenResource.equals( wantedResource) ){
-                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                        }
-                    }
-                }
-            }
-            else{
-                if(!offer){
-                    if(!givenResource.equals("") && !wantedResource.equals("")) {
-                        if (!givenResource.equals(wantedResource)){
-                            gameManager.tradeResource(givenResource, wantedResource);
-                            refreshResources();
-                        }
-                    }
-                }
-                else
-                {
-                    int receiverNo = -1;
-                    if( playerBox.getValue().equals(Player1Trade))
-                        receiverNo = 0;
-                    else if( playerBox.getValue().equals(Player2Trade))
-                        receiverNo = 1;
-                    else if( playerBox.getValue().equals(Player3Trade))
-                        receiverNo = 2;
-                    else if( playerBox.getValue().equals(Player4Trade))
-                        receiverNo = 3;
-
-                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                        if ( !givenResource.equals( wantedResource) ){
-                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                        }
-                    }
-                }
-            }
-        }
+        //if ( wantedResource.equals( oldResource))
+        //    wantedResourceNumber++;
+        //else
+        //    wantedResourceNumber = 1;
     }
 
     private void refreshResources(){
@@ -531,7 +440,7 @@ public class Main extends Application implements Initializable {
             lumberNo.setText("" +  resources[3]);
             woolNo.setText("" +  resources[4]);
         }
-        else if(myTurn){
+        else {
             if(server) {
                 int[] resources = serverGameManager.getResources();
                 grainNo.setText("" +  resources[0]);
@@ -551,7 +460,6 @@ public class Main extends Application implements Initializable {
         }
 
     }
-
     public void refreshDevelopmentCards() {
         if (!multiPlayer) {
             int[] developments = gameManager.getDevelopmentCards();
@@ -561,8 +469,7 @@ public class Main extends Application implements Initializable {
             PlentyNo.setText("" + developments[3]);
             MonoNo.setText("" + developments[4]);
         }
-        else if (myTurn) {
-
+        else {
             if (server) {
                 int[] developments = serverGameManager.getDevelopmentCards();
                 KnightNo.setText("" + developments[0]);
@@ -581,6 +488,9 @@ public class Main extends Application implements Initializable {
 
         }
     }
+
+
+
 
     public void buyDevelopmentCard( ActionEvent event) throws IOException{
         if(!multiPlayer) {
@@ -658,7 +568,6 @@ public class Main extends Application implements Initializable {
             }
         }
     }
-
     public void endTurn(ActionEvent event) throws IOException {
         if (!multiPlayer) {
             gameManager.nextTurn();
@@ -706,7 +615,7 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    public void refreshPlayerScores()
+    public static void refreshPlayerScores()
     {
         if(!multiPlayer) {
             int[] playerScores = gameManager.getScoreBoard();
@@ -721,7 +630,7 @@ public class Main extends Application implements Initializable {
             p3Score.setText("" + playerScores[2]);
             p4Score.setText("" + playerScores[3]);
         }
-        else if(myTurn)
+        else
         {
             if(server){
                 int[] playerScores = serverGameManager.getScoreBoard();
@@ -730,14 +639,21 @@ public class Main extends Application implements Initializable {
                         gameOverPopUp(gameOver());
                     }
                 }
-
+                for(int i = 0 ; i < 4 ; i++)    playerNames[i] = serverGameManager.getPlayerName(i);
+//                System.out.println("MESAJ ICIN");
+//                System.out.println(playerNames[1]);
+//                System.out.println("MESAJ SONU");
                 p1Score.setText("" + playerScores[0]);
                 p2Score.setText("" + playerScores[1]);
                 p3Score.setText("" + playerScores[2]);
                 p4Score.setText("" + playerScores[3]);
+                p1.setText(playerNames[0]);
+                p2.setText(playerNames[1]);
+                p3.setText(playerNames[2]);
+                p4.setText(playerNames[3]);
             }
             else{
-                int[] playerScores = serverGameManager.getScoreBoard();
+                int[] playerScores = clientGameManager.getScoreBoard();
                 for (int i = 0; i < 4; i++) {
                     if (playerScores[i] >= 10) {
                         gameOverPopUp(gameOver());
@@ -751,8 +667,7 @@ public class Main extends Application implements Initializable {
             }
         }
     }
-
-    public void gameOverPopUp(String gameWinner) {
+    public static void gameOverPopUp(String gameWinner) {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         VBox dialogVbox = new VBox(20);
@@ -761,44 +676,148 @@ public class Main extends Application implements Initializable {
         dialog.setScene(dialogScene);
         dialog.show();
     }
-
-    public String gameOver(){
+    public static String gameOver(){
         return gameManager.gameOver();
     }
 
     public void refreshHighestArmy()
     {
-        int army = gameManager.largestArmy();
+        if(!multiPlayer) {
+            int army = gameManager.largestArmy();
 
-        if(army==0){
-            playerHighestArmy.setText(p1.getText());
+            if (army == 0) {
+                playerHighestArmy.setText(p1.getText());
+            } else if (army == 1) {
+                playerHighestArmy.setText(p2.getText());
+            } else if (army == 2) {
+                playerHighestArmy.setText(p3.getText());
+            } else if (army == 3) {
+                playerHighestArmy.setText(p4.getText());
+            }
         }
-        else if(army==1){
-            playerHighestArmy.setText(p2.getText());
-        }
-        else if(army==2){
-            playerHighestArmy.setText(p3.getText());
-        }
-        else if(army==3){
-            playerHighestArmy.setText(p4.getText());
-        }
+        else{
+            if(server){
+                int army = serverGameManager.largestArmy();
 
+                if (army == 0) {
+                    playerHighestArmy.setText(p1.getText());
+                } else if (army == 1) {
+                    playerHighestArmy.setText(p2.getText());
+                } else if (army == 2) {
+                    playerHighestArmy.setText(p3.getText());
+                } else if (army == 3) {
+                    playerHighestArmy.setText(p4.getText());
+                }
+            }
+            else{
+                int army = clientGameManager.largestArmy();
+
+                if (army == 0) {
+                    playerHighestArmy.setText(p1.getText());
+                } else if (army == 1) {
+                    playerHighestArmy.setText(p2.getText());
+                } else if (army == 2) {
+                    playerHighestArmy.setText(p3.getText());
+                } else if (army == 3) {
+                    playerHighestArmy.setText(p4.getText());
+                }
+            }
+        }
     }
 
     public void refreshLongestRoad()
     {
-        int road = gameManager.longestRoad();
-        if(road==0){
-            playerLongestRoad.setText(p1.getText());
+        if(!multiPlayer) {
+            int road = gameManager.longestRoad();
+            if (road == 0) {
+                playerLongestRoad.setText(p1.getText());
+            } else if (road == 1) {
+                playerLongestRoad.setText(p2.getText());
+            } else if (road == 2) {
+                playerLongestRoad.setText(p3.getText());
+            } else if (road == 3) {
+                playerLongestRoad.setText(p4.getText());
+            }
         }
-        else if(road==1){
-            playerLongestRoad.setText(p2.getText());
+        else {
+            if(server){
+                int road = serverGameManager.longestRoad();
+                if (road == 0) {
+                    playerLongestRoad.setText(p1.getText());
+                } else if (road == 1) {
+                    playerLongestRoad.setText(p2.getText());
+                } else if (road == 2) {
+                    playerLongestRoad.setText(p3.getText());
+                } else if (road == 3) {
+                    playerLongestRoad.setText(p4.getText());
+                }
+            }
+            else{
+                int road = clientGameManager.longestRoad();
+                if (road == 0) {
+                    playerLongestRoad.setText(p1.getText());
+                } else if (road == 1) {
+                    playerLongestRoad.setText(p2.getText());
+                } else if (road == 2) {
+                    playerLongestRoad.setText(p3.getText());
+                } else if (road == 3) {
+                    playerLongestRoad.setText(p4.getText());
+                }
+            }
         }
-        else if(road==2){
-            playerLongestRoad.setText(p3.getText());
+    }
+    public void tradeWithPlayer()
+    {
+        if(playerBox.getValue().equals(Player1Trade))
+        {
+
         }
-        else if(road==3){
-            playerLongestRoad.setText(p4.getText());
+        else if(playerBox.getValue().equals(Player2Trade))
+        {
+
+        }
+        else if(playerBox.getValue().equals(Player3Trade))
+        {
+
+        }
+        else if(playerBox.getValue().equals(Player4Trade))
+        {
+
+        }
+    }
+
+    public void offerButtonPressed(ActionEvent event) throws IOException{
+        if(!multiPlayer) {
+            if (!offer) {
+                if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
+                    if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
+                        gameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                        refreshResources();
+                    }
+                }
+            }
+        }
+        else if(myTurn){
+            if(server){
+                if (!offer) {
+                    if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
+                        if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
+                            serverGameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                            refreshResources();
+                        }
+                    }
+                }
+            }
+            else{
+                if (!offer) {
+                    if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
+                        if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
+                            clientGameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                            refreshResources();
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -823,27 +842,26 @@ public class Main extends Application implements Initializable {
 
     public String playerCardType()
     {
-        if ( playCardType.getValue() != null)
-            if(playCardType.getValue().equals(playCardGrain))
-            {
-                return "Grain";
-            }
-            else if(playCardType.getValue().equals(playCardBrick))
-            {
-                return "Brick";
-            }
-            else if(playCardType.getValue().equals(playCardOre))
-            {
-                return "Ore";
-            }
-            else if(playCardType.getValue().equals(playCardLumber))
-            {
-                return "Lumber";
-            }
-            else if(playCardType.getValue().equals(playCardWool))
-            {
-                return "Wool";
-            }
+        if(playCardType.getValue().equals(playCardGrain))
+        {
+            return "Grain";
+        }
+        else if(playCardType.getValue().equals(playCardBrick))
+        {
+            return "Brick";
+        }
+        else if(playCardType.getValue().equals(playCardOre))
+        {
+            return "Ore";
+        }
+        else if(playCardType.getValue().equals(playCardLumber))
+        {
+            return "Lumber";
+        }
+        else if(playCardType.getValue().equals(playCardWool))
+        {
+            return "Wool";
+        }
         return "";
     }
 
@@ -935,6 +953,7 @@ public class Main extends Application implements Initializable {
     private ObservableValue<? extends String> textValueProperty() {
         return textValueProperty();
     }
-
     private final StringProperty textValue = new SimpleStringProperty("waiting for input");
+
+
 }

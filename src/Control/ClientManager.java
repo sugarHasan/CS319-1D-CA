@@ -11,15 +11,16 @@ public abstract class ClientManager
     private Socket socket;
     private Thread msgListenerThread;
     private final String ip = "127.0.0.1";
-
+    private final String TERMINATION = "###";
 
     public ClientManager( int serverPort) throws UnknownHostException, IOException
     {
         socket = new Socket( ip ,  serverPort);
-        msgListenerThread = new Thread( new Runnable() {
-            public void run()
-            {
+        msgListenerThread = new Thread(() -> {
+            try {
                 listenForMessages();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
             }
         });
         msgListenerThread.start();
@@ -38,11 +39,9 @@ public abstract class ClientManager
         }
     }
 
-    private void listenForMessages()
-    {
-        String msg;
+    private void listenForMessages() throws URISyntaxException {
+        String message;
         InputStream stream;
-
         try
         {
             stream = socket.getInputStream();
@@ -54,15 +53,20 @@ public abstract class ClientManager
 
         while ( true)
         {
-            msg = "";
-            try
+            message = "";
+            while ( !message.contains( TERMINATION))
             {
-                msg += (char) stream.read();
+                try
+                {
+                    message += (char) stream.read();
+                }
+                catch (IOException e)
+                {
+                    return;
+                }
             }
-            catch (IOException e)
-            {
-                return;
-            }
+
+            received( message.substring( 0, message.length() - 3));
         }
     }
 
