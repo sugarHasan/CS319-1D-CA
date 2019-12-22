@@ -132,6 +132,11 @@ public class PlayerManager {
         return offerManager.declineOffer( offer);
     }
 
+    public boolean playerHasCapital( int playerNo)
+    {
+        return players[playerNo].hasCapital();
+    }
+
     public boolean buyDevelopmentCard(int playerNo) {
         return players[playerNo].buyDevelopmentCard();
     }
