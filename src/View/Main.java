@@ -2,7 +2,6 @@ package View;
 
 import Control.ClientGameManager;
 import Control.GameManager;
-import Control.MapManager;
 import Control.ServerGameManager;
 import Model.Offer;
 import javafx.application.Application;
@@ -42,7 +41,6 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
-    private static MapManager mapManager;
     private boolean offer;
     private String givenResource = "";
     private int givenResourceNumber = 0;
