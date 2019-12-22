@@ -32,22 +32,10 @@ import View.Main;
 public class ControllerMainMenu implements Initializable {
     public void howToPlay(ActionEvent event) throws IOException
     {
-        /*AnchorPane pane = FXMLLoader.load(getClass().getResource("HowToPlay.fxml"));
-        rootPane.getChildren().setAll(pane);*/
-
-        Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
-
-        Scene scene = new Scene(root);
-
-        Stage stage = new Stage();
-        stage.setTitle("Offer");
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-
-        //stage.close();
-
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("HowToPlay.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
+
     public void settings(ActionEvent event) throws IOException
     {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("MainMenuSettings.fxml"));
