@@ -2,24 +2,47 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
    <children>
-      <Label layoutX="91.0" layoutY="14.0" text="TRADE OFFER">
+      <Label layoutX="117.0" layoutY="14.0" text="TRADE OFFER">
          <font>
-            <Font name="Elephant" size="19.0" />
+            <Font name="Carter One" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="sender" layoutX="41.0" layoutY="56.0" text="Sender" />
-      <Label fx:id="givenNo" layoutX="37.0" layoutY="100.0" text="GivenNo" />
-      <Label fx:id="takenNo" layoutX="247.0" layoutY="100.0" text="TakenNo" />
-      <Button fx:id="acceptOffer" layoutX="85.0" layoutY="148.0" mnemonicParsing="false" text="ACCEPT" />
-      <Button fx:id="refuseOffer" layoutX="191.0" layoutY="148.0" mnemonicParsing="false" text="REFUSE" />
-      <Label layoutX="261.0" layoutY="56.0" text="You" />
-      <Label fx:id="offeredResource" layoutX="60.0" layoutY="100.0" text="GivenResource" />
-      <Label fx:id="takenResource" layoutX="268.0" layoutY="100.0" text="TakenResource" />
+      <Label fx:id="sender" layoutX="59.0" layoutY="56.0" text="Sender">
+         <font>
+            <Font name="Carter One" size="12.0" />
+         </font></Label>
+      <Label fx:id="givenNo" layoutX="55.0" layoutY="100.0" text="GivenNo">
+      <font>
+         <Font name="Carter One" size="12.0" />
+      </font>
+   </Label>
+      <Label fx:id="takenNo" layoutX="247.0" layoutY="100.0" text="TakenNo">
+      <font>
+         <Font name="Carter One" size="12.0" />
+      </font>
+   </Label>
+      <Button fx:id="acceptOffer" layoutX="85.0" layoutY="148.0" mnemonicParsing="false" text="ACCEPT">
+      <font>
+         <Font name="Carter One" size="12.0" />
+      </font>
+   </Button>
+      <Button fx:id="refuseOffer" layoutX="191.0" layoutY="148.0" mnemonicParsing="false" text="REFUSE">
+      <font>
+         <Font name="Carter One" size="12.0" />
+      </font>
+   </Button>
+      <Label layoutX="261.0" layoutY="56.0" text="You">
+      <font>
+         <Font name="Carter One" size="12.0" />
+      </font>
+   </Label>
+      <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="85.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="32.0" fitWidth="38.0" layoutX="282.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
