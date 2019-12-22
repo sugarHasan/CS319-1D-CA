@@ -844,7 +844,7 @@ public class Main extends Application implements Initializable {
 
     public void offerPopUp() throws IOException, URISyntaxException {
         ArrayList<Offer> offerList = null;
-        String Given = "Wood", Taken = "Wood";
+        String Given = "", Taken = "";
         if ( !multiPlayer)
             offerList = gameManager.listOffer();
         else if ( myTurn)
@@ -863,9 +863,6 @@ public class Main extends Application implements Initializable {
         {
             System.out.println( "INSIDE");
             for(int i = 0; i < offerList.size(); i++) {
-
-                System.out.println( "Given is  " + Given);
-                System.out.println( "Taken is  " + Taken);
                 if (offerList.get(i).getDemandedItem().equals("Wool")) {
                     Taken = "Sheep";
                 } else if( offerList.get(i).getDemandedItem().equals("Lumber")) {
@@ -887,10 +884,6 @@ public class Main extends Application implements Initializable {
                 }
                 else
                     Given = offerList.get(i).getOfferedItem();
-
-                System.out.println( "Given is  " + Given);
-                System.out.println( "Taken is  " + Taken);
-
 
                 System.out.println( "INSIDE OFFER");
                 /*System.out.println(offerList.get(i).getDemandedItem() + offerList.get(i).getDemandNum());
