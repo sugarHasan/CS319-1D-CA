@@ -40,6 +40,7 @@ public class Main extends Application implements Initializable {
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
     private boolean offer;
+    private boolean knightCardPlayed = false;
     private String givenResource = "";
     private int givenResourceNumber = 0;
     private String wantedResource = "";
@@ -299,11 +300,40 @@ public class Main extends Application implements Initializable {
 
     //for robber and knight card. Location starts with 0.
     public void hexCenterPressed(ActionEvent event) throws IOException, URISyntaxException {
-        //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        if(gameManager.getTurnDice() == 7)
-            gameManager.changeRobberLocation(location);
+        if ( !multiPlayer)
+            if( gameManager.getTurnDice() == 7 || knightCardPlayed )
+            {
+                gameManager.changeRobberLocation( location);
+                if ( knightCardPlayed)
+                {
+                    knightCardPlayed = false;
+                    refreshDevelopmentCards();
+                }
+            }
+        else if ( myTurn)
+            if ( server)
+                if( serverGameManager.getTurnDice() == 7 || knightCardPlayed )
+                {
+                    serverGameManager.changeRobberLocation( location);
+                    if ( knightCardPlayed)
+                    {
+                        serverGameManager.playKnightCard( location);
+                        knightCardPlayed = false;
+                    }
+                }
+            else
+                if( clientGameManager.getTurnDice() == 7 || knightCardPlayed )
+                {
+                    clientGameManager.changeRobberLocation( location);
+                    if ( knightCardPlayed)
+                    {
+                        clientGameManager.playKnightCard( location);
+                        knightCardPlayed = false;
+                    }
+                }
+
     }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
@@ -691,6 +721,7 @@ public class Main extends Application implements Initializable {
                 }
             }
         }
+        knightCardPlayed = false;
         offerPopUp();
     }
 
@@ -957,7 +988,10 @@ public class Main extends Application implements Initializable {
                     gameManager.playMonopoly(playerCardType());
                 }
             } else if (playCardNo.getValue().equals(Knight)) {
-
+                if ( gameManager.knightCardPlayable())
+                {
+                    knightCardPlayed = true;
+                }
             } else if (playCardNo.getValue().equals(RoadBuilding)) {
 
                 gameManager.playRoadBuilding();
@@ -977,7 +1011,10 @@ public class Main extends Application implements Initializable {
                         serverGameManager.playMonopoly(playerCardType());
                     }
                 } else if (playCardNo.getValue().equals(Knight)) {
-
+                    if ( serverGameManager.knightCardPlayable())
+                    {
+                        knightCardPlayed = true;
+                    }
                 } else if (playCardNo.getValue().equals(RoadBuilding)) {
 
                     serverGameManager.playRoadBuilding();
@@ -996,7 +1033,10 @@ public class Main extends Application implements Initializable {
                         clientGameManager.playMonopoly(playerCardType());
                     }
                 } else if (playCardNo.getValue().equals(Knight)) {
-
+                    if ( serverGameManager.knightCardPlayable())
+                    {
+                        knightCardPlayed = true;
+                    }
                 } else if (playCardNo.getValue().equals(RoadBuilding)) {
 
                     clientGameManager.playRoadBuilding();

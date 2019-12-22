@@ -63,10 +63,15 @@ public class GameManager {
         {
             return false;
         }
-        else if(oldlocactionRobber != newLocation)
+        else if( oldlocactionRobber != newLocation)
         {
             oldlocactionRobber = newLoc;
-            return map.moveRobber( newLoc);
+            if ( map.moveRobber( newLoc))
+            {
+                playKnightCard( newLoc);
+                return true;
+            }
+            return false;
         }
         else
             return false;
@@ -176,9 +181,14 @@ public class GameManager {
         this.playerManager.playRoadBuilding(playerNo);
     }
 
-    public void playKnightCard( int newLoc)
+    public boolean knightCardPlayable()
     {
-        playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
+        return playerManager.getPlayers()[playerNo].hasCard( "Knight", 1);
+    }
+
+    public boolean playKnightCard( int newLoc)
+    {
+        return playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
     public boolean addRoad(int location) throws URISyntaxException {
