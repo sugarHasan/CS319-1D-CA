@@ -2,7 +2,6 @@ package View;
 
 import Control.ClientGameManager;
 import Control.GameManager;
-import Control.MapManager;
 import Control.ServerGameManager;
 import Model.Offer;
 import javafx.application.Application;
@@ -14,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -42,8 +43,7 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
-    private static MapManager mapManager;
-    private boolean offer;
+    private boolean offer = true;
     private String givenResource = "";
     private int givenResourceNumber = 0;
     private String wantedResource = "";
@@ -91,9 +91,22 @@ public class Main extends Application implements Initializable {
     @FXML
     private TextField player4;
     @FXML
-    private Button startButton, acceptOffer, refuseOffer;
+    private Button startButton;
+
     @FXML
-    private Label GivenNo, TakenNo, Sender, GivenResource, TakenResource;
+    private Button acceptOffer;
+    @FXML
+    private Button refuseOffer;
+    @FXML
+    private Label givenNo;
+    @FXML
+    private Label takenNo;
+    @FXML
+    private Label sender;
+    @FXML
+    private Label offeredResource;
+    @FXML
+    private Label takenResource;
 
     @FXML static public AnchorPane hexTiles;
     @FXML static public AnchorPane mapBuildings;
@@ -168,7 +181,6 @@ public class Main extends Application implements Initializable {
         /*GivenResource = (ImageView) tableViewParent.lookup("#GivenResource");
         TakenResource = (ImageView) tableViewParent.lookup("#TakenResource");*/
 
-        offer = true;
         if(!multiPlayer)
         {
             playerNames = new String[4];
@@ -248,9 +260,8 @@ public class Main extends Application implements Initializable {
 
         }
 
-        offer = true;
-       // playerBox.setButtonCell();
-        startCreateGame.setDisable(true);
+       /*// playerBox.setButtonCell();
+        startCreateGame.setDisable(true);*/
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
@@ -468,64 +479,64 @@ public class Main extends Application implements Initializable {
     }
 
     public void offerButtonPressed(ActionEvent event) throws IOException{
-        if(!offer){
-            if(!givenResource.equals("") && !wantedResource.equals(""))
+            if(!offer){
+                if(!givenResource.equals("") && !wantedResource.equals(""))
+                {
+                    if (!givenResource.equals(wantedResource))
+                    {
+                        if( !multiPlayer)
+                        {
+                            gameManager.tradeResource( givenResource, wantedResource);
+                        }
+                        else if( myTurn)
+                        {
+                            if( server)
+                            {
+                                serverGameManager.tradeResource( givenResource, wantedResource);
+                            }
+                            else
+                            {
+                                clientGameManager.tradeResource( givenResource, wantedResource);
+                            }
+                        }
+                        refreshResources();
+                    }
+                }
+            }
+            else
             {
-                if (!givenResource.equals(wantedResource))
-                {
-                    if( !multiPlayer)
-                    {
-                        gameManager.tradeResource( givenResource, wantedResource);
-                    }
-                    else if( myTurn)
-                    {
-                        if( server)
-                        {
-                            serverGameManager.tradeResource( givenResource, wantedResource);
-                        }
-                        else
-                        {
-                            clientGameManager.tradeResource( givenResource, wantedResource);
-                        }
-                    }
-                    refreshResources();
-                }
-            }
-        }
-        else
-        {
-            int receiverNo = -1;
-            if( playerBox.getValue().equals(Player1Trade))
-                receiverNo = 0;
-            else if( playerBox.getValue().equals(Player2Trade))
-                receiverNo = 1;
-            else if( playerBox.getValue().equals(Player3Trade))
-                receiverNo = 2;
-            else if( playerBox.getValue().equals(Player4Trade))
-                receiverNo = 3;
+                int receiverNo = -1;
+                if( playerBox.getValue().equals(Player1Trade))
+                    receiverNo = 0;
+                else if( playerBox.getValue().equals(Player2Trade))
+                    receiverNo = 1;
+                else if( playerBox.getValue().equals(Player3Trade))
+                    receiverNo = 2;
+                else if( playerBox.getValue().equals(Player4Trade))
+                    receiverNo = 3;
 
-            if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                if ( !givenResource.equals( wantedResource) )
-                {
-                    if( !multiPlayer)
+                if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                    if ( !givenResource.equals( wantedResource) )
                     {
-                        gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                    }
-                    else if( myTurn)
-                    {
-                        if( server)
+                        if( !multiPlayer)
                         {
-                            serverGameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
                         }
-                        else
+                        else if( myTurn)
                         {
-                            clientGameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                            if( server)
+                            {
+                                serverGameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                            }
+                            else
+                            {
+                                clientGameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                            }
                         }
                     }
                 }
             }
         }
-    }
 
     private void refreshResources(){
         if(!multiPlayer) {
@@ -791,6 +802,9 @@ public class Main extends Application implements Initializable {
         if ( offerList != null )
         {
             System.out.println( "INSIDE");
+
+            System.out.println(offerList.size());
+
             for(int i = 0; i < offerList.size(); i++) {
                 //String Given = "Brick", Taken = "Brick";
 
@@ -807,11 +821,15 @@ public class Main extends Application implements Initializable {
                 }
                */
 
-              /*  javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
+                /*javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
                 GivenResource.setImage(img);
 
                 javafx.scene.image.Image img2 = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
                 TakenResource.setImage(img2);*/
+
+                System.out.println( "INSIDE OFFER");
+                System.out.println(offerList.get(i).getDemandedItem() + offerList.get(i).getDemandNum());
+                System.out.println(offerList.get(i).getOfferedItem()  + offerList.get(i).getOfferNum());
 
                 Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
 
