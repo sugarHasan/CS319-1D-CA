@@ -28,7 +28,7 @@ public class GameManager {
     private int oldlocactionRobber = -1;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
-    public GameManager(String player1, String player2, String player3 , String player4,AnchorPane robberImage) throws URISyntaxException {
+    public GameManager(String player1, String player2, String player3 , String player4, AnchorPane robberImage) throws URISyntaxException {
         this.playerManager = new PlayerManager( player1, player2, player3 , player4);
         playerNo = -1;
         turnNo = 1;
@@ -221,12 +221,6 @@ public class GameManager {
     private void updateHappiness()
     {
         playerManager.fishing();
-        Player[] ps = playerManager.getPlayers();
-        for ( int i = 0; i< ps.length; i++)
-        {
-            System.out.println( ps[i].getName());
-            ps[i].printBuildings();
-        }
     }
 
     public void makeOffer( int receiverNo, String offeredItem,

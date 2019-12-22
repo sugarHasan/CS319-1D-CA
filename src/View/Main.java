@@ -43,10 +43,10 @@ public class Main extends Application implements Initializable {
     private static ClientGameManager clientGameManager;
     private static MapManager mapManager;
     private boolean offer;
-    private String givenResourcesOffer = "";
-    //private int givenResourceNumber = 0;
-    private String wantedResourcesOffer = "";
-    //private int wantedResourceNumber = 0;
+    private String givenResource = "";
+    private int givenResourceNumber = 0;
+    private String wantedResource = "";
+    private int wantedResourceNumber = 0;
 
     public static boolean multiPlayer;
     public static boolean myTurn;
@@ -289,7 +289,7 @@ public class Main extends Application implements Initializable {
     }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
-        //String oldResource = givenResource;
+        String oldResource = givenResource;
 
         String id = ((Node) event.getSource()).getId();
         if(!multiPlayer) {
@@ -310,7 +310,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Grain";
+            givenResource = "Grain";
         }
         else if(id.equals("givenResourceBrick"))
         {
@@ -319,7 +319,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Brick";
+            givenResource = "Brick";
         }
         else if(id.equals("givenResourceLumber"))
         {
@@ -328,7 +328,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Lumber";
+            givenResource = "Lumber";
         }
         else if(id.equals("givenResourceOre"))
         {
@@ -337,7 +337,7 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Ore";
+            givenResource = "Ore";
         }
         else if(id.equals("givenResourceWool"))
         {
@@ -346,7 +346,7 @@ public class Main extends Application implements Initializable {
             givenResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "Wool";
+            givenResource = "Wool";
         }
         else
         {
@@ -356,15 +356,15 @@ public class Main extends Application implements Initializable {
             givenResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             givenResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            givenResourcesOffer = "";
+            givenResource = "";
         }
-        //if ( givenResource.equals( oldResource))
-        //    givenResourceNumber++;
-        //else
-        //    givenResourceNumber = 1;
+        if ( givenResource.equals( oldResource))
+            givenResourceNumber++;
+        else
+            givenResourceNumber = 1;
     }
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
-        String oldResource = wantedResourcesOffer;
+        String oldResource = wantedResource;
 
         String id = ((Node)event.getSource()).getId();
         ((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerColor());
@@ -376,7 +376,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Grain";
+            wantedResource = "Grain";
         }
         else if(id.equals("wantedResourceBrick"))
         {
@@ -385,7 +385,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Brick";
+            wantedResource = "Brick";
         }
         else if(id.equals("wantedResourceLumber"))
         {
@@ -394,7 +394,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Lumber";
+            wantedResource = "Lumber";
         }
         else if(id.equals("wantedResourceOre"))
         {
@@ -403,7 +403,7 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Ore";
+            wantedResource = "Ore";
         }
         else if(id.equals("wantedResourceWool"))
         {
@@ -412,7 +412,7 @@ public class Main extends Application implements Initializable {
             wantedResourceOre.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "Wool";
+            wantedResource = "Wool";
         }
         else
         {
@@ -422,12 +422,12 @@ public class Main extends Application implements Initializable {
             wantedResourceBrick.setStyle(" -fx-background-color: #FFFFFF");
             wantedResourceWool.setStyle(" -fx-background-color: #FFFFFF");
 
-            wantedResourcesOffer = "";
+            wantedResource = "";
         }
-        //if ( wantedResource.equals( oldResource))
-        //    wantedResourceNumber++;
-        //else
-        //    wantedResourceNumber = 1;
+        if ( wantedResource.equals( oldResource))
+            wantedResourceNumber++;
+        else
+            wantedResourceNumber = 1;
     }
 
     private void refreshResources(){
@@ -730,32 +730,86 @@ public class Main extends Application implements Initializable {
 
     public void offerButtonPressed(ActionEvent event) throws IOException{
         if(!multiPlayer) {
-            if (!offer) {
-                if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
-                    if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
-                        gameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+            if(!offer){
+                if(!givenResource.equals("") && !wantedResource.equals("")) {
+                    if (!givenResource.equals(wantedResource)){
+                        gameManager.tradeResource(givenResource, wantedResource);
                         refreshResources();
+                    }
+                }
+            }
+            else
+            {
+                int receiverNo = -1;
+                if( playerBox.getValue().equals(Player1Trade))
+                    receiverNo = 0;
+                else if( playerBox.getValue().equals(Player2Trade))
+                    receiverNo = 1;
+                else if( playerBox.getValue().equals(Player3Trade))
+                    receiverNo = 2;
+                else if( playerBox.getValue().equals(Player4Trade))
+                    receiverNo = 3;
+
+                if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                    if ( !givenResource.equals( wantedResource) ){
+                        gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
                     }
                 }
             }
         }
         else if(myTurn){
             if(server){
-                if (!offer) {
-                    if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
-                        if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
-                            serverGameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                if(!offer){
+                    if(!givenResource.equals("") && !wantedResource.equals("")) {
+                        if (!givenResource.equals(wantedResource)){
+                            gameManager.tradeResource(givenResource, wantedResource);
                             refreshResources();
+                        }
+                    }
+                }
+                else
+                {
+                    int receiverNo = -1;
+                    if( playerBox.getValue().equals(Player1Trade))
+                        receiverNo = 0;
+                    else if( playerBox.getValue().equals(Player2Trade))
+                        receiverNo = 1;
+                    else if( playerBox.getValue().equals(Player3Trade))
+                        receiverNo = 2;
+                    else if( playerBox.getValue().equals(Player4Trade))
+                        receiverNo = 3;
+
+                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                        if ( !givenResource.equals( wantedResource) ){
+                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
                         }
                     }
                 }
             }
             else{
-                if (!offer) {
-                    if (!givenResourcesOffer.equals("") && !wantedResourcesOffer.equals("")) {
-                        if (!givenResourcesOffer.equals(wantedResourcesOffer)) {
-                            clientGameManager.tradeResource(givenResourcesOffer, wantedResourcesOffer);
+                if(!offer){
+                    if(!givenResource.equals("") && !wantedResource.equals("")) {
+                        if (!givenResource.equals(wantedResource)){
+                            gameManager.tradeResource(givenResource, wantedResource);
                             refreshResources();
+                        }
+                    }
+                }
+                else
+                {
+                    int receiverNo = -1;
+                    if( playerBox.getValue().equals(Player1Trade))
+                        receiverNo = 0;
+                    else if( playerBox.getValue().equals(Player2Trade))
+                        receiverNo = 1;
+                    else if( playerBox.getValue().equals(Player3Trade))
+                        receiverNo = 2;
+                    else if( playerBox.getValue().equals(Player4Trade))
+                        receiverNo = 3;
+
+                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                        if ( !givenResource.equals( wantedResource) ){
+                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
                         }
                     }
                 }
