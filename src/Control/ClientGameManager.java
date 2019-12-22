@@ -7,6 +7,7 @@ import Model.DevelopmentCardTypes.ProgressCardTypes.RoadCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.YearOfPlentyCard;
 import Model.DevelopmentCardTypes.VictoryPointCard;
 import Model.Map;
+import Model.Offer;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -218,6 +219,33 @@ public class ClientGameManager extends ClientManager{
         this.distributeResources(turnDice);
         return playerManager.getPlayers()[playerNo].getName();
     }
+
+    private void updateHappiness()
+    {
+        playerManager.fishing();
+    }
+
+    public void makeOffer( int receiverNo, String offeredItem,
+                           String demandedItem, int offerNum, int demandNum)
+    {
+        playerManager.makeOffer( playerNo, receiverNo, offeredItem, demandedItem, offerNum, demandNum);
+    }
+
+    public ArrayList<Offer> listOffer()
+    {
+        return playerManager.listOffers( playerNo);
+    }
+
+    public boolean acceptOffer( Offer offer)
+    {
+        return playerManager.acceptOffer( offer);
+    }
+
+    public boolean declineOffer( Offer offer)
+    {
+        return playerManager.declineOffer( offer);
+    }
+
     public int getTurnDice() {
         return turnDice;
     }

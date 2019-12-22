@@ -257,6 +257,7 @@ public class GameManager {
     public int[] getResources(){
         return playerManager.getPlayers()[playerNo].getResources();
     }
+
     public int[] getDevelopmentCards(){
         return playerManager.getPlayers()[playerNo].getDevelopmentCards();
     }
@@ -264,9 +265,11 @@ public class GameManager {
     public int[] getScoreBoard(){
         return playerManager.scoreBoard(playerNo);
     }
+
     public int largestArmy(){
         return playerManager.largestArmy();
     }
+
     public int longestRoad(){
         return playerManager.whoHasLongestRoad();
     }
