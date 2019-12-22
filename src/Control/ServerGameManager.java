@@ -359,8 +359,10 @@ public class ServerGameManager extends ServerManager{
 
     public void sendGameData(){
         System.out.println("SEND GAME DATA");
-        for(int i = 0 ; i < 2 ; i++){
+        for(int i = 0 ; i < 1 ; i++){
             super.sendMessageToAll("CD"+i+playerManager.getPlayers()[i].getName()+"###");
         }
+        sendMessageToAll( "CE" + map.encodeMap());
+        System.out.println( map.encodeMap());
     }
 }

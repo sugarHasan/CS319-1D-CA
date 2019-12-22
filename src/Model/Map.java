@@ -28,6 +28,7 @@ public class Map
     }
 
     public Map( Land[] map) throws URISyntaxException {
+        System.out.println( "Map");
         lands = new Land[NO_OF_LANDS];
         copyMap( map);
     }
@@ -191,7 +192,7 @@ public class Map
         while ( i < NO_OF_LANDS * 6 && i+5 < source.length())
         {
             location = Integer.parseInt( source.substring( i, i+2));
-            type = source.substring( i+3, i+5);
+            type = source.substring( i+2, i+4);
             number = Integer.parseInt( source.substring( i+4, i+6));
 
             if ( type.equals( "DE"))
