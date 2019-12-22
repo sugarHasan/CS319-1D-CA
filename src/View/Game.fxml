@@ -278,7 +278,7 @@
                                 <Font name="Carter One" size="25.0" />
                             </font>
                         </Label>
-                        <RadioButton fx:id="playerRadio" layoutX="36.0" layoutY="53.0" mnemonicParsing="false" onAction="#playerRadioPressed" text="Trade with another Player">
+                        <RadioButton fx:id="playerRadio" layoutX="36.0" layoutY="53.0" mnemonicParsing="false" onAction="#playerRadioPressed" selected="true" text="Trade with another Player">
                             <toggleGroup>
                                 <ToggleGroup fx:id="tradeSelect" />
                             </toggleGroup>

@@ -19,6 +19,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -78,6 +80,7 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
     @FXML private javafx.scene.control.Label givenResourcesOfferID;
     @FXML private javafx.scene.control.Label wantedResourcesOfferID;
+    @FXML private javafx.scene.control.Button startCreateGame;
     @FXML
     private TextField player1;
     @FXML
@@ -87,7 +90,9 @@ public class Main extends Application implements Initializable {
     @FXML
     private TextField player4;
     @FXML
-    private Button startButton;
+    private Button startButton, acceptOffer, refuseOffer;
+    @FXML
+    private Label GivenNo, TakenNo, Sender, GivenResource, TakenResource;
 
     @FXML static public AnchorPane hexTiles;
     @FXML static public AnchorPane mapBuildings;
@@ -127,9 +132,9 @@ public class Main extends Application implements Initializable {
 
     }
 
-
     public void PlayGame(ActionEvent event) throws IOException, URISyntaxException {
 
+        Parent tableViewParent;
         if(multiPlayer)
             tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
         else
@@ -152,11 +157,15 @@ public class Main extends Application implements Initializable {
         playerLongestRoad = ((javafx.scene.control.Label) tableViewParent.lookup("#playerLongestRoad"));
         RollNo = ((javafx.scene.control.Label) tableViewParent.lookup("#RollNo"));
         playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
+        playerBox = ((javafx.scene.control.ComboBox) tableViewParent.lookup("#playerBox"));
+        startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        /*GivenResource = (ImageView) tableViewParent.lookup("#GivenResource");
+        TakenResource = (ImageView) tableViewParent.lookup("#TakenResource");*/
 
         offer = true;
         if(!multiPlayer)
@@ -193,7 +202,7 @@ public class Main extends Application implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-        if( multiPlayer) {
+        if(multiPlayer) {
             if (server) {
                 //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
@@ -237,6 +246,10 @@ public class Main extends Application implements Initializable {
             gameManager.visualizeMap();
 
         }
+
+        offer = true;
+       // playerBox.setButtonCell();
+        startCreateGame.setDisable(true);
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
@@ -676,7 +689,7 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    public void endTurn(ActionEvent event) throws IOException {
+    public void endTurn(ActionEvent event) throws IOException, URISyntaxException {
         if (!multiPlayer) {
             gameManager.nextTurn();
             refreshResources();
@@ -788,60 +801,58 @@ public class Main extends Application implements Initializable {
         dialog.show();
     }
 
-    public void offerPopUp() throws IOException {
-        ArrayList<Offer> offerList;
+    public void offerPopUp() throws IOException, URISyntaxException {
+        ArrayList<Offer> offerList = null;
         if ( !multiPlayer)
-        {
             offerList = gameManager.listOffer();
-            for(int i = 0; i < offerList.size(); i++) {
-                Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
-
-                Scene scene = new Scene(root);
-
-                Stage stage = new Stage();
-                stage.setTitle("Offer");
-                stage.setScene(scene);
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
-
-                //stage.close();
-            }
-        }
         else if ( myTurn)
         {
             if ( server)
             {
                 offerList = serverGameManager.listOffer();
-                for(int i = 0; i < offerList.size(); i++) {
-                    Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
-
-                    Scene scene = new Scene(root);
-
-                    Stage stage = new Stage();
-                    stage.setTitle("Offer");
-                    stage.setScene(scene);
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.show();
-
-                    //stage.close();
-                }
             }
             else
             {
                 offerList = clientGameManager.listOffer();
-                for(int i = 0; i < offerList.size(); i++) {
-                    Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+            }
+        }
 
-                    Scene scene = new Scene(root);
+        if ( offerList != null )
+        {
+            System.out.println( "INSIDE");
+            for(int i = 0; i < offerList.size(); i++) {
+                //String Given = "Brick", Taken = "Brick";
 
-                    Stage stage = new Stage();
-                    stage.setTitle("Offer");
-                    stage.setScene(scene);
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.show();
+               /* if (offerList.get(i).getDemandedItem().equals("Wool")) {
 
-                    //stage.close();
+                } else if( offerList.get(i).getDemandedItem().equals("Lumber")) {
+
                 }
+
+                if (offerList.get(i).getOfferedItem().equals("Wool")) {
+
+                } else if (offerList.get(i).getOfferedItem().equals("Lumber")) {
+
+                }
+               */
+
+              /*  javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
+                GivenResource.setImage(img);
+
+                javafx.scene.image.Image img2 = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
+                TakenResource.setImage(img2);*/
+
+                Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+                stage.setTitle("Offer " + (i + 1));
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+                //stage.close();
             }
         }
     }
