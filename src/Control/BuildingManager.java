@@ -44,11 +44,6 @@ public class BuildingManager {
         return false;
     }
 
-    public boolean checkBuildLocation( Player player, int location)
-    {
-        return true;
-    }
-
     public boolean buildSettlement(Player player, int location){
         if(cornerBuildings[location] == null) {
             ArrayList<Building> buildings = player.getBuildings();

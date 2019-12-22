@@ -31,7 +31,7 @@ public class Happiness {
             count++;
             resourceAmount -= 8;
         }
-        increaseHappinessValue( resourceAmount);
+        increaseHappinessValue( count);
     }
 
     public void robberInTown( int number)

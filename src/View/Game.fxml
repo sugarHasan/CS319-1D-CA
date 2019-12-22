@@ -534,7 +534,7 @@
                             </font>
                         </Label>
                </children></AnchorPane>
-                <VBox layoutX="1047.0" layoutY="412.0" prefHeight="359.0" prefWidth="322.0" spacing="20.0" style="-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #A9A9A9;">
+                <VBox layoutX="1047.0" layoutY="426.0" prefHeight="361.0" prefWidth="322.0" spacing="20.0" style="-fx-border-color: #FFFFE2; -fx-border-width: 1; -fx-border-style: solid; -fx-background-color: #FFFE2; -fx-opacity: 1;">
                     <children>
                         <Label text="Game Screen">
                             <font>

@@ -20,8 +20,6 @@ public class GameManager {
     private Map map;
     int playerNo;
     private int turnNo;
-    private boolean firstTurn;
-    private boolean secondTurn;
     private int turnDice;
     private int RobbersOldLocation = -1;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
@@ -30,8 +28,6 @@ public class GameManager {
         this.playerManager = new PlayerManager( player1, player2, player3 , player4);
         playerNo = -1;
         turnNo = 1;
-        firstTurn = false;
-        secondTurn = false;
         initialDevelopmentCardStack = createInitialCardStack();
         buildingManager = new BuildingManager();
         map = new Map();
@@ -193,6 +189,7 @@ public class GameManager {
     }
 
     public boolean addRoad(int location) throws URISyntaxException {
+        System.out.println( "Add road");
         if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
         {
             buildingManager.setRoadImage(returnPlayerColor(),location);
@@ -233,15 +230,43 @@ public class GameManager {
     }
 
     public String nextTurn(){
-        playerNo++;
-        if(playerNo == 4) {
-            playerNo = 0;
-            turnNo++;
+        if ( turnNo == 1 )
+        {
+            playerNo++;
+            if ( playerNo == 0 )
+                playerManager.dealStartingResources();
+            if( playerNo == 4) {
+                playerNo = 3;
+                turnNo++;
+                playerManager.dealStartingResources();
+            }
         }
-        turnDice = this.rollDice();
-        this.distributeResources(turnDice);
-        updateHappiness();
-        RobbersOldLocation = -1;
+        else if ( turnNo == 2 )
+        {
+            playerNo--;
+            if ( playerNo == -1 )
+            {
+                playerNo = 0;
+                turnNo++;
+                turnDice = this.rollDice();
+                this.distributeResources(turnDice);
+                updateHappiness();
+                RobbersOldLocation = -1;
+            }
+        }
+        else if ( turnNo > 2 )
+        {
+            playerNo++;
+            if(playerNo == 4) {
+                playerNo = 0;
+                turnNo++;
+            }
+
+            turnDice = this.rollDice();
+            this.distributeResources(turnDice);
+            updateHappiness();
+            RobbersOldLocation = -1;
+        }
         return playerManager.getPlayers()[playerNo].getName();
     }
 

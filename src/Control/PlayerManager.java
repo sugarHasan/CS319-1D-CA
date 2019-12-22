@@ -232,5 +232,18 @@ public class PlayerManager {
         players[i].changeName(substring);
     }
 
+    public void dealStartingResources()
+    {
+        for ( int i = 0; i < players.length; i++)
+        {
+            players[i].addResource( "Wool");
+            players[i].addResource( "Lumber");
+            players[i].addResource( "Lumber");
+            players[i].addResource( "Grain");
+            players[i].addResource( "Brick");
+            players[i].addResource( "Brick");
+        }
+    }
+
     public int getPlayerHappiness(int playerNo) { return  players[playerNo].getHappiness(); }
 }
