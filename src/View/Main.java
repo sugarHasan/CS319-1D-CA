@@ -41,6 +41,7 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
+    //private static MapManager mapManager;
     private boolean offer;
     private boolean knightCardPlayed = false;
     private String givenResource = "";
@@ -80,7 +81,6 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
     @FXML private javafx.scene.control.Label givenResourcesOfferID;
     @FXML private javafx.scene.control.Label wantedResourcesOfferID;
-    @FXML private javafx.scene.control.Button startCreateGame;
     @FXML
     private TextField player1;
     @FXML
@@ -98,6 +98,8 @@ public class Main extends Application implements Initializable {
     @FXML static public AnchorPane mapBuildings;
     @FXML static public AnchorPane mapRoads;
     @FXML static public AnchorPane robberAnchorPane;
+    @FXML static public Button startCreateGame;
+    @FXML static public Button startJoinGame;
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -158,7 +160,6 @@ public class Main extends Application implements Initializable {
         RollNo = ((javafx.scene.control.Label) tableViewParent.lookup("#RollNo"));
         playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
         playerBox = ((javafx.scene.control.ComboBox) tableViewParent.lookup("#playerBox"));
-        startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
@@ -247,9 +248,8 @@ public class Main extends Application implements Initializable {
 
         }
 
-        offer = true;
+        //offer = true;
        // playerBox.setButtonCell();
-        startCreateGame.setDisable(true);
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
