@@ -298,7 +298,8 @@ public class ClientGameManager extends ClientManager{
             this.nextTurn();
         }
         else if(id.equals("AB")){
-            //this.addRoad(Integer.parseInt(message.substring(2)));
+            this.addRoad(Integer.parseInt(message.substring(2)));
+
         }
         else if(id.equals("AC")){
         	this.addSettlement(Integer.parseInt(message.substring(2)));
@@ -333,15 +334,20 @@ public class ClientGameManager extends ClientManager{
         else if(id.equals("CC")){
         	//this.chatMessage(message.substring(2));
         }
-        else if(id.equals("CD")){
-        	//this.gameStart(message.substring(2));  //Name of the players connect the game
+        else if(id.equals("CF")){
+            int index = Integer.parseInt(message.substring(2,3));
+            while(playerManager == null){
+
+            }
+            playerManager.changeIndexPlayerName(message.substring(3), index);
         }
       	else if(id.equals("CE")){
       	    while ( map == null)
             {
 
             }
-            map = new Map( map.decodeMap( message.substring(2)));
+            createMap( map.decodeMap( message.substring(2)));
+      	    visualizeMap();
       	}
     }
     

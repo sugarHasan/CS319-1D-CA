@@ -41,7 +41,6 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
-    //private static MapManager mapManager;
     private boolean offer;
     private boolean knightCardPlayed = false;
     private String givenResource = "";
@@ -81,6 +80,7 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
     @FXML private javafx.scene.control.Label givenResourcesOfferID;
     @FXML private javafx.scene.control.Label wantedResourcesOfferID;
+    @FXML private javafx.scene.control.Button startCreateGame;
     @FXML
     private TextField player1;
     @FXML
@@ -120,6 +120,9 @@ public class Main extends Application implements Initializable {
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        //tableViewParent = FXMLLoader.load(getClass().getResource("CreateGame.fxml"));
+        //startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
+        //startCreateGame.setDisable(true);
         serverGameManager = new ServerGameManager(2222, player1.getText(),robberAnchorPane,hexTiles,mapBuildings,mapRoads);
     }
 
@@ -207,7 +210,7 @@ public class Main extends Application implements Initializable {
             if (server) {
                 //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
-                //myTurn = true;
+                myTurn = true;
             } else {
                 //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 clientGameManager.nextTurn();
@@ -247,9 +250,7 @@ public class Main extends Application implements Initializable {
             gameManager.visualizeMap();
 
         }
-
-        //offer = true;
-       // playerBox.setButtonCell();
+        offer = true;
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
@@ -289,20 +290,23 @@ public class Main extends Application implements Initializable {
         }
         else if(myTurn){
             if(server) {
+                System.out.println("MYTs ");
                 String id = ((Node) event.getSource()).getId();
                 int location = Integer.parseInt(id.substring(1));
                 if (serverGameManager.addRoad(location)) {
                     ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                    serverGameManager.sendMessageToAll("AB" + location+"###");
                 }
                 refreshResources();
                 refreshPlayerScores();
-                //refreshLongestRoad();
+                refreshLongestRoad();
             }
             else{
                 String id = ((Node) event.getSource()).getId();
                 int location = Integer.parseInt(id.substring(1));
                 if (clientGameManager.addRoad(location)) {
                     ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                    clientGameManager.sendMessage("AB" + location+"###");
                 }
                 refreshResources();
                 refreshPlayerScores();
