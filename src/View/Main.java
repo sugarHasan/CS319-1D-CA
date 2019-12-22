@@ -223,6 +223,7 @@ public class Main extends Application implements Initializable {
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
             gameManager.visualizeMap();
+
         }
     }
 
