@@ -2,7 +2,6 @@ package View;
 
 import Control.ClientGameManager;
 import Control.GameManager;
-import Control.MapManager;
 import Control.ServerGameManager;
 import Model.Offer;
 import javafx.application.Application;
@@ -40,7 +39,6 @@ public class Main extends Application implements Initializable {
     private static GameManager gameManager;
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
-    private static MapManager mapManager;
     private boolean offer;
     private String givenResource = "";
     private int givenResourceNumber = 0;
@@ -51,6 +49,7 @@ public class Main extends Application implements Initializable {
     public static boolean myTurn;
     public static boolean server;
 
+    Parent tableViewParent;
     @FXML private ComboBox playerBox;
     @FXML private RadioButton playerRadio, bankRadio;
     @FXML private  javafx.scene.control.Button offerButton;
@@ -109,15 +108,27 @@ public class Main extends Application implements Initializable {
 
     public void initializeGame(ActionEvent event) throws IOException, URISyntaxException{
         System.out.println( "INIT GAME");
+        tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
+        hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
+        mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
+        robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
+        mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        serverGameManager = new ServerGameManager(2222, player1.getText(),robberAnchorPane,hexTiles,mapBuildings,mapRoads);
     }
 
     public void joinGame(ActionEvent event) throws IOException, URISyntaxException {
         System.out.println( "JOIN GAME");
+        tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
+        hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
+        mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
+        robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
+        mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        clientGameManager = new ClientGameManager(2222, player1.getText(), robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+
     }
 
     public void PlayGame(ActionEvent event) throws IOException, URISyntaxException {
 
-        Parent tableViewParent;
         if(multiPlayer)
             tableViewParent = FXMLLoader.load(getClass().getResource("MultiPlayerGame.fxml"));
         else
@@ -183,13 +194,13 @@ public class Main extends Application implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-        if(multiPlayer) {
+        if( multiPlayer) {
             if (server) {
-                serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+                //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
                 //myTurn = true;
             } else {
-                clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+                //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 clientGameManager.nextTurn();
             }
         }
