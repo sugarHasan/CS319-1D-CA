@@ -1,6 +1,7 @@
 package Control;
 
 import Model.Building;
+import Model.BuildingTypes.Capital;
 import Model.BuildingTypes.City;
 import Model.BuildingTypes.Road;
 import Model.BuildingTypes.Settlement;
@@ -12,15 +13,13 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.IntStream;
 
 public class BuildingManager {
 
     private final int NO_OF_CORNERS_FOR_CITY_AND_BUILDINGS = 54;
     private final int NO_OF_EDGE_FOR_ROAD = 72;
 
-    private Building[] buildingsCityAndSettlement;
+    private Building[] cornerBuildings;
     private Building[] buildingsRoad;
     private ImageView[] buildingsImages;
 
@@ -29,7 +28,7 @@ public class BuildingManager {
     private int[] road3Image = {0,2,4,10,12,14,16,23,25,27,29,31,40,42,44,46,48,55,57,59,61,67,69,71};
 
     public BuildingManager() {
-        buildingsCityAndSettlement = new Building[NO_OF_CORNERS_FOR_CITY_AND_BUILDINGS];
+        cornerBuildings = new Building[NO_OF_CORNERS_FOR_CITY_AND_BUILDINGS];
         buildingsRoad = new Building[NO_OF_EDGE_FOR_ROAD];
         buildingsImages = new ImageView[NO_OF_CORNERS_FOR_CITY_AND_BUILDINGS];
     }
@@ -51,7 +50,7 @@ public class BuildingManager {
     }
 
     public boolean buildSettlement(Player player, int location){
-        if(buildingsCityAndSettlement[location] == null) {
+        if(cornerBuildings[location] == null) {
             ArrayList<Building> buildings = player.getBuildings();
             for (int i = 0; i < buildings.size(); i++) {
                 if (buildings.get(i) instanceof Road) {
@@ -61,7 +60,7 @@ public class BuildingManager {
                         if(adjCity[j] == location){
                             if(player.buySettlement()) {
                                 player.addBuilding(new Settlement(player, location));
-                                buildingsCityAndSettlement[location] = new Settlement(player, location);
+                                cornerBuildings[location] = new Settlement(player, location);
                                 return true;
                             }
                         }
@@ -73,8 +72,8 @@ public class BuildingManager {
     }
 
     public boolean buildCity(Player player, int location){
-        if(buildingsCityAndSettlement[location] != null){
-            if(buildingsCityAndSettlement[location].getPlayer().getName().equals(player.getName())) {
+        if(cornerBuildings[location] != null && cornerBuildings[location] instanceof Settlement){
+            if(cornerBuildings[location].getPlayer().getName().equals(player.getName())) {
                 ArrayList<Building> buildings = player.getBuildings();
                 for (int i = 0; i < buildings.size(); i++) {
                     if (buildings.get(i) instanceof Road) {
@@ -83,9 +82,34 @@ public class BuildingManager {
                         for (int j = 0; j < adjCity.length; j++) {
                             if (adjCity[j] == location) {
                                 if( player.canBuild() && player.buyCity()) {
-                                    //player.removeSettlement(location);
+                                    player.removeBuilding(location);
                                     player.addBuilding(new City(player, location));
-                                    buildingsCityAndSettlement[location] = new City(player, location);
+                                    cornerBuildings[location] = new City(player, location);
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean buildCapital(Player player, int location){
+        if(cornerBuildings[location] != null && cornerBuildings[location] instanceof City){
+            if(cornerBuildings[location].getPlayer().getName().equals(player.getName())) {
+                ArrayList<Building> buildings = player.getBuildings();
+                for (int i = 0; i < buildings.size(); i++) {
+                    if (buildings.get(i) instanceof Road) {
+                        Road road = (Road) buildings.get(i);
+                        int[] adjCity = road.getAdjacentCity();
+                        for (int j = 0; j < adjCity.length; j++) {
+                            if (adjCity[j] == location) {
+                                if( player.canBuild() && player.buyCapital()) {
+                                    player.removeBuilding(location);
+                                    player.addBuilding(new Capital(player, location));
+                                    cornerBuildings[location] = new Capital(player, location);
                                     return true;
                                 }
                             }
@@ -102,8 +126,8 @@ public class BuildingManager {
         ArrayList<Player> result = new ArrayList<Player>();
         for ( int i = 0; i < locations.length; i++)
         {
-            if ( buildingsCityAndSettlement[i] != null)
-                result.add( buildingsCityAndSettlement[i].getPlayer());
+            if ( cornerBuildings[i] != null)
+                result.add( cornerBuildings[i].getPlayer());
         }
         return result;
     }
@@ -209,6 +233,7 @@ public class BuildingManager {
         }
         else if(buildingsImages[location].getId().equals("Settlement"))
         {
+            buildingsImages[location].setId( "City");
             //MapBuildings.getChildren().remove(""+ location);
             img = new Image(getClass().getResource("/images/Cities/" + playerColor + "City.png").toURI().toString());
 
@@ -216,7 +241,7 @@ public class BuildingManager {
             buildingsImages[location].setFitHeight(50);
             buildingsImages[location].setFitWidth(50);
         }
-        else
+        else if(buildingsImages[location].getId().equals("City"))
         {
             //MapBuildings.getChildren().remove(""+ location);
             img = new Image(getClass().getResource("/images/Capitals/" + playerColor + "Capital.png").toURI().toString());

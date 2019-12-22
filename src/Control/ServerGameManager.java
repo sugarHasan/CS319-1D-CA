@@ -224,6 +224,16 @@ public class ServerGameManager extends ServerManager{
             return false;
     }
 
+    public boolean addCapital(int location) throws URISyntaxException {
+        if(buildingManager.buildCapital(playerManager.getPlayers()[playerNo] , location))
+        {
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
+            return true;
+        }
+        else
+            return false;
+    }
+
     public String nextTurn(){
         playerNo++;
         if(playerNo == 4) {

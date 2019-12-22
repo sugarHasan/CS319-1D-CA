@@ -187,6 +187,11 @@ public class GameManager {
         return playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
+    public boolean currentPlayerHasCapital()
+    {
+        return playerManager.playerHasCapital( playerNo);
+    }
+
     public boolean addRoad(int location) throws URISyntaxException {
         if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
         {
@@ -209,6 +214,16 @@ public class GameManager {
 
     public boolean addCity(int location) throws URISyntaxException {
         if(buildingManager.buildCity(playerManager.getPlayers()[playerNo] , location))
+        {
+            buildingManager.setBuildingImage(returnPlayerColor(),location);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public boolean addCapital(int location) throws URISyntaxException {
+        if(buildingManager.buildCapital(playerManager.getPlayers()[playerNo] , location))
         {
             buildingManager.setBuildingImage(returnPlayerColor(),location);
             return true;

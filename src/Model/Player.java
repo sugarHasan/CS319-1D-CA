@@ -182,32 +182,18 @@ public class Player {
 
     public int getVictoryPointsOffTurn() {
         int pointOfBuilding = 0;
-        for(int i = 0 ; i < buildings.size() ; i++){
-            if(buildings.get(i) instanceof Settlement){
-                pointOfBuilding++;
-            }
-        }
-        for(int i = 0 ; i < buildings.size() ; i++){
-            if(buildings.get(i) instanceof City){
-                pointOfBuilding++;
-                pointOfBuilding++;
-            }
+        for ( int i = 0; i < buildings.size(); i++)
+        {
+            pointOfBuilding = pointOfBuilding + buildings.get(i).getVictoryPoint();
         }
         return victoryPoints+pointOfBuilding;
     }
 
     public int getVictoryPointsOnTurn() {
         int pointOfBuilding = 0;
-        for(int i = 0 ; i < buildings.size() ; i++){
-            if(buildings.get(i) instanceof Settlement){
-                pointOfBuilding++;
-            }
-        }
-        for(int i = 0 ; i < buildings.size() ; i++){
-            if(buildings.get(i) instanceof City){
-                pointOfBuilding++;
-                pointOfBuilding++;
-            }
+        for ( int i = 0; i < buildings.size(); i++)
+        {
+            pointOfBuilding = pointOfBuilding + buildings.get(i).getVictoryPoint();
         }
         return victoryPoints+cards.get("VictoryPoint")+pointOfBuilding;
     }
@@ -256,7 +242,7 @@ public class Player {
         return res;
     }
 
-    public void removeSettlement(int location){
+    public void removeBuilding(int location){
         for(int i = 0 ; i < buildings.size() ; i++){
             if(buildings.get(i).getLocation() == location){
                 buildings.remove(i);
@@ -453,6 +439,16 @@ public class Player {
         return developments;
     }
 
+    public boolean hasCapital()
+    {
+        for ( int i = 0; i < buildings.size(); i++)
+        {
+            if ( buildings.get(i) instanceof Capital)
+                return true;
+        }
+        return false;
+    }
+
     public boolean canBuild()
     {
         return happiness.canBuild();
@@ -483,6 +479,16 @@ public class Player {
         if( hasCard("Grain", 2) && hasCard("Ore", 3) ){
             cards.put("Grain" , cards.get("Grain")-2);
             cards.put("Ore" , cards.get("Ore")-3);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean buyCapital()
+    {
+        if( hasCard("Brick", 3) && hasCard("Ore", 4) ){
+            cards.put("Brick" , cards.get("Brick")-3);
+            cards.put("Ore" , cards.get("Ore")-4);
             return true;
         }
         return false;

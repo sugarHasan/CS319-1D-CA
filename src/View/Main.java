@@ -685,14 +685,17 @@ public class Main extends Application implements Initializable {
         if(!multiPlayer) {
             String id = ((Node) event.getSource()).getId();
             int location = Integer.parseInt(id.substring(1));
-            if (gameManager.addSettlement(location)) {
+            if ( gameManager.addSettlement(location)) {
                 //((javafx.scene.control.Button) event.getSource()).setStyle(((javafx.scene.control.Button) event.getSource()).getStyle() + " -fx-background-color: " + gameManager.returnPlayerColor());
                 //((javafx.scene.control.Button) event.getSource()).setDisable(true);
                 //((javafx.scene.control.Button) event.getSource()).setOpacity(0.80);
-            } else if (gameManager.addCity(location)) {
+            } else if ( gameManager.addCity(location)) {
                 //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
                 //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
                 //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+            } else if ( gameManager.addCapital( location))
+            {
+
             }
             refreshResources();
             refreshPlayerScores();
@@ -709,6 +712,9 @@ public class Main extends Application implements Initializable {
                     //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
                     //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
                     //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                } else if ( serverGameManager.addCapital( location))
+                {
+
                 }
                 refreshResources();
                 refreshPlayerScores();
@@ -724,6 +730,9 @@ public class Main extends Application implements Initializable {
                     //((javafx.scene.control.Button) event.getSource()).setStyle(" -fx-background-color: " + gameManager.returnPlayerCityColor());
                     //((javafx.scene.control.Button) event.getSource()).setOpacity(1.0);
                     //((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                } else if ( clientGameManager.addCapital( location))
+                {
+
                 }
                 refreshResources();
                 refreshPlayerScores();
@@ -788,7 +797,7 @@ public class Main extends Application implements Initializable {
         if(!multiPlayer) {
             int[] playerScores = gameManager.getScoreBoard();
             for (int i = 0; i < 4; i++) {
-                if (playerScores[i] >= 10) {
+                if ( playerScores[i] >= 15 && gameManager.currentPlayerHasCapital() ) {
                     gameOverPopUp(gameOver());
                 }
             }
@@ -803,7 +812,7 @@ public class Main extends Application implements Initializable {
             if(server){
                 int[] playerScores = serverGameManager.getScoreBoard();
                 for (int i = 0; i < 4; i++) {
-                    if (playerScores[i] >= 10) {
+                    if ( playerScores[i] >= 15 && gameManager.currentPlayerHasCapital() ) {
                         gameOverPopUp(gameOver());
                     }
                 }
@@ -823,7 +832,7 @@ public class Main extends Application implements Initializable {
             else{
                 int[] playerScores = clientGameManager.getScoreBoard();
                 for (int i = 0; i < 4; i++) {
-                    if (playerScores[i] >= 10) {
+                    if ( playerScores[i] >= 15 && gameManager.currentPlayerHasCapital()) {
                         gameOverPopUp(gameOver());
                     }
                 }
