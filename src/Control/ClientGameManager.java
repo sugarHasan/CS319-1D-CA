@@ -41,7 +41,7 @@ public class ClientGameManager extends ClientManager{
     private AnchorPane roads;
     private int dice;
 
-    public ClientGameManager(int port, String playerName, AnchorPane robber, AnchorPane hex, AnchorPane buildings, AnchorPane roads) throws URISyntaxException, IOException {
+    public ClientGameManager(int port, String playerName, AnchorPane robberImage, AnchorPane hex, AnchorPane buildings, AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
         this.robber = robber;
         this.hex = hex;

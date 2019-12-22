@@ -242,7 +242,7 @@ public class Main extends Application implements Initializable {
 
             } else {
                 //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
-                clientGameManager.sendMessage("XAA");
+                //clientGameManager.sendMessage("XAA");
                 myTurn = false;
             }
         }
@@ -267,6 +267,7 @@ public class Main extends Application implements Initializable {
                 this.refreshHighestArmy();
                 this.refreshLongestRoad();
                 playerName.setText("" + clientGameManager.getPlayerName());
+                clientGameManager.visualizeMap();
             }
         }
         else{

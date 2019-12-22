@@ -41,7 +41,7 @@ public class ServerGameManager extends ServerManager{
     private int dice;
     //private ServerManager serverManager;
 
-    public ServerGameManager( int port, String player1,AnchorPane robber,AnchorPane hex,AnchorPane buildings,AnchorPane roads) throws URISyntaxException, IOException {
+    public ServerGameManager( int port, String player1,AnchorPane robberImage,AnchorPane hex,AnchorPane buildings,AnchorPane roads) throws URISyntaxException, IOException {
         super(port);
 
         this.robber = robber;
