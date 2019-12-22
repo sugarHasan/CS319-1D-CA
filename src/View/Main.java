@@ -20,6 +20,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -85,12 +87,17 @@ public class Main extends Application implements Initializable {
     @FXML
     private TextField player4;
     @FXML
-    private Button startButton;
+    private Button startButton, acceptOffer, refuseOffer;
+    @FXML
+    private Label GivenNo, TakenNo, Sender, GivenResource, TakenResource;
 
     @FXML static public AnchorPane hexTiles;
     @FXML static public AnchorPane mapBuildings;
     @FXML static public AnchorPane mapRoads;
     @FXML static public AnchorPane robberAnchorPane;
+
+    public Main() {
+    }
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -143,6 +150,8 @@ public class Main extends Application implements Initializable {
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        /*GivenResource = (ImageView) tableViewParent.lookup("#GivenResource");
+        TakenResource = (ImageView) tableViewParent.lookup("#TakenResource");*/
 
         offer = true;
         if(!multiPlayer)
@@ -624,7 +633,7 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    public void endTurn(ActionEvent event) throws IOException {
+    public void endTurn(ActionEvent event) throws IOException, URISyntaxException {
         if (!multiPlayer) {
             gameManager.nextTurn();
             refreshResources();
@@ -735,7 +744,7 @@ public class Main extends Application implements Initializable {
         dialog.show();
     }
 
-    public void offerPopUp() throws IOException {
+    public void offerPopUp() throws IOException, URISyntaxException {
         ArrayList<Offer> offerList = null;
         if ( !multiPlayer)
             offerList = gameManager.listOffer();
@@ -755,6 +764,27 @@ public class Main extends Application implements Initializable {
         {
             System.out.println( "INSIDE");
             for(int i = 0; i < offerList.size(); i++) {
+                //String Given = "Brick", Taken = "Brick";
+
+               /* if (offerList.get(i).getDemandedItem().equals("Wool")) {
+
+                } else if( offerList.get(i).getDemandedItem().equals("Lumber")) {
+
+                }
+
+                if (offerList.get(i).getOfferedItem().equals("Wool")) {
+
+                } else if (offerList.get(i).getOfferedItem().equals("Lumber")) {
+
+                }
+               */
+
+              /*  javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
+                GivenResource.setImage(img);
+
+                javafx.scene.image.Image img2 = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
+                TakenResource.setImage(img2);*/
+
                 Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
 
                 Scene scene = new Scene(root);
