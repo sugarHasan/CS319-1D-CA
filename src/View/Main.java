@@ -4,6 +4,7 @@ import Control.ClientGameManager;
 import Control.GameManager;
 import Control.MapManager;
 import Control.ServerGameManager;
+import Model.Offer;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -29,6 +30,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -666,8 +668,8 @@ public class Main extends Application implements Initializable {
                     RollNo.setText("Turn : " + clientGameManager.getTurnNo());
                 }
             }
-            offerPopUp();
         }
+        offerPopUp();
     }
 
     public static void refreshPlayerScores()
@@ -734,7 +736,7 @@ public class Main extends Application implements Initializable {
     }
 
     public void offerPopUp() throws IOException {
-        ArrayList<Offer> offerList;
+        ArrayList<Offer> offerList = null;
         if ( !multiPlayer)
             offerList = gameManager.listOffer();
         else if ( myTurn)
@@ -749,18 +751,22 @@ public class Main extends Application implements Initializable {
             }
         }
 
-        for(int i = 0; i < offerList.size(); i++) {
-            Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+        if ( offerList != null )
+        {
+            System.out.println( "INSIDE");
+            for(int i = 0; i < offerList.size(); i++) {
+                Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
 
-            Scene scene = new Scene(root);
+                Scene scene = new Scene(root);
 
-            Stage stage = new Stage();
-            stage.setTitle("Offer");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
+                Stage stage = new Stage();
+                stage.setTitle("Offer " + (i + 1));
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
 
-            //stage.close();
+                //stage.close();
+            }
         }
     }
 
