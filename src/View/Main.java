@@ -225,14 +225,6 @@ public class Main extends Application implements Initializable {
         System.out.println( "player box was used");
     }
 
-    public void givenBoxPressed(ActionEvent event) throws IOException{
-        System.out.println( "given box was used");
-    }
-
-    public void wantedBoxPressed(ActionEvent event) throws IOException{
-        System.out.println( "wanted box was used");
-    }
-
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
@@ -279,14 +271,13 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    //for robber and knight card. Location starts with 0.
     public void hexCenterPressed(ActionEvent event) throws IOException, URISyntaxException {
-        //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
         if(gameManager.getTurnDice() == 7)
             gameManager.changeRobberLocation(location);
     }
+
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
         String oldResource = givenResource;
@@ -363,6 +354,7 @@ public class Main extends Application implements Initializable {
         else
             givenResourceNumber = 1;
     }
+
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
         String oldResource = wantedResource;
 
@@ -430,6 +422,95 @@ public class Main extends Application implements Initializable {
             wantedResourceNumber = 1;
     }
 
+    public void offerButtonPressed(ActionEvent event) throws IOException{
+        if(!multiPlayer) {
+            if(!offer){
+                if(!givenResource.equals("") && !wantedResource.equals("")) {
+                    if (!givenResource.equals(wantedResource)){
+                        gameManager.tradeResource(givenResource, wantedResource);
+                        refreshResources();
+                    }
+                }
+            }
+            else
+            {
+                int receiverNo = -1;
+                if( playerBox.getValue().equals(Player1Trade))
+                    receiverNo = 0;
+                else if( playerBox.getValue().equals(Player2Trade))
+                    receiverNo = 1;
+                else if( playerBox.getValue().equals(Player3Trade))
+                    receiverNo = 2;
+                else if( playerBox.getValue().equals(Player4Trade))
+                    receiverNo = 3;
+
+                if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                    if ( !givenResource.equals( wantedResource) ){
+                        gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                    }
+                }
+            }
+        }
+        else if(myTurn){
+            if(server){
+                if(!offer){
+                    if(!givenResource.equals("") && !wantedResource.equals("")) {
+                        if (!givenResource.equals(wantedResource)){
+                            gameManager.tradeResource(givenResource, wantedResource);
+                            refreshResources();
+                        }
+                    }
+                }
+                else
+                {
+                    int receiverNo = -1;
+                    if( playerBox.getValue().equals(Player1Trade))
+                        receiverNo = 0;
+                    else if( playerBox.getValue().equals(Player2Trade))
+                        receiverNo = 1;
+                    else if( playerBox.getValue().equals(Player3Trade))
+                        receiverNo = 2;
+                    else if( playerBox.getValue().equals(Player4Trade))
+                        receiverNo = 3;
+
+                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                        if ( !givenResource.equals( wantedResource) ){
+                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                        }
+                    }
+                }
+            }
+            else{
+                if(!offer){
+                    if(!givenResource.equals("") && !wantedResource.equals("")) {
+                        if (!givenResource.equals(wantedResource)){
+                            gameManager.tradeResource(givenResource, wantedResource);
+                            refreshResources();
+                        }
+                    }
+                }
+                else
+                {
+                    int receiverNo = -1;
+                    if( playerBox.getValue().equals(Player1Trade))
+                        receiverNo = 0;
+                    else if( playerBox.getValue().equals(Player2Trade))
+                        receiverNo = 1;
+                    else if( playerBox.getValue().equals(Player3Trade))
+                        receiverNo = 2;
+                    else if( playerBox.getValue().equals(Player4Trade))
+                        receiverNo = 3;
+
+                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
+                        if ( !givenResource.equals( wantedResource) ){
+                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void refreshResources(){
         if(!multiPlayer) {
             int[] resources = gameManager.getResources();
@@ -459,6 +540,7 @@ public class Main extends Application implements Initializable {
         }
 
     }
+
     public void refreshDevelopmentCards() {
         if (!multiPlayer) {
             int[] developments = gameManager.getDevelopmentCards();
@@ -488,9 +570,6 @@ public class Main extends Application implements Initializable {
 
         }
     }
-
-
-
 
     public void buyDevelopmentCard( ActionEvent event) throws IOException{
         if(!multiPlayer) {
@@ -568,6 +647,7 @@ public class Main extends Application implements Initializable {
             }
         }
     }
+
     public void endTurn(ActionEvent event) throws IOException {
         if (!multiPlayer) {
             gameManager.nextTurn();
@@ -660,6 +740,7 @@ public class Main extends Application implements Initializable {
             }
         }
     }
+
     public void gameOverPopUp(String gameWinner) {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
@@ -669,6 +750,7 @@ public class Main extends Application implements Initializable {
         dialog.setScene(dialogScene);
         dialog.show();
     }
+
     public String gameOver(){
         return gameManager.gameOver();
     }
@@ -706,114 +788,6 @@ public class Main extends Application implements Initializable {
         }
         else if(road==3){
             playerLongestRoad.setText(p4.getText());
-        }
-    }
-    public void tradeWithPlayer()
-    {
-        if(playerBox.getValue().equals(Player1Trade))
-        {
-
-        }
-        else if(playerBox.getValue().equals(Player2Trade))
-        {
-
-        }
-        else if(playerBox.getValue().equals(Player3Trade))
-        {
-
-        }
-        else if(playerBox.getValue().equals(Player4Trade))
-        {
-
-        }
-    }
-
-    public void offerButtonPressed(ActionEvent event) throws IOException{
-        if(!multiPlayer) {
-            if(!offer){
-                if(!givenResource.equals("") && !wantedResource.equals("")) {
-                    if (!givenResource.equals(wantedResource)){
-                        gameManager.tradeResource(givenResource, wantedResource);
-                        refreshResources();
-                    }
-                }
-            }
-            else
-            {
-                int receiverNo = -1;
-                if( playerBox.getValue().equals(Player1Trade))
-                    receiverNo = 0;
-                else if( playerBox.getValue().equals(Player2Trade))
-                    receiverNo = 1;
-                else if( playerBox.getValue().equals(Player3Trade))
-                    receiverNo = 2;
-                else if( playerBox.getValue().equals(Player4Trade))
-                    receiverNo = 3;
-
-                if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                    if ( !givenResource.equals( wantedResource) ){
-                        gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                    }
-                }
-            }
-        }
-        else if(myTurn){
-            if(server){
-                if(!offer){
-                    if(!givenResource.equals("") && !wantedResource.equals("")) {
-                        if (!givenResource.equals(wantedResource)){
-                            gameManager.tradeResource(givenResource, wantedResource);
-                            refreshResources();
-                        }
-                    }
-                }
-                else
-                {
-                    int receiverNo = -1;
-                    if( playerBox.getValue().equals(Player1Trade))
-                        receiverNo = 0;
-                    else if( playerBox.getValue().equals(Player2Trade))
-                        receiverNo = 1;
-                    else if( playerBox.getValue().equals(Player3Trade))
-                        receiverNo = 2;
-                    else if( playerBox.getValue().equals(Player4Trade))
-                        receiverNo = 3;
-
-                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                        if ( !givenResource.equals( wantedResource) ){
-                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                        }
-                    }
-                }
-            }
-            else{
-                if(!offer){
-                    if(!givenResource.equals("") && !wantedResource.equals("")) {
-                        if (!givenResource.equals(wantedResource)){
-                            gameManager.tradeResource(givenResource, wantedResource);
-                            refreshResources();
-                        }
-                    }
-                }
-                else
-                {
-                    int receiverNo = -1;
-                    if( playerBox.getValue().equals(Player1Trade))
-                        receiverNo = 0;
-                    else if( playerBox.getValue().equals(Player2Trade))
-                        receiverNo = 1;
-                    else if( playerBox.getValue().equals(Player3Trade))
-                        receiverNo = 2;
-                    else if( playerBox.getValue().equals(Player4Trade))
-                        receiverNo = 3;
-
-                    if( !givenResource.equals("") && !wantedResource.equals("") && receiverNo != -1) {
-                        if ( !givenResource.equals( wantedResource) ){
-                            gameManager.makeOffer( receiverNo, givenResource, wantedResource, givenResourceNumber, wantedResourceNumber);
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -949,7 +923,6 @@ public class Main extends Application implements Initializable {
     private ObservableValue<? extends String> textValueProperty() {
         return textValueProperty();
     }
+
     private final StringProperty textValue = new SimpleStringProperty("waiting for input");
-
-
 }

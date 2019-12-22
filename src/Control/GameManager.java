@@ -109,7 +109,7 @@ public class GameManager {
         {
             playerManager.robberSteals();
             //changeRobberLocation();
-            //will change robbers location to selected pos
+            //will change robbers location to selected position
         }
         else if( dice <= 12 && dice > 1)
         {
@@ -150,6 +150,7 @@ public class GameManager {
     public ArrayList<Card> getInitialDevelopmentCardStack() {
         return initialDevelopmentCardStack;
     }
+
     public boolean buyDevelopmentCard(){
         if(!initialDevelopmentCardStack.isEmpty()) {
             if (this.playerManager.buyDevelopmentCard(playerNo)) {
@@ -160,12 +161,15 @@ public class GameManager {
         }
         return false;
     }
+
     public void playMonopoly(String resourceType){
         this.playerManager.playMonopoly(resourceType , playerNo);
     }
+
     public void playYearOfPlenty(String resourceType){
         this.playerManager.playYearOfPlenty(resourceType , playerNo);
     }
+
     public void playRoadBuilding(){
         this.playerManager.playRoadBuilding(playerNo);
     }
@@ -227,6 +231,21 @@ public class GameManager {
                            String demandedItem, int offerNum, int demandNum)
     {
         playerManager.makeOffer( playerNo, receiverNo, offeredItem, demandedItem, offerNum, demandNum);
+    }
+
+    public ArrayList<Offer> listOffer()
+    {
+        return playerManager.listOffers( playerNo);
+    }
+
+    public boolean acceptOffer( Offer offer)
+    {
+        return playerManager.acceptOffer( offer);
+    }
+
+    public boolean declineOffer( Offer offer)
+    {
+        return playerManager.declineOffer( offer);
     }
 
     public int getTurnDice() {

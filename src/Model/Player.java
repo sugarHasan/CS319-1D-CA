@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Player {
     private final int NO_OF_PATHS = 72;
-    private final int[] DOCK_LOCATIONS = { 0, 1, 3, 5, 10, 11, 15, 16, 26, 32, 33, 38, 42, 46, 47, 49, 51, 52};
+    private final int[][] DOCK_LOCATIONS = { {0,3,10,15,26,32,47,51},{1,5},{11,16},{33,38},{42,46},{49,52}};
 
     private ArrayList<Building> buildings;
     private HashMap<String , Integer> cards;
@@ -147,15 +147,18 @@ public class Player {
         {
             for ( int j = 0; j < DOCK_LOCATIONS.length; j++ )
             {
-                if ( buildings.get( i).getLocation() == DOCK_LOCATIONS[j] )
+                for ( int k = 0; k < DOCK_LOCATIONS[j].length; k++)
                 {
-                    random = Math.random();
-                    if ( random < 0.33 )
+                    if ( buildings.get( i).getLocation() == DOCK_LOCATIONS[j][k] )
                     {
-                        System.out.println( "Thats fish");
-                        count++;
+                        random = Math.random();
+                        if ( random < 0.33 )
+                        {
+                            System.out.println( "Thats fish");
+                            count++;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -263,13 +266,6 @@ public class Player {
         cards.put( resource, cards.get( resource) + 1);
     }
 
-    public void printBuildings()
-    {
-        for ( int i = 0; i < buildings.size(); i++ )
-        {
-            System.out.println( "Building: " + i);
-        }
-    }
     public void addResource(int town , String resource){
         for(int i = 0 ; i < buildings.size() ; i++){
             if(buildings.get(i) instanceof Settlement){
@@ -289,12 +285,78 @@ public class Player {
         return cards.get("Knight");
     }
 
-    public boolean tradeResource(String given , String wanted){
-        if(cards.get(given)>=4){
-            cards.put(given , cards.get(given) - 4);
-            cards.put(wanted , cards.get(wanted)+1);
+    public boolean tradeResource( String given , String wanted){
+        int ratio = 4, resourceMap = 0;
+
+        if ( given.equals( "Wool"))
+        {
+            resourceMap = 1;
+        }
+        else if ( given.equals( "Ore"))
+        {
+            resourceMap = 2;
+        }
+        else if ( given.equals( "Grain"))
+        {
+            resourceMap = 3;
+        }
+        else if ( given.equals( "Brick"))
+        {
+            resourceMap = 4;
+        }
+        else if ( given.equals( "Lumber"))
+        {
+            resourceMap = 5;
+        }
+
+        for ( int i = 0; i < buildings.size(); i++ )
+        {
+            for ( int j = 0; j < DOCK_LOCATIONS[resourceMap].length; j++ )
+            {
+                if ( buildings.get( i).getLocation() == DOCK_LOCATIONS[resourceMap][j] )
+                {
+                    ratio = 2;
+                    break;
+                }
+            }
+            if ( ratio != 4 )
+                break;
+        }
+
+        if ( ratio == 4 )
+            for ( int i = 0; i < buildings.size(); i++ )
+            {
+                for ( int j = 0; j < DOCK_LOCATIONS[0].length; j++ )
+                {
+                    if ( buildings.get( i).getLocation() == DOCK_LOCATIONS[0][j] )
+                    {
+                        ratio = 3;
+                        break;
+                    }
+                }
+                if ( ratio != 4 )
+                    break;
+            }
+
+        if ( hasResource( given, ratio))
+        {
+            cards.put( given, cards.get( given) - ratio);
+            cards.put( wanted, cards.get( wanted) + 1);
             return true;
         }
+        return false;
+    }
+
+    public void manageOffer( String givenResource, int givenResourceNumber, String wantedResource, int wantedResourceNumber)
+    {
+        cards.put( givenResource, cards.get( givenResource) + givenResourceNumber);
+        cards.put( wantedResource, cards.get( wantedResource) - wantedResourceNumber);
+    }
+
+    public boolean hasResource( String resource, int value)
+    {
+        if ( cards.get( resource) >= value )
+            return true;
         return false;
     }
 
@@ -341,6 +403,7 @@ public class Player {
         resources[4] = cards.get("Wool");
         return resources;
     }
+
     public int[] getDevelopmentCards() {
         int [] developments = new int[5];
         developments[0] = cards.get("Knight");
@@ -364,6 +427,7 @@ public class Player {
         }
         return false;
     }
+
     public boolean buySettlement(){
         if(cards.get("Brick")>= 1 &&  cards.get("Lumber")>= 1 && cards.get("Grain")>= 1 &&  cards.get("Wool")>= 1){
             cards.put("Lumber" , cards.get("Lumber")-1);

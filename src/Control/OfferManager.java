@@ -39,21 +39,23 @@ public class OfferManager {
         return -1;
     }
 
-    public void closeOffer( int offerIndex)
+    public boolean closeOffer( int offerIndex)
     {
-        offers.remove( offerIndex);
+        if ( offerIndex >= 0 && offerIndex < offers.size() )
+        {
+            offers.remove(offerIndex);
+            return true;
+        }
+        return false;
     }
 
-    public Offer acceptOffer( int offerIndex)
+    public boolean acceptOffer( Offer offer)
     {
-        Offer acceptedOffer;
-        acceptedOffer = offers.get( offerIndex);
-        closeOffer( offerIndex);
-        return acceptedOffer;
+        return closeOffer( findOffer( offer));
     }
 
-    public void declineOffer( int offerIndex)
+    public boolean declineOffer( Offer offer)
     {
-        closeOffer( offerIndex);
+        return closeOffer( findOffer( offer));
     }
 }

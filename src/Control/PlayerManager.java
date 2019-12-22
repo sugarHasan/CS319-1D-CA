@@ -33,6 +33,7 @@ public class PlayerManager {
         scores[turnedPlayer] = players[turnedPlayer].getVictoryPointsOnTurn();
         return scores;
     }
+
     public int whoHasLongestRoad(){
         int longestRoad = 0;
         int playerIndex = -1;
@@ -77,6 +78,52 @@ public class PlayerManager {
                            String demandedItem, int offerNum, int demandNum)
     {
         offerManager.makeOffer( players[senderNo], players[receiverNo], offeredItem, demandedItem, offerNum, demandNum);
+    }
+
+    public ArrayList<Offer> listOffers( int playerNo)
+    {
+        return offerManager.listOffers( players[playerNo]);
+    }
+
+    public boolean acceptOffer( Offer offer)
+    {
+        if ( offerManager.acceptOffer( offer) )
+        {
+            int senderNo = -1, receiverNo = -1;
+            for ( int i = 0; i < players.length; i++ )
+            {
+                if ( offer.getSender().getName().equals( players[i].getName()))
+                {
+                    senderNo = i;
+                    break;
+                }
+            }
+            for ( int i = 0; i < players.length; i++ )
+            {
+                if ( offer.getReceiver().getName().equals( players[i].getName()))
+                {
+                    receiverNo = i;
+                    break;
+                }
+            }
+
+            if ( senderNo >= 0 && senderNo < players.length && receiverNo >= 0 && receiverNo < players.length
+                    && players[senderNo].hasResource( offer.getOfferedItem(), offer.getOfferNum())
+                    && players[receiverNo].hasResource( offer.getDemandedItem(), offer.getDemandNum()) )
+            {
+                players[senderNo].manageOffer( offer.getDemandedItem(), offer.getDemandNum(),
+                                               offer.getOfferedItem(), offer.getOfferNum());
+                players[receiverNo].manageOffer( offer.getOfferedItem(), offer.getOfferNum(),
+                                                 offer.getDemandedItem(), offer.getDemandNum());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean declineOffer( Offer offer)
+    {
+        return offerManager.declineOffer( offer);
     }
 
     public boolean buyDevelopmentCard(int playerNo) {
