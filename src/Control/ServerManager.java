@@ -85,7 +85,6 @@ public abstract class ServerManager {
     private void listenForMessages( Socket socket) throws URISyntaxException {
         String message = "";
         boolean isAlive = true;
-
         while ( isAlive)
         {
             try

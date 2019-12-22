@@ -182,6 +182,7 @@ public class ServerGameManager extends ServerManager{
     }
 
     public boolean addRoad(int location) throws URISyntaxException {
+        sendMessageToAll("DENEMEMU###");
     return true;
     }
 
@@ -247,6 +248,7 @@ public class ServerGameManager extends ServerManager{
 
     @Override
     public void received(String message) throws URISyntaxException {
+        System.out.println(message);
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
             this.nextTurn();
@@ -298,15 +300,19 @@ public class ServerGameManager extends ServerManager{
 
     @Override
     public void connectionEstablished() {
-        if(playerJoined!=4){
+        if(playerJoined!=2){
+            System.out.println("CONNECTION ESTABLISHED");
             playerJoined++;
             // playerManager.setPlayerName() DO IN received
-            if(playerJoined==4){
+            if(playerJoined==2){
                 sendGameData();
             }
         }
     }
     public void sendGameData(){
-
+        System.out.println("SEND GAME DATA");
+        for(int i = 0 ; i < 4 ; i++){
+            sendMessageToAll("CD"+i+playerManager.getPlayers()[i]+"###");
+        }
     }
 }

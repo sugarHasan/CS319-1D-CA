@@ -42,6 +42,8 @@ public class ControllerMainMenu implements Initializable {
     }
     public void PlayGame(ActionEvent event) throws IOException
     {
+        Main.server = false;
+        Main.multiPlayer = false;
         AnchorPane pane = FXMLLoader.load(getClass().getResource("SetPlayers.fxml"));
         rootPane.getChildren().setAll(pane);
     }

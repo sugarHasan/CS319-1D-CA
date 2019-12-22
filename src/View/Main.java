@@ -150,7 +150,7 @@ public class Main extends Application implements Initializable {
         }
         else
         {
-            playerNames = new String[1];
+            playerNames = new String[4];
             playerNames[0] = player1.getText();
             if(playerNames[0].isEmpty())
             {
@@ -163,19 +163,19 @@ public class Main extends Application implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(tableViewScene);
         window.show();
-
         if(multiPlayer) {
             if (server) {
                 serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
-
+                serverGameManager.nextTurn();
+                myTurn = true;
             } else {
                 clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
+                clientGameManager.nextTurn();
             }
         }
         else{
             gameManager = new GameManager(playerNames[0] , playerNames[1] , playerNames[2] , playerNames[3], robberAnchorPane);
             gameManager.nextTurn();
-
         }
         if(multiPlayer) {
             if (server) {
@@ -183,9 +183,8 @@ public class Main extends Application implements Initializable {
                 this.refreshResources();
                 this.refreshPlayerScores();
                 this.refreshHighestArmy();
-                this.refreshLongestRoad();
+                //this.refreshLongestRoad();
                 playerName.setText("" + serverGameManager.getPlayerName());
-
                 serverGameManager.visualizeMap();
 
             } else {
@@ -195,7 +194,6 @@ public class Main extends Application implements Initializable {
                 this.refreshHighestArmy();
                 this.refreshLongestRoad();
                 playerName.setText("" + clientGameManager.getPlayerName());
-
                 clientGameManager.visualizeMap();
             }
         }
@@ -206,31 +204,17 @@ public class Main extends Application implements Initializable {
             this.refreshHighestArmy();
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
-
             gameManager.visualizeMap();
-
         }
-
-        RollNo.setText("Turn : " + gameManager.getTurnNo());
-        this.refreshResources();
-        this.refreshPlayerScores();
-        this.refreshHighestArmy();
-        this.refreshLongestRoad();
-        playerName.setText("" + gameManager.getPlayerName());
-
-        gameManager.visualizeMap();
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
-        System.out.println( "player box was used");
     }
 
     public void givenBoxPressed(ActionEvent event) throws IOException{
-        System.out.println( "given box was used");
     }
 
     public void wantedBoxPressed(ActionEvent event) throws IOException{
-        System.out.println( "wanted box was used");
     }
 
     public void playerRadioPressed(ActionEvent event) throws IOException{
@@ -244,6 +228,7 @@ public class Main extends Application implements Initializable {
     }
 
     public void edgePressed(ActionEvent event) throws IOException, URISyntaxException {
+        System.out.println("EDGE ");
         if(!multiPlayer) {
             String id = ((Node) event.getSource()).getId();
             int location = Integer.parseInt(id.substring(1));
@@ -255,7 +240,6 @@ public class Main extends Application implements Initializable {
             refreshLongestRoad();
         }
         else if(myTurn){
-
             if(server) {
                 String id = ((Node) event.getSource()).getId();
                 int location = Integer.parseInt(id.substring(1));
@@ -264,7 +248,7 @@ public class Main extends Application implements Initializable {
                 }
                 refreshResources();
                 refreshPlayerScores();
-                refreshLongestRoad();
+                //refreshLongestRoad();
             }
             else{
                 String id = ((Node) event.getSource()).getId();
@@ -439,7 +423,7 @@ public class Main extends Application implements Initializable {
             lumberNo.setText("" +  resources[3]);
             woolNo.setText("" +  resources[4]);
         }
-        else if(myTurn){
+        else {
             if(server) {
                 int[] resources = serverGameManager.getResources();
                 grainNo.setText("" +  resources[0]);
@@ -468,8 +452,7 @@ public class Main extends Application implements Initializable {
             PlentyNo.setText("" + developments[3]);
             MonoNo.setText("" + developments[4]);
         }
-        else if (myTurn) {
-
+        else {
             if (server) {
                 int[] developments = serverGameManager.getDevelopmentCards();
                 KnightNo.setText("" + developments[0]);
@@ -675,37 +658,88 @@ public class Main extends Application implements Initializable {
 
     public void refreshHighestArmy()
     {
-        int army = gameManager.largestArmy();
+        if(!multiPlayer) {
+            int army = gameManager.largestArmy();
 
-        if(army==0){
-            playerHighestArmy.setText(p1.getText());
+            if (army == 0) {
+                playerHighestArmy.setText(p1.getText());
+            } else if (army == 1) {
+                playerHighestArmy.setText(p2.getText());
+            } else if (army == 2) {
+                playerHighestArmy.setText(p3.getText());
+            } else if (army == 3) {
+                playerHighestArmy.setText(p4.getText());
+            }
         }
-        else if(army==1){
-            playerHighestArmy.setText(p2.getText());
-        }
-        else if(army==2){
-            playerHighestArmy.setText(p3.getText());
-        }
-        else if(army==3){
-            playerHighestArmy.setText(p4.getText());
-        }
+        else if(myTurn){
+            if(server){
+                int army = serverGameManager.largestArmy();
 
+                if (army == 0) {
+                    playerHighestArmy.setText(p1.getText());
+                } else if (army == 1) {
+                    playerHighestArmy.setText(p2.getText());
+                } else if (army == 2) {
+                    playerHighestArmy.setText(p3.getText());
+                } else if (army == 3) {
+                    playerHighestArmy.setText(p4.getText());
+                }
+            }
+            else{
+                int army = clientGameManager.largestArmy();
+
+                if (army == 0) {
+                    playerHighestArmy.setText(p1.getText());
+                } else if (army == 1) {
+                    playerHighestArmy.setText(p2.getText());
+                } else if (army == 2) {
+                    playerHighestArmy.setText(p3.getText());
+                } else if (army == 3) {
+                    playerHighestArmy.setText(p4.getText());
+                }
+            }
+        }
     }
 
     public void refreshLongestRoad()
     {
-        int road = gameManager.longestRoad();
-        if(road==0){
-            playerLongestRoad.setText(p1.getText());
+        if(!multiPlayer) {
+            int road = gameManager.longestRoad();
+            if (road == 0) {
+                playerLongestRoad.setText(p1.getText());
+            } else if (road == 1) {
+                playerLongestRoad.setText(p2.getText());
+            } else if (road == 2) {
+                playerLongestRoad.setText(p3.getText());
+            } else if (road == 3) {
+                playerLongestRoad.setText(p4.getText());
+            }
         }
-        else if(road==1){
-            playerLongestRoad.setText(p2.getText());
-        }
-        else if(road==2){
-            playerLongestRoad.setText(p3.getText());
-        }
-        else if(road==3){
-            playerLongestRoad.setText(p4.getText());
+        else if(myTurn){
+            if(server){
+                int road = clientGameManager.longestRoad();
+                if (road == 0) {
+                    playerLongestRoad.setText(p1.getText());
+                } else if (road == 1) {
+                    playerLongestRoad.setText(p2.getText());
+                } else if (road == 2) {
+                    playerLongestRoad.setText(p3.getText());
+                } else if (road == 3) {
+                    playerLongestRoad.setText(p4.getText());
+                }
+            }
+            else{
+                int road = serverGameManager.longestRoad();
+                if (road == 0) {
+                    playerLongestRoad.setText(p1.getText());
+                } else if (road == 1) {
+                    playerLongestRoad.setText(p2.getText());
+                } else if (road == 2) {
+                    playerLongestRoad.setText(p3.getText());
+                } else if (road == 3) {
+                    playerLongestRoad.setText(p4.getText());
+                }
+            }
         }
     }
     public void tradeWithPlayer()

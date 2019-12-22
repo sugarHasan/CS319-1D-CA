@@ -11,7 +11,7 @@ public abstract class ClientManager
     private Socket socket;
     private Thread msgListenerThread;
     private final String ip = "127.0.0.1";
-
+    private final String TERMINATION = "###";
 
     public ClientManager( int serverPort) throws UnknownHostException, IOException
     {
@@ -19,7 +19,11 @@ public abstract class ClientManager
         msgListenerThread = new Thread( new Runnable() {
             public void run()
             {
-                listenForMessages();
+                try {
+                    listenForMessages();
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
             }
         });
         msgListenerThread.start();
@@ -38,11 +42,9 @@ public abstract class ClientManager
         }
     }
 
-    private void listenForMessages()
-    {
-        String msg;
+    private void listenForMessages() throws URISyntaxException {
+        String message;
         InputStream stream;
-
         try
         {
             stream = socket.getInputStream();
@@ -54,14 +56,20 @@ public abstract class ClientManager
 
         while ( true)
         {
-            msg = "";
+            message = "";
             try
             {
-                msg += (char) stream.read();
+                message += (char) stream.read();
             }
             catch (IOException e)
             {
                 return;
+            }
+            if ( message.contains(TERMINATION))
+            {
+                System.out.println("MESAJ ALINIYOR");
+                received( message.substring( 0, message.length() - 3));
+                message = "";
             }
         }
     }
