@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 public class Player {
     private final int NO_OF_PATHS = 72;
+    private final int NO_OF_CORNERS = 54;
     private final int[][] DOCK_LOCATIONS = { {0,3,10,15,26,32,47,51},{1,5},{11,16},{33,38},{42,46},{49,52}};
 
     private ArrayList<Building> buildings;
@@ -17,11 +18,11 @@ public class Player {
     public Player(String name){
         this.name = name;
         cards = new HashMap<String , Integer>();
-        cards.put("Wool" , 12);
-        cards.put("Ore" , 10);
-        cards.put("Lumber" , 14);
-        cards.put("Grain" , 12);
-        cards.put("Brick" , 14);
+        cards.put("Wool" , 0);
+        cards.put("Ore" , 6);
+        cards.put("Lumber" , 0);
+        cards.put("Grain" , 4);
+        cards.put("Brick" , 2);
         cards.put("Knight" , 0);
         cards.put("RoadBuilding" , 0);
         cards.put("YearOfPlenty" , 0);
@@ -178,6 +179,68 @@ public class Player {
                 count++;
         }
         happiness.robberInTown( count);
+    }
+
+    public void checkConnectedCities()
+    {
+        boolean[] visitedCorners = new boolean[NO_OF_CORNERS];
+        boolean[] visitedPaths = new boolean[NO_OF_PATHS];
+
+        ArrayList<int[]> trap = new ArrayList<>();
+
+        for ( int i = 0; i < buildings.size(); i++)
+        {
+
+        }
+    }
+
+    public void sadnessLose()
+    {
+        int random;
+        boolean stole = false;
+
+        if ( happiness.loseCard() )
+        {
+            while ( !stole )
+            {
+                stole = true;
+                random = (int) Math.ceil( Math.random() * 5);
+                if ( random == 1 && hasCard( "Wool", 1) )
+                {
+                    cards.put( "Wool", cards.get( "Wool")-1);
+                }
+                else if ( random == 2 && hasCard( "Ore", 1) )
+                {
+                    cards.put( "Ore", cards.get( "Ore")-1);
+                }
+                else if ( random == 3 && hasCard( "Lumber", 1) )
+                {
+                    cards.put( "Lumber", cards.get( "Lumber")-1);
+                }
+                else if ( random == 4 && hasCard( "Grain", 1) )
+                {
+                    cards.put( "Grain", cards.get( "Grain")-1);
+                }
+                else if ( random == 5 && hasCard( "Brick", 1))
+                {
+                    cards.put( "Brick", cards.get( "Brick")-1);
+                }
+                else
+                {
+                    stole = false;
+                    continue;
+                }
+            }
+        }
+    }
+
+    public void wealth()
+    {
+        happiness.wealth( cards.get("Wool"));
+        happiness.wealth( cards.get("Ore"));
+        happiness.wealth( cards.get("Lumber"));
+        happiness.wealth( cards.get("Grain"));
+        happiness.wealth( cards.get("Brick"));
     }
 
     public void addBuilding(Building newBuilding){
@@ -462,6 +525,7 @@ public class Player {
         if( hasCard("Brick", 1) && hasCard("Lumber", 1)){
             cards.put("Lumber" , cards.get("Lumber")-1);
             cards.put("Brick" , cards.get("Brick")-1);
+            happiness.newBuilding();
             return true;
         }
         return false;
@@ -474,6 +538,7 @@ public class Player {
             cards.put("Brick" , cards.get("Brick")-1);
             cards.put("Grain" , cards.get("Grain")-1);
             cards.put("Wool" , cards.get("Wool")-1);
+            happiness.newBuilding();
             return true;
         }
         return false;
@@ -483,6 +548,7 @@ public class Player {
         if( hasCard("Grain", 2) && hasCard("Ore", 3) ){
             cards.put("Grain" , cards.get("Grain")-2);
             cards.put("Ore" , cards.get("Ore")-3);
+            happiness.newBuilding();
             return true;
         }
         return false;

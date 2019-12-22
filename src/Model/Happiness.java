@@ -18,6 +18,22 @@ public class Happiness {
         increaseHappinessValue( number);
     }
 
+    public void newBuilding()
+    {
+        increaseHappinessValue( 1);
+    }
+
+    public void wealth( int resourceAmount)
+    {
+        int count = 0;
+        while ( resourceAmount > 8)
+        {
+            count++;
+            resourceAmount -= 8;
+        }
+        increaseHappinessValue( resourceAmount);
+    }
+
     public void robberInTown( int number)
     {
         decreaseHappinessValue( number);
