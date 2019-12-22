@@ -4,6 +4,7 @@ import Control.ClientGameManager;
 import Control.GameManager;
 import Control.MapManager;
 import Control.ServerGameManager;
+import Model.Offer;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -29,6 +30,7 @@ import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -74,6 +76,8 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String Player1Trade ,Player2Trade ,Player3Trade ,Player4Trade ;
     @FXML private ComboBox playCardType;
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
+    @FXML private javafx.scene.control.Label givenResourcesOfferID;
+    @FXML private javafx.scene.control.Label wantedResourcesOfferID;
     @FXML
     private TextField player1;
     @FXML
@@ -219,6 +223,7 @@ public class Main extends Application implements Initializable {
             this.refreshLongestRoad();
             playerName.setText("" + gameManager.getPlayerName());
             gameManager.visualizeMap();
+
         }
     }
 
@@ -234,11 +239,15 @@ public class Main extends Application implements Initializable {
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
+        givenResourcesOfferID.setDisable(false);
+        wantedResourcesOfferID.setDisable(false);
     }
 
     public void bankRadioPressed(ActionEvent event) throws IOException{
         offer = false;
         playerBox.setDisable( true);
+        givenResourcesOfferID.setDisable(true);
+        wantedResourcesOfferID.setDisable(true);
     }
 
     public void edgePressed(ActionEvent event) throws IOException, URISyntaxException {
@@ -360,6 +369,8 @@ public class Main extends Application implements Initializable {
             givenResourceNumber++;
         else
             givenResourceNumber = 1;
+
+        givenResourcesOfferID.setText("x " + givenResourceNumber);
     }
     public void wantedResourcesButtons(ActionEvent event) throws IOException{
         String oldResource = wantedResource;
@@ -426,6 +437,8 @@ public class Main extends Application implements Initializable {
             wantedResourceNumber++;
         else
             wantedResourceNumber = 1;
+
+        wantedResourcesOfferID.setText("x " + wantedResourceNumber);
     }
 
     public void offerButtonPressed(ActionEvent event) throws IOException{
@@ -666,8 +679,8 @@ public class Main extends Application implements Initializable {
                     RollNo.setText("Turn : " + clientGameManager.getTurnNo());
                 }
             }
-            offerPopUp();
         }
+        offerPopUp();
     }
 
     public static void refreshPlayerScores()
@@ -736,31 +749,58 @@ public class Main extends Application implements Initializable {
     public void offerPopUp() throws IOException {
         ArrayList<Offer> offerList;
         if ( !multiPlayer)
+        {
             offerList = gameManager.listOffer();
+            for(int i = 0; i < offerList.size(); i++) {
+                Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+                Scene scene = new Scene(root);
+
+                Stage stage = new Stage();
+                stage.setTitle("Offer");
+                stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+                //stage.close();
+            }
+        }
         else if ( myTurn)
         {
             if ( server)
             {
                 offerList = serverGameManager.listOffer();
+                for(int i = 0; i < offerList.size(); i++) {
+                    Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+                    Scene scene = new Scene(root);
+
+                    Stage stage = new Stage();
+                    stage.setTitle("Offer");
+                    stage.setScene(scene);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.show();
+
+                    //stage.close();
+                }
             }
             else
             {
                 offerList = clientGameManager.listOffer();
+                for(int i = 0; i < offerList.size(); i++) {
+                    Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+                    Scene scene = new Scene(root);
+
+                    Stage stage = new Stage();
+                    stage.setTitle("Offer");
+                    stage.setScene(scene);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.show();
+
+                    //stage.close();
+                }
             }
-        }
-
-        for(int i = 0; i < offerList.size(); i++) {
-            Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
-
-            Scene scene = new Scene(root);
-
-            Stage stage = new Stage();
-            stage.setTitle("Offer");
-            stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-
-            //stage.close();
         }
     }
 

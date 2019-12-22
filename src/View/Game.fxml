@@ -296,11 +296,11 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
-                        <RadioButton fx:id="bankRadio" layoutX="37.0" layoutY="118.0" mnemonicParsing="false" onAction="#bankRadioPressed" text="Trade with the Bank" toggleGroup="$tradeSelect">
+                        <RadioButton fx:id="bankRadio" layoutX="35.0" layoutY="110.0" mnemonicParsing="false" onAction="#bankRadioPressed" text="Trade with the Bank" toggleGroup="$tradeSelect">
                      <font>
                         <Font name="Carter One" size="13.0" />
                      </font></RadioButton>
-                  <Label layoutX="34.0" layoutY="144.0" prefHeight="17.0" prefWidth="67.0" text="Given">
+                  <Label layoutX="37.0" layoutY="137.0" prefHeight="17.0" prefWidth="67.0" text="Given">
                       <font>
                           <Font name="Carter One" size="13.0" />
                       </font>
@@ -315,6 +315,16 @@
                   <Button fx:id="wantedResourceLumber" layoutX="120.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
                   <Button fx:id="wantedResourceOre" layoutX="170.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
                   <Button fx:id="wantedResourceWool" layoutX="220.0" layoutY="241.0" mnemonicParsing="false" onAction="#wantedResourcesButtons" opacity="0.4" prefHeight="40.0" prefWidth="40.0" textFill="WHITE" />
+                  <Label fx:id="givenResourcesOfferID" layoutX="106.0" layoutY="137.0" prefHeight="17.0" prefWidth="67.0" text="x 0">
+                     <font>
+                        <Font name="Carter One" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="wantedResourcesOfferID" layoutX="107.0" layoutY="215.0" prefHeight="22.0" prefWidth="62.0" text="x 0">
+                     <font>
+                        <Font name="Carter One" size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
                 <AnchorPane layoutX="280.0" layoutY="-9.0" prefHeight="502.0" prefWidth="655.0">
