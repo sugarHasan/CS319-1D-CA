@@ -189,6 +189,11 @@ public class ClientGameManager extends ClientManager{
         this.playerManager.playRoadBuilding(playerNo);
     }
 
+    public boolean knightCardPlayable()
+    {
+        return playerManager.getPlayers()[playerNo].hasCard( "Knight", 1);
+    }
+
     public void playKnightCard( int newLoc)
     {
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
