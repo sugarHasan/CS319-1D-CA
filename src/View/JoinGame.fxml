@@ -52,7 +52,7 @@
             <font>
                 <Font name="Hoefler Text" size="13.0" />
             </font></Button>
-      <Label layoutX="1067.0" layoutY="568.0" prefHeight="59.0" prefWidth="82.0" text="Start">
+      <Label layoutX="1067.0" layoutY="568.0" prefHeight="59.0" prefWidth="105.0" text="Start">
          <font>
             <Font name="Carter One" size="36.0" />
          </font>

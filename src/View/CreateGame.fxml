@@ -32,7 +32,7 @@
                 <Font name="Carter One" size="64.0" />
             </font>
         </Label>
-        <Label layoutX="1047.0" layoutY="191.0" prefHeight="59.0" prefWidth="105.0" text="Create">
+        <Label layoutX="1047.0" layoutY="191.0" prefHeight="59.0" prefWidth="148.0" text="Create">
             <font>
                 <Font name="Carter One" size="36.0" />
             </font>
@@ -62,9 +62,9 @@
             <Image url="@../images/Button/Yellow.png" />
          </image>
       </ImageView>
-      <Label layoutX="1062.0" layoutY="596.0" prefHeight="38.0" prefWidth="74.0" text="Start">
+      <Label layoutX="1062.0" layoutY="596.0" prefHeight="49.0" prefWidth="91.0" text="Start">
          <font>
-            <Font size="30.0" />
+            <Font name="Carter One" size="30.0" />
          </font>
       </Label>
       <Button id="startCreateGame" fx:id="startCreateGame" layoutX="1025.0" layoutY="568.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="118.0" prefWidth="148.0" text="Start Game">
