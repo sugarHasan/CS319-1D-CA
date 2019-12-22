@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1387.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Main">
     <children>
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1112.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1001.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/Button/Green.png" />
             </image>
@@ -32,12 +35,12 @@
                 <Font name="Carter One" size="64.0" />
             </font>
         </Label>
-        <Label layoutX="1158.0" layoutY="577.0" prefHeight="59.0" prefWidth="105.0" text="Create">
+        <Label layoutX="1047.0" layoutY="191.0" prefHeight="59.0" prefWidth="105.0" text="Create">
             <font>
                 <Font name="Carter One" size="36.0" />
             </font>
         </Label>
-        <Button id="startGame" layoutX="1111.0" layoutY="537.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Start Game">
+        <Button id="startGame" layoutX="1000.0" layoutY="160.0" mnemonicParsing="false" onAction="#initializeGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Create Game">
             <font>
                 <Font name="Hoefler Text" size="13.0" />
             </font></Button>
@@ -45,23 +48,32 @@
             <font>
                 <Font name="Hoefler Text" size="13.0" />
             </font></Button>
-        <TextField id="player1" fx:id="player1" layoutX="660.0" layoutY="191.0">
+        <TextField id="player1" fx:id="player1" layoutX="399.0" layoutY="191.0">
             <font>
                 <Font name="Carter One" size="36.0" />
             </font></TextField>
-        <Label layoutX="460.0" layoutY="203.0" prefHeight="59.0" prefWidth="161.0" text="Name:">
+        <Label layoutX="205.0" layoutY="200.0" prefHeight="59.0" prefWidth="161.0" text="Name:">
             <font>
                 <Font name="Carter One" size="36.0" />
             </font>
         </Label>
-      <Label layoutX="460.0" layoutY="280.0" prefHeight="59.0" prefWidth="161.0" text="Port:">
+      <TextField disable="true" layoutX="81.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <TextField disable="true" layoutX="506.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <TextField disable="true" layoutX="935.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <ImageView fitHeight="112.0" fitWidth="185.0" layoutX="1026.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Button/Yellow.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1062.0" layoutY="596.0" prefHeight="38.0" prefWidth="74.0" text="Start">
          <font>
-            <Font name="Carter One" size="36.0" />
+            <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="659.0" layoutY="280.0" prefHeight="78.0" prefWidth="446.0" />
-      <TextField layoutX="81.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
-      <TextField layoutX="506.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
-      <TextField layoutX="935.0" layoutY="434.0" prefHeight="66.0" prefWidth="374.0" />
+      <Button id="startGame" layoutX="1025.0" layoutY="568.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="118.0" prefWidth="148.0" text="Start Game">
+         <font>
+            <Font name="Hoefler Text" size="13.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
