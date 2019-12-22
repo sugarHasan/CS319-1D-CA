@@ -78,6 +78,7 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
     @FXML private javafx.scene.control.Label givenResourcesOfferID;
     @FXML private javafx.scene.control.Label wantedResourcesOfferID;
+    @FXML private javafx.scene.control.Button startCreateGame;
     @FXML
     private TextField player1;
     @FXML
@@ -114,7 +115,6 @@ public class Main extends Application implements Initializable {
         System.out.println( "JOIN GAME");
     }
 
-
     public void PlayGame(ActionEvent event) throws IOException, URISyntaxException {
 
         Parent tableViewParent;
@@ -140,6 +140,8 @@ public class Main extends Application implements Initializable {
         playerLongestRoad = ((javafx.scene.control.Label) tableViewParent.lookup("#playerLongestRoad"));
         RollNo = ((javafx.scene.control.Label) tableViewParent.lookup("#RollNo"));
         playerName = ((javafx.scene.control.Label) tableViewParent.lookup("#playerName"));
+        playerBox = ((javafx.scene.control.ComboBox) tableViewParent.lookup("#playerBox"));
+        startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
 
         hexTiles = (AnchorPane) tableViewParent.lookup("#hexTiles");
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
@@ -225,6 +227,10 @@ public class Main extends Application implements Initializable {
             gameManager.visualizeMap();
 
         }
+
+        offer = true;
+       // playerBox.setButtonCell();
+        startCreateGame.setDisable(true);
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
