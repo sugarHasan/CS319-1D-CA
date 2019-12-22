@@ -249,6 +249,8 @@ public class GameManager {
     {
         playerManager.fishing();
         playerManager.checkRobberPresence( playerNo, getRobbersLocation());
+        playerManager.checkSadnessLose( playerNo);
+        playerManager.checkWealth( playerNo);
     }
 
     public void makeOffer( int receiverNo, String offeredItem,
