@@ -106,9 +106,9 @@ public class Main extends Application implements Initializable {
     @FXML
     private Label sender;
     @FXML
-    private Label offeredResource;
+    private ImageView offeredResource;
     @FXML
-    private Label takenResource;
+    private ImageView takenResource;
 
     @FXML static public AnchorPane hexTiles;
     @FXML static public AnchorPane mapBuildings;
@@ -188,6 +188,8 @@ public class Main extends Application implements Initializable {
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
         /*GivenResource = (ImageView) tableViewParent.lookup("#GivenResource");
         TakenResource = (ImageView) tableViewParent.lookup("#TakenResource");*/
+
+
 
         if(!multiPlayer)
         {
@@ -846,6 +848,7 @@ public class Main extends Application implements Initializable {
 
     public void offerPopUp() throws IOException, URISyntaxException {
         ArrayList<Offer> offerList = null;
+        String Given = "", Taken = "";
         if ( !multiPlayer)
             offerList = gameManager.listOffer();
         else if ( myTurn)
@@ -864,32 +867,76 @@ public class Main extends Application implements Initializable {
         {
             System.out.println( "INSIDE");
             for(int i = 0; i < offerList.size(); i++) {
-                //String Given = "Brick", Taken = "Brick";
-
-               /* if (offerList.get(i).getDemandedItem().equals("Wool")) {
-
+                if (offerList.get(i).getDemandedItem().equals("Wool")) {
+                    Taken = "Sheep";
                 } else if( offerList.get(i).getDemandedItem().equals("Lumber")) {
-
+                    Taken = "Wood";
                 }
+                else if (offerList.get(i).getDemandedItem().equals("Ore")) {
+                    Taken = "Rock";
+                }
+                else
+                    Taken = offerList.get(i).getDemandedItem();
 
                 if (offerList.get(i).getOfferedItem().equals("Wool")) {
-
+                    Given = "Sheep";
                 } else if (offerList.get(i).getOfferedItem().equals("Lumber")) {
-
+                    Given = "Wood";
                 }
-               */
-
-              /*  javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
-                GivenResource.setImage(img);
-
-                javafx.scene.image.Image img2 = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
-                TakenResource.setImage(img2);*/
+                else if (offerList.get(i).getOfferedItem().equals("Ore")) {
+                    Given = "Rock";
+                }
+                else
+                    Given = offerList.get(i).getOfferedItem();
 
                 System.out.println( "INSIDE OFFER");
-                System.out.println(offerList.get(i).getDemandedItem() + offerList.get(i).getDemandNum());
-                System.out.println(offerList.get(i).getOfferedItem()  + offerList.get(i).getOfferNum());
+                /*System.out.println(offerList.get(i).getDemandedItem() + offerList.get(i).getDemandNum());
+                System.out.println(offerList.get(i).getOfferedItem()  + offerList.get(i).getOfferNum());*/
 
                 Parent root = FXMLLoader.load(getClass().getResource("OfferPopUp.fxml"));
+
+                offeredResource = (javafx.scene.image.ImageView) root.lookup("#offeredResource");
+                takenResource = (javafx.scene.image.ImageView) root.lookup("#takenResource");
+
+                givenNo = (javafx.scene.control.Label) root.lookup("#givenNo");
+                takenNo = (javafx.scene.control.Label) root.lookup("#takenNo");
+                sender = (javafx.scene.control.Label) root.lookup("#sender");
+
+                acceptOffer = ((javafx.scene.control.Button) root.lookup("#acceptOffer"));
+                refuseOffer = ((javafx.scene.control.Button) root.lookup("#refuseOffer"));
+
+                givenNo.setText( offerList.get(i).getOfferNum() + " X ");
+                takenNo.setText( "" + offerList.get(i).getDemandNum() + " X ");
+                sender.setText( offerList.get(i).getSender().getName());
+
+                javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/" + Given + ".png").toURI().toString());
+                //offeredResource.setImage(img);
+
+                ImageView hex = new ImageView(img);
+
+                //hex.setFitHeight(120);
+                //hex.setFitWidth(120);
+
+                AnchorPane rootPane = ((AnchorPane) root.lookup("#rootPane"));
+
+                rootPane.getChildren().add(hex);
+
+                ((ImageView) rootPane.getChildren().get(rootPane.getChildren().size() - 1)).setFitHeight(32);
+                ((ImageView) rootPane.getChildren().get(rootPane.getChildren().size() - 1)).setFitWidth(38);
+
+                rootPane.getChildren().get(rootPane.getChildren().size() - 1).setLayoutX(85);
+                rootPane.getChildren().get(rootPane.getChildren().size() - 1).setLayoutY(93);
+
+                javafx.scene.image.Image img2 = new Image(getClass().getResource("/images/Resources/" + Taken + ".png").toURI().toString());
+                ImageView hex2 = new ImageView(img2);
+
+                rootPane.getChildren().add(hex2);
+
+                ((ImageView) rootPane.getChildren().get(rootPane.getChildren().size() - 1)).setFitHeight(32);
+                ((ImageView) rootPane.getChildren().get(rootPane.getChildren().size() - 1)).setFitWidth(38);
+
+                rootPane.getChildren().get(rootPane.getChildren().size() - 1).setLayoutX(282);
+                rootPane.getChildren().get(rootPane.getChildren().size() - 1).setLayoutY(93);
 
                 Scene scene = new Scene(root);
 
