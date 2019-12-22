@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="200.0" prefWidth="350.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ControllerOfferPopUp">
+   <children>
+      <Label layoutX="91.0" layoutY="14.0" text="TRADE OFFER">
+         <font>
+            <Font name="Elephant" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="56.0" text="Sender" />
+      <Label layoutX="78.0" layoutY="56.0" text="wants to give you " />
+      <Label layoutX="175.0" layoutY="56.0" text="GivenNo" />
+      <Label layoutX="209.0" layoutY="56.0" text="GivenResource" />
+      <Label layoutX="91.0" layoutY="74.0" text="in exchange of" />
+      <Label layoutX="174.0" layoutY="74.0" text="TakenNo" />
+      <Label layoutX="208.0" layoutY="74.0" text="TakenResource" />
+      <Button layoutX="100.0" layoutY="122.0" mnemonicParsing="false" text="ACCEPT" />
+      <Button layoutX="181.0" layoutY="122.0" mnemonicParsing="false" text="REFUSE" />
+   </children>
+</AnchorPane>

@@ -28,7 +28,7 @@ public class GameManager {
     private int oldlocactionRobber = -1;
     private ArrayList<Card> initialDevelopmentCardStack = new ArrayList<Card>();
 
-    public GameManager(String player1, String player2, String player3 , String player4,AnchorPane robberImage) throws URISyntaxException {
+    public GameManager(String player1, String player2, String player3 , String player4, AnchorPane robberImage) throws URISyntaxException {
         this.playerManager = new PlayerManager( player1, player2, player3 , player4);
         playerNo = -1;
         turnNo = 1;
@@ -109,7 +109,7 @@ public class GameManager {
         {
             playerManager.robberSteals();
             //changeRobberLocation();
-            //will change robbers location to selected pos
+            //will change robbers location to selected position
         }
         else if( dice <= 12 && dice > 1)
         {
@@ -150,6 +150,7 @@ public class GameManager {
     public ArrayList<Card> getInitialDevelopmentCardStack() {
         return initialDevelopmentCardStack;
     }
+
     public boolean buyDevelopmentCard(){
         if(!initialDevelopmentCardStack.isEmpty()) {
             if (this.playerManager.buyDevelopmentCard(playerNo)) {
@@ -160,12 +161,17 @@ public class GameManager {
         }
         return false;
     }
+
     public void playMonopoly(String resourceType){
-        this.playerManager.playMonopoly(resourceType , playerNo);
+        if ( !resourceType.equals( ""))
+            this.playerManager.playMonopoly(resourceType , playerNo);
     }
+
     public void playYearOfPlenty(String resourceType){
-        this.playerManager.playYearOfPlenty(resourceType , playerNo);
+        if ( !resourceType.equals( ""))
+            this.playerManager.playYearOfPlenty(resourceType , playerNo);
     }
+
     public void playRoadBuilding(){
         this.playerManager.playRoadBuilding(playerNo);
     }
@@ -221,18 +227,27 @@ public class GameManager {
     private void updateHappiness()
     {
         playerManager.fishing();
-        Player[] ps = playerManager.getPlayers();
-        for ( int i = 0; i< ps.length; i++)
-        {
-            System.out.println( ps[i].getName());
-            ps[i].printBuildings();
-        }
     }
 
     public void makeOffer( int receiverNo, String offeredItem,
                            String demandedItem, int offerNum, int demandNum)
     {
         playerManager.makeOffer( playerNo, receiverNo, offeredItem, demandedItem, offerNum, demandNum);
+    }
+
+    public ArrayList<Offer> listOffer()
+    {
+        return playerManager.listOffers( playerNo);
+    }
+
+    public boolean acceptOffer( Offer offer)
+    {
+        return playerManager.acceptOffer( offer);
+    }
+
+    public boolean declineOffer( Offer offer)
+    {
+        return playerManager.declineOffer( offer);
     }
 
     public int getTurnDice() {
