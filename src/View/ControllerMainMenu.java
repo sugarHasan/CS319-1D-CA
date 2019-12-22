@@ -67,7 +67,7 @@ public class ControllerMainMenu implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("JoinGame.fxml"));
 
         rootPane.getChildren().setAll(pane);
-        ((Button) rootPane.lookup("#startJoinGame")).setDisable(true);
+        //((Button) rootPane.lookup("#startJoinGame")).setDisable(true);
 
         //Main.startJoinGame.setEnabled(false);
 

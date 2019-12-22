@@ -49,7 +49,7 @@ public class ServerGameManager extends ServerManager{
         this.buildings = buildings;
         this.roads = roads;
         this.playerManager = new PlayerManager( player1,"player2", "player3" , "player4");
-        playerNo = -1;
+        playerNo = 0;
         playerJoined = 1;
         lastAdded = 1;
         turnNo = 1;
@@ -241,10 +241,11 @@ public class ServerGameManager extends ServerManager{
             turnNo++;
         }
         turnDice = this.rollDice();
-        sendMessageToAll("AA" +turnDice + "###");
+        sendMessageToAll("AA" + turnDice  + "###");
         this.distributeResources(turnDice);
         if(Main.myName.equals(playerManager.getName(playerNo))) Main.myTurn = true;
         else    Main.myTurn = false;
+        Main.refreshServer();
         return playerManager.getPlayers()[playerNo].getName();
     }
 
@@ -359,7 +360,7 @@ public class ServerGameManager extends ServerManager{
                 playerManager.changeIndexPlayerName(message.substring(3), lastAdded);
                 lastAdded++;
                 //Main.refreshPlayerScores();
-                System.out.println("AD DEGISTIRME:    " + playerManager.getName(lastAdded-1));
+                //System.out.println("AD DEGISTIRME:    " + playerManager.getName(lastAdded-1));
             }
             if(lastAdded == 4){
                 Main.myTurn = true;
@@ -374,19 +375,19 @@ public class ServerGameManager extends ServerManager{
 
     @Override
     public void connectionEstablished() {
-        if(playerJoined!=2){
+        if(playerJoined!=4){
             System.out.println("CONNECTION ESTABLISHED");
             playerJoined++;
             // playerManager.setPlayerName() DO IN received
-            if(playerJoined==2){
-
+            if(playerJoined==4){
+                //Activate deactivate button
             }
         }
     }
 
     public void sendGameData(){
         System.out.println("SEND GAME DATA");
-        for(int i = 0 ; i < 2 ; i++){
+        for(int i = 0 ; i < 4 ; i++){
             super.sendMessageToAll("CF"+i+playerManager.getPlayers()[i].getName()+"###");
         }
         sendMessageToAll( "CE" + map.encodeMap());

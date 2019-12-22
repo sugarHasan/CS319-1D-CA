@@ -1,14 +1,12 @@
 package Control;
 
-import Model.Card;
+import Model.*;
 import Model.DevelopmentCardTypes.KnightCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.MonopolyCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.RoadCard;
 import Model.DevelopmentCardTypes.ProgressCardTypes.YearOfPlentyCard;
 import Model.DevelopmentCardTypes.VictoryPointCard;
-import Model.Map;
-import Model.Land;
-import Model.Offer;
+import View.Main;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class ClientGameManager extends ClientManager{
         this.buildings = buildings;
         this.roads = roads;
         this.playerManager = new PlayerManager("player1", " player2", "player3", "player4");
-        playerNo = -1;
+        playerNo = 0;
         lastAdded = 1;
         turnNo = 1;
         firstTurn = false;
@@ -118,10 +116,7 @@ public class ClientGameManager extends ClientManager{
         return stack;
     }
 
-    public int rollDice()
-    {
-        return (int) Math.ceil( Math.random() * 11) + 1;
-    }
+
 
     public boolean distributeResources( int dice)
     {
@@ -239,8 +234,12 @@ public class ClientGameManager extends ClientManager{
             playerNo = 0;
             turnNo++;
         }
+        System.out.println("SIradakinin adi: " + playerManager.getName(playerNo));
         dice = turnDice;
         this.distributeResources(turnDice);
+        if(Main.myName.equals(playerManager.getName(playerNo))) Main.myTurn = true;
+        else    Main.myTurn = false;
+        Main.refreshClient();
         return playerManager.getPlayers()[playerNo].getName();
     }
 
@@ -302,6 +301,7 @@ public class ClientGameManager extends ClientManager{
         System.out.println(message);
         String id = message.substring(0 , 2);
         if(id.equals("AA")){
+            System.out.println("Burada");
             this.nextTurn(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AB")){
@@ -315,7 +315,7 @@ public class ClientGameManager extends ClientManager{
         	this.addCity(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AE")){
-        	this.rollDice();
+
         }
         else if(id.equals("BA")){
         	this.playMonopoly(message.substring(2)); //String message for resourceType
@@ -361,5 +361,9 @@ public class ClientGameManager extends ClientManager{
 
     public int getTurnDice() {
         return dice;
+    }
+
+    public Player[] getPlayerArray() {
+        return this.playerManager.getPlayers();
     }
 }

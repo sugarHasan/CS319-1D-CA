@@ -62,8 +62,16 @@ public class Main extends Application implements Initializable {
     @FXML private  javafx.scene.control.Button offerButton;
     @FXML private  javafx.scene.control.Button givenResourceGrain,givenResourceBrick,givenResourceLumber,givenResourceOre,givenResourceWool;
     @FXML private  javafx.scene.control.Button wantedResourceGrain,wantedResourceBrick,wantedResourceLumber,wantedResourceOre,wantedResourceWool;
-    @FXML private  javafx.scene.control.Label grainNo, brickNo, oreNo, lumberNo, woolNo;
-    @FXML private  javafx.scene.control.Label KnightNo, VictoryNo, RoadNo, PlentyNo, MonoNo;
+    @FXML private static javafx.scene.control.Label grainNo;
+    @FXML private static javafx.scene.control.Label brickNo;
+    @FXML private static javafx.scene.control.Label oreNo;
+    @FXML private static javafx.scene.control.Label lumberNo;
+    @FXML private static javafx.scene.control.Label woolNo;
+    @FXML private static javafx.scene.control.Label KnightNo;
+    @FXML private static javafx.scene.control.Label VictoryNo;
+    @FXML private static javafx.scene.control.Label RoadNo;
+    @FXML private static javafx.scene.control.Label PlentyNo;
+    @FXML private static javafx.scene.control.Label MonoNo;
     @FXML private ListView<String> playerList;
     @FXML private static javafx.scene.control.Label p1;
     @FXML private static javafx.scene.control.Label p2;
@@ -73,9 +81,9 @@ public class Main extends Application implements Initializable {
     @FXML private static javafx.scene.control.Label p2Score;
     @FXML private static javafx.scene.control.Label p3Score;
     @FXML private static javafx.scene.control.Label p4Score ;
-    @FXML private javafx.scene.control.Label playerHighestArmy;
+    @FXML private static javafx.scene.control.Label playerHighestArmy;
     @FXML private javafx.scene.control.Label playerLongestRoad;
-    @FXML private javafx.scene.control.Label playerName;
+    @FXML private static javafx.scene.control.Label playerName;
     @FXML private javafx.scene.control.Label RollNo;
     @FXML private ComboBox playCardNo;
     @FXML private java.lang.String Knight ,RoadBuilding ,YearOfPlenty ,Monopoly ;
@@ -231,7 +239,7 @@ public class Main extends Application implements Initializable {
         if(multiPlayer) {
             if (server) {
                 //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
-                serverGameManager.nextTurn();
+                //serverGameManager.nextTurn();
                 myTurn = true;
                 serverGameManager.sendGameData();
                 playerNames = new String[4];
@@ -248,6 +256,15 @@ public class Main extends Application implements Initializable {
                 //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 //clientGameManager.sendMessage("XAA");
                 myTurn = false;
+                playerNames = new String[4];
+                Player[] p = clientGameManager.getPlayerArray();
+                for(int i = 0 ; i < p.length ; i++){
+                    playerNames[i] = p[i].getName();
+                }
+                p1.setText(playerNames[0]);
+                p2.setText(playerNames[1]);
+                p3.setText(playerNames[2]);
+                p4.setText(playerNames[3]);
             }
         }
         else{
@@ -260,7 +277,7 @@ public class Main extends Application implements Initializable {
                 this.refreshResources();
                 this.refreshPlayerScores();
                 this.refreshHighestArmy();
-                //this.refreshLongestRoad();
+                this.refreshLongestRoad();
                 playerName.setText("" + serverGameManager.getPlayerName());
                 serverGameManager.visualizeMap();
 
@@ -287,7 +304,7 @@ public class Main extends Application implements Initializable {
        /*// playerBox.setButtonCell();
         startCreateGame.setDisable(true);*/
 
-       happiness.setText("" + gameManager.getTurnPlayerHappiness());
+//       happiness.setText("" + gameManager.getTurnPlayerHappiness());
     }
 
     public void playerBoxPressed(ActionEvent event) throws IOException{
@@ -299,14 +316,23 @@ public class Main extends Application implements Initializable {
     public void wantedBoxPressed(ActionEvent event) throws IOException{
     }
 
-    public void refresh(){
+    public static void refreshClient(){
         refreshResources();
         refreshDevelopmentCards();
         refreshResources();
         refreshHighestArmy();
         refreshPlayerScores();
+        playerName.setText("" + clientGameManager.getPlayerName());
     }
 
+    public static void refreshServer(){
+        refreshResources();
+        refreshDevelopmentCards();
+        refreshResources();
+        refreshHighestArmy();
+        refreshPlayerScores();
+        playerName.setText("" + serverGameManager.getPlayerName());
+    }
     public void playerRadioPressed(ActionEvent event) throws IOException{
         offer = true;
         playerBox.setDisable( false);
@@ -601,7 +627,7 @@ public class Main extends Application implements Initializable {
             }
         }
 
-    private void refreshResources(){
+    private static void refreshResources(){
         if(!multiPlayer) {
             int[] resources = gameManager.getResources();
             grainNo.setText("" +  resources[0]);
@@ -631,7 +657,7 @@ public class Main extends Application implements Initializable {
 
     }
 
-    public void refreshDevelopmentCards() {
+    public static void refreshDevelopmentCards() {
         if (!multiPlayer) {
             int[] developments = gameManager.getDevelopmentCards();
             KnightNo.setText("" + developments[0]);
@@ -795,7 +821,7 @@ public class Main extends Application implements Initializable {
         }
         knightCardPlayed = false;
         offerPopUp();
-        happiness.setText("" + gameManager.getTurnPlayerHappiness());
+//        happiness.setText("" + gameManager.getTurnPlayerHappiness());
     }
 
     public static void refreshPlayerScores()
@@ -983,7 +1009,7 @@ public class Main extends Application implements Initializable {
         return gameManager.gameOver();
     }
 
-    public void refreshHighestArmy()
+    public static void refreshHighestArmy()
     {
         if(!multiPlayer) {
             int army = gameManager.largestArmy();
