@@ -61,7 +61,7 @@
             <font>
                 <Font name="Hoefler Text" size="13.0" />
             </font></Button>
-      <Button id="startGame" layoutX="1009.0" layoutY="538.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Start Game">
+      <Button id="startGame" fx:id="startJoinGame" layoutX="1009.0" layoutY="538.0" mnemonicParsing="false" onAction="#PlayGame" opacity="0.0" prefHeight="139.0" prefWidth="198.0" text="Start Game">
          <font>
             <Font name="Hoefler Text" size="13.0" />
          </font>

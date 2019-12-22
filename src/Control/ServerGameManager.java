@@ -58,6 +58,7 @@ public class ServerGameManager extends ServerManager{
         buildingManager = new BuildingManager();
         map = new Map();
         synchronizeMap();
+        map.visualizeMap();
     }
 
     public String returnPlayerColor(){
@@ -182,14 +183,24 @@ public class ServerGameManager extends ServerManager{
         this.playerManager.playRoadBuilding(playerNo);
     }
 
+    public boolean knightCardPlayable()
+    {
+        return playerManager.getPlayers()[playerNo].hasCard( "Knight", 1);
+    }
+
     public void playKnightCard( int newLoc)
     {
         playerManager.playKnightCard( playerNo, buildingManager.getBuildingOwnersAt( map.getLandCornerLocation( newLoc)));
     }
 
     public boolean addRoad(int location) throws URISyntaxException {
-        sendMessageToAll("DENEMEMU###");
-    return true;
+        if(buildingManager.buildRoad(playerManager.getPlayers()[playerNo] , location))
+        {
+            buildingManager.setRoadImage(returnPlayerColor(),location);
+            return true;
+        }
+        else
+            return false;
     }
 
     public boolean addSettlement(int location) throws URISyntaxException {
@@ -293,7 +304,7 @@ public class ServerGameManager extends ServerManager{
             this.nextTurn();
         }
         else if(id.equals("AB")){
-            //this.addRoad(Integer.parseInt(message.substring(2)), roads);
+            this.addRoad(Integer.parseInt(message.substring(2)));
         }
         else if(id.equals("AC")){
             this.addSettlement(Integer.parseInt(message.substring(2)));
@@ -360,7 +371,7 @@ public class ServerGameManager extends ServerManager{
     public void sendGameData(){
         System.out.println("SEND GAME DATA");
         for(int i = 0 ; i < 1 ; i++){
-            super.sendMessageToAll("CD"+i+playerManager.getPlayers()[i].getName()+"###");
+            super.sendMessageToAll("CF"+i+playerManager.getPlayers()[i].getName()+"###");
         }
         sendMessageToAll( "CE" + map.encodeMap());
         System.out.println( map.encodeMap());

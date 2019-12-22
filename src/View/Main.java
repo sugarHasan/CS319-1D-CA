@@ -44,6 +44,7 @@ public class Main extends Application implements Initializable {
     private static ServerGameManager serverGameManager;
     private static ClientGameManager clientGameManager;
     private boolean offer = true;
+    private boolean knightCardPlayed = false;
     private String givenResource = "";
     private int givenResourceNumber = 0;
     private String wantedResource = "";
@@ -81,7 +82,6 @@ public class Main extends Application implements Initializable {
     @FXML private java.lang.String playCardGrain, playCardBrick, playCardOre, playCardLumber, playCardWool;
     @FXML private javafx.scene.control.Label givenResourcesOfferID;
     @FXML private javafx.scene.control.Label wantedResourcesOfferID;
-    @FXML private javafx.scene.control.Button startCreateGame;
     @FXML
     private TextField player1;
     @FXML
@@ -112,6 +112,8 @@ public class Main extends Application implements Initializable {
     @FXML static public AnchorPane mapBuildings;
     @FXML static public AnchorPane mapRoads;
     @FXML static public AnchorPane robberAnchorPane;
+    @FXML static public Button startCreateGame;
+    @FXML static public Button startJoinGame;
 
     public void backToMenu(ActionEvent event) throws IOException
     {
@@ -132,6 +134,9 @@ public class Main extends Application implements Initializable {
         mapBuildings = (AnchorPane) tableViewParent.lookup("#mapBuildings");
         robberAnchorPane = (AnchorPane) tableViewParent.lookup("#robberAnchorPane");
         mapRoads = (AnchorPane) tableViewParent.lookup("#mapRoads");
+        //tableViewParent = FXMLLoader.load(getClass().getResource("CreateGame.fxml"));
+        //startCreateGame = ((javafx.scene.control.Button) tableViewParent.lookup("#startCreateGame"));
+        //startCreateGame.setDisable(true);
         serverGameManager = new ServerGameManager(2222, player1.getText(),robberAnchorPane,hexTiles,mapBuildings,mapRoads);
     }
 
@@ -219,7 +224,7 @@ public class Main extends Application implements Initializable {
             if (server) {
                 //serverGameManager = new ServerGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 serverGameManager.nextTurn();
-                //myTurn = true;
+                myTurn = true;
             } else {
                 //clientGameManager = new ClientGameManager(2222, playerNames[0],robberAnchorPane,hexTiles,mapBuildings,mapRoads);
                 clientGameManager.nextTurn();
@@ -301,20 +306,23 @@ public class Main extends Application implements Initializable {
         }
         else if(myTurn){
             if(server) {
+                System.out.println("MYTs ");
                 String id = ((Node) event.getSource()).getId();
                 int location = Integer.parseInt(id.substring(1));
                 if (serverGameManager.addRoad(location)) {
                     ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                    serverGameManager.sendMessageToAll("AB" + location+"###");
                 }
                 refreshResources();
                 refreshPlayerScores();
-                //refreshLongestRoad();
+                refreshLongestRoad();
             }
             else{
                 String id = ((Node) event.getSource()).getId();
                 int location = Integer.parseInt(id.substring(1));
                 if (clientGameManager.addRoad(location)) {
                     ((javafx.scene.control.Button) event.getSource()).setDisable(true);
+                    clientGameManager.sendMessage("AB" + location+"###");
                 }
                 refreshResources();
                 refreshPlayerScores();
@@ -325,11 +333,40 @@ public class Main extends Application implements Initializable {
 
     //for robber and knight card. Location starts with 0.
     public void hexCenterPressed(ActionEvent event) throws IOException, URISyntaxException {
-        //to be implemented
         String id = ((Node)event.getSource()).getId();
         int location = Integer.parseInt(id.substring(1));
-        if(gameManager.getTurnDice() == 7)
-            gameManager.changeRobberLocation(location);
+        if ( !multiPlayer)
+            if( gameManager.getTurnDice() == 7 || knightCardPlayed )
+            {
+                gameManager.changeRobberLocation( location);
+                if ( knightCardPlayed)
+                {
+                    knightCardPlayed = false;
+                    refreshDevelopmentCards();
+                }
+            }
+        else if ( myTurn)
+            if ( server)
+                if( serverGameManager.getTurnDice() == 7 || knightCardPlayed )
+                {
+                    serverGameManager.changeRobberLocation( location);
+                    if ( knightCardPlayed)
+                    {
+                        serverGameManager.playKnightCard( location);
+                        knightCardPlayed = false;
+                    }
+                }
+            else
+                if( clientGameManager.getTurnDice() == 7 || knightCardPlayed )
+                {
+                    clientGameManager.changeRobberLocation( location);
+                    if ( knightCardPlayed)
+                    {
+                        clientGameManager.playKnightCard( location);
+                        knightCardPlayed = false;
+                    }
+                }
+
     }
     public void givenResourcesButtons(ActionEvent event) throws IOException{
 
@@ -712,6 +749,7 @@ public class Main extends Application implements Initializable {
                 }
             }
         }
+        knightCardPlayed = false;
         offerPopUp();
     }
 
@@ -797,9 +835,6 @@ public class Main extends Application implements Initializable {
         if ( offerList != null )
         {
             System.out.println( "INSIDE");
-
-            System.out.println(offerList.size());
-
             for(int i = 0; i < offerList.size(); i++) {
                 //String Given = "Brick", Taken = "Brick";
 
@@ -816,7 +851,7 @@ public class Main extends Application implements Initializable {
                 }
                */
 
-                /*javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
+              /*  javafx.scene.image.Image img = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
                 GivenResource.setImage(img);
 
                 javafx.scene.image.Image img2 = new Image(getClass().getResource("/images/Resources/Brick.png").toURI().toString());
@@ -983,7 +1018,10 @@ public class Main extends Application implements Initializable {
                     gameManager.playMonopoly(playerCardType());
                 }
             } else if (playCardNo.getValue().equals(Knight)) {
-
+                if ( gameManager.knightCardPlayable())
+                {
+                    knightCardPlayed = true;
+                }
             } else if (playCardNo.getValue().equals(RoadBuilding)) {
 
                 gameManager.playRoadBuilding();
@@ -1003,7 +1041,10 @@ public class Main extends Application implements Initializable {
                         serverGameManager.playMonopoly(playerCardType());
                     }
                 } else if (playCardNo.getValue().equals(Knight)) {
-
+                    if ( serverGameManager.knightCardPlayable())
+                    {
+                        knightCardPlayed = true;
+                    }
                 } else if (playCardNo.getValue().equals(RoadBuilding)) {
 
                     serverGameManager.playRoadBuilding();
@@ -1022,7 +1063,10 @@ public class Main extends Application implements Initializable {
                         clientGameManager.playMonopoly(playerCardType());
                     }
                 } else if (playCardNo.getValue().equals(Knight)) {
-
+                    if ( serverGameManager.knightCardPlayable())
+                    {
+                        knightCardPlayed = true;
+                    }
                 } else if (playCardNo.getValue().equals(RoadBuilding)) {
 
                     clientGameManager.playRoadBuilding();
