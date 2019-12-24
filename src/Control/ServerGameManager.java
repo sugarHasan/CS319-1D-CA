@@ -245,7 +245,7 @@ public class ServerGameManager extends ServerManager{
         this.distributeResources(turnDice);
         if(Main.myName.equals(playerManager.getName(playerNo))) Main.myTurn = true;
         else    Main.myTurn = false;
-        Main.refreshServer();
+        //Main.refreshServer();
         return playerManager.getPlayers()[playerNo].getName();
     }
 

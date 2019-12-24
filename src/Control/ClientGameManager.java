@@ -239,7 +239,7 @@ public class ClientGameManager extends ClientManager{
         this.distributeResources(turnDice);
         if(Main.myName.equals(playerManager.getName(playerNo))) Main.myTurn = true;
         else    Main.myTurn = false;
-        Main.refreshClient();
+        //Main.refreshClient();
         return playerManager.getPlayers()[playerNo].getName();
     }
 
