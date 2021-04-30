@@ -24,6 +24,7 @@ Terrain hexes and Tokens are arbitrarily placed in order to make each game somew
 #### **About our project**
 
 #### **Reports (Google Docs)**
+- Demo video: https://www.youtube.com/watch?v=NK-EfOElUPs
 - Google Docs document for meeting logs: https://docs.google.com/document/d/1L_QRNpe48eU_OnXXNcvLn4mc1h1lgQ_3iP1igGW70iU/edit?usp=sharing
 - Iteration 1 Analysis Report: https://docs.google.com/document/d/1RWp4upPZNdBVOoR3XDt40o8sZgI6_LY21-ipS0EC-Pw/edit?usp=sharing
 - Iteration 1 Design Report: https://docs.google.com/document/d/1qP5CNnBYuXJ1esmrSAMHeQ9iz_hTRhJIyrpBT2eGbWI/edit?usp=sharing
